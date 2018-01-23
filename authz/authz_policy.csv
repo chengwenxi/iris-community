@@ -1,0 +1,5 @@
+p, user, /user*, GET
+p, user, /user, POST
+p, admin, /*, *
+p, guest, /auth*, *
+p, guest, /user, POST

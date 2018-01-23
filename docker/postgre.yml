@@ -1,0 +1,11 @@
+version: '2'
+services:
+    beandrgs-postgresql:
+        image: postgres:9.6.2
+#        volumes:
+#            - ~/volumes/community/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=com
+            - POSTGRES_PASSWORD=com
+        ports:
+            - 5432:5432

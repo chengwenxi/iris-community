@@ -1,0 +1,14 @@
+postgres:
+  host: 127.0.0.1
+  post: 5432
+  dbname: com
+  user: com
+  password: com
+  sslmode: disable
+server: 0.0.0.0:80
+mail:
+  host: smtp.163.com
+  port: 25
+  username: XXX@163.com
+  password: XXX
+staticPath: D:\test\static  #静态文件路径
