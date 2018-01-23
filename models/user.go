@@ -23,11 +23,6 @@ func (user *Users) BeforeCreate(scope *gorm.Scope) error {
 	return nil
 }
 
-func (user *Users) BeforeUpdate(scope *gorm.Scope) error {
-	user.Updatetime = time.Now()
-	return nil
-}
-
 func (user *Users) Create() error {
 	return DB.Create(user).Error
 }
@@ -41,7 +36,7 @@ func (user *Users) First() error {
 }
 
 func (user *Users) Update() error {
-	return DB.Omit("Createtime").Save(user).Error
+	return DB.Omit("Createtime","Updatetime").Updates(user).Error
 }
 
 
