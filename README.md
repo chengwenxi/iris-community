@@ -2,7 +2,7 @@
 Website for IRIS Community Activities
 
 
-#Installation
+### Installation
 
 Please make sure that glide is installed.
 
