@@ -2,7 +2,7 @@ package utils
 
 import (
 	"testing"
-	"github.com/community/config"
+	"github.com/irisnet/iris-community/config"
 )
 
 func TestRegisterEmail(t *testing.T) {

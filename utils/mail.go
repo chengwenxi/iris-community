@@ -2,7 +2,7 @@ package utils
 
 import (
 	"gopkg.in/gomail.v2"
-	"github.com/community/config"
+	"github.com/irisnet/iris-community/config"
 )
 
 var mail = config.Config.Mail
