@@ -2,6 +2,7 @@ package models
 
 import (
 	"time"
+	"github.com/jinzhu/gorm"
 )
 
 type Users struct {
@@ -13,6 +14,18 @@ type Users struct {
 	IsBlocked  bool
 	Createtime time.Time
 	Updatetime time.Time
+}
+
+func (user *Users) BeforeCreate(scope *gorm.Scope) error {
+	now := time.Now()
+	user.Createtime = now
+	user.Updatetime = now
+	return nil
+}
+
+func (user *Users) BeforeUpdate(scope *gorm.Scope) error {
+	user.Updatetime = time.Now()
+	return nil
 }
 
 func (user *Users) Create() error {
@@ -30,6 +43,7 @@ func (user *Users) First() error {
 func (user *Users) Update() error {
 	return DB.Save(user).Error
 }
+
 
 func AuthUser(email string, password string) (Users, error) {
 	var users Users

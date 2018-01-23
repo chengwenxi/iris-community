@@ -1,9 +1,9 @@
 postgres:
   host: 127.0.0.1
   post: 5432
-  dbname: com
-  user: com
-  password: com
+  dbname: iris_community
+  user: postgres
+  password: admino0o0oo0
   sslmode: disable
 server: 0.0.0.0:80
 mail:
