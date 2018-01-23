@@ -41,7 +41,7 @@ func (user *Users) First() error {
 }
 
 func (user *Users) Update() error {
-	return DB.Save(user).Error
+	return DB.Omit("Createtime").Save(user).Error
 }
 
 
