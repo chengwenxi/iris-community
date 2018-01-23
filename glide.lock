@@ -10,8 +10,6 @@ imports:
   - persist
   - rbac
   - util
-- name: github.com/gin-contrib/authz
-  version: c52461b5085d8b8e1f69dc7f8ebd63ecb29b26aa
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
 - name: github.com/gin-gonic/gin
