@@ -1,11 +1,12 @@
 version: '2'
 services:
-    beandrgs-postgresql:
+    community-postgresql:
         image: postgres:9.6.2
 #        volumes:
 #            - ~/volumes/community/postgresql/:/var/lib/postgresql/
         environment:
-            - POSTGRES_USER=com
-            - POSTGRES_PASSWORD=com
+            - POSTGRES_DB=iris_community
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=admino0o0oo0
         ports:
             - 5432:5432
