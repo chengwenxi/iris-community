@@ -49,6 +49,8 @@ func RegisterKyc(g *gin.RouterGroup) {
 			}else {
 				context.JSON(http.StatusOK, gin.H{"code":"success","msg": "user certify success"})
 			}
+		}else {
+			context.JSON(http.StatusBadRequest, "invalide json")
 		}
 	})
 

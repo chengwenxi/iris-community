@@ -47,6 +47,7 @@ func main() {
 	//rest
 	rest.UserRegisterAll(r.Group("/user")) //user
 	rest.AuthRegisterAll(r.Group("/auth")) //auth
+	rest.RegisterKyc(r.Group("/"))
 
 	r.Run(config.Config.Server) // listen and serve on 0.0.0.0:8080
 	log.Println("server start")
