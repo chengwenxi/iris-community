@@ -16,7 +16,12 @@ import (
 func main() {
 
 	//init config
-	config.LoadConfiguration("./config.yml")
+	if err := config.LoadConfiguration("./config.yml"); err!=nil{
+		log.Print("config error")
+		return
+	}
+
+
 
 	r := gin.New()
 

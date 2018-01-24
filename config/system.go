@@ -31,16 +31,19 @@ type Mail struct {
 
 var Config *Configuration
 
-func LoadConfiguration(path string) {
+func LoadConfiguration(path string) error {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Printf("error: %v", err)
+		return err
 	}
-	var config Configuration
-	err = yaml.Unmarshal(data, &config)
+	//var config Configuration
+	err = yaml.Unmarshal(data, &Config)
 	if err != nil {
 		log.Printf("error: %v", err)
+		return err
 	}
-	Config = &config
+	//Config = &config
 	log.Printf("config load succeessfully:%v", Config)
+	return nil
 }
