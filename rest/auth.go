@@ -36,7 +36,18 @@ func AuthUser(c *gin.Context) {
 	if authorization := c.Request.Header.Get("Authorization"); authorization == "" {
 		c.JSON(http.StatusForbidden, gin.H{"error": "no authorization"})
 	} else {
-
+		userAuth := &models.UserAuth{
+			AuthCode: authorization,
+		}
+		if err := userAuth.FindByAuth(); err != nil {
+			user := &models.Users{
+				Id: uint(userAuth.UserId),
+			}
+			user.First()
+			c.JSON(http.StatusOK, user)
+		}else {
+			c.JSON(http.StatusInternalServerError,err)
+		}
 	}
 
 }
