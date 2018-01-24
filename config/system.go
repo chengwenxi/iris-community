@@ -11,6 +11,7 @@ type Configuration struct {
 	Server          string    `yaml:"server"`
 	Mail            *Mail     `yaml:"mail"`
 	StaticPath      string    `yaml:"staticPath"`
+	AliYun      	*AliYun    `yaml:"aliYun"`
 }
 
 type Postgres struct {
@@ -27,6 +28,13 @@ type Mail struct {
 	Port     int    `yaml:"port"`
 	Username string `yaml:"username"`
 	Password string `yaml:"password"`
+}
+
+type AliYun struct{
+	Endpoint string `yaml:"endpoint"`
+	AccessKeyId string `yaml:"accessKeyId"`
+	AccessKeySecret string `yaml:"accessKeySecret"`
+	Bucket string `yaml:"bucket"`
 }
 
 var Config *Configuration

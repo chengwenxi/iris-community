@@ -12,3 +12,8 @@ mail:
   username: XXX@163.com
   password: XXX
 staticPath: D:\test\static  #静态文件路径
+aliYun:
+  endpoint:
+  accessKeyId:
+  accessKeySecret:
+  bucket:
