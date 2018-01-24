@@ -9,8 +9,6 @@ import (
 	"os"
 	"log"
 	"github.com/irisnet/iris-community/config"
-	"github.com/casbin/casbin"
-	"github.com/irisnet/iris-community/authz"
 )
 
 func main() {
@@ -32,13 +30,13 @@ func main() {
 	log.SetOutput(gin.DefaultWriter) // You may need this
 
 	//authorizer
-	e := casbin.NewEnforcer("./authz/authz_model.conf", "./authz/authz_policy.csv")
-	r.Use(authz.NewAuthorizer(e))
+	//e := casbin.NewEnforcer("./authz/authz_model.conf", "./authz/authz_policy.csv")
+	//r.Use(authz.NewAuthorizer(e))
 
 	//init user and role by db
-	e.AddRoleForUser("test","admin")
-	e.AddRoleForUser("test2","user")
-	e.DeleteRoleForUser("test2","user")
+	//e.AddRoleForUser("test","admin")
+	//e.AddRoleForUser("test2","user")
+	//e.DeleteRoleForUser("test2","user")
 
 	//static source
 	r.Static("/static", config.Config.StaticPath)

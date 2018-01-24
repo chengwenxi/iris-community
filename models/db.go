@@ -21,6 +21,7 @@ func InitDB() {
 	//连接池上限
 	db.DB().SetMaxIdleConns(20)
 	db.DB().SetMaxOpenConns(70)
+	db.LogMode(true)
 	DB = db
 
 	//defer db.Close()

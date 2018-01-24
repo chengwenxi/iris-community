@@ -6,7 +6,7 @@ import (
 )
 
 type Users struct {
-	Id         uint `gorm:"primary_key"`
+	Id         uint     `gorm:"primary_key"`
 	Email      string
 	Salt       string
 	Password   string
@@ -36,9 +36,8 @@ func (user *Users) First() error {
 }
 
 func (user *Users) Update() error {
-	return DB.Omit("Createtime","Updatetime").Updates(user).Error
+	return DB.Omit("Createtime", "Updatetime").Updates(user).Error
 }
-
 
 func AuthUser(email string, password string) (Users, error) {
 	var users Users

@@ -5,6 +5,7 @@ import (
 	"github.com/irisnet/iris-community/models"
 	"strconv"
 	"net/http"
+	"github.com/irisnet/iris-community/utils"
 )
 
 func UserRegisterAll(g *gin.RouterGroup) {
@@ -37,10 +38,11 @@ func FindUser(c *gin.Context) {
 func CreateUser(c *gin.Context) {
 	var user models.Users
 	if err := c.ShouldBindJSON(&user); err == nil {
-		if len(user.Email) == 0 {
+		if len(user.Email) == 0 || len(user.Password) == 0{
 			c.JSON(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
 			return
 		}
+		user.Password = utils.Md5(user.Password)
 		if dbErr := user.Create(); dbErr == nil {
 			c.JSON(http.StatusOK, user)
 		} else {

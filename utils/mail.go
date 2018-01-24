@@ -5,10 +5,9 @@ import (
 	"github.com/irisnet/iris-community/config"
 )
 
-var mail = config.Config.Mail
-var D = gomail.NewDialer(mail.Host, mail.Port, mail.Username, mail.Password)
-
 func RegisterEmail(to string, name string, code string) {
+	mail := config.Config.Mail
+	D := gomail.NewDialer(mail.Host, mail.Port, mail.Username, mail.Password)
 	m := gomail.NewMessage()
 	m.SetHeader("From", mail.Username)
 	m.SetHeader("To", to)                                                   //收件人
