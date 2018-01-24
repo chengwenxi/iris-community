@@ -3,12 +3,12 @@ package models
 import "time"
 
 type UserProfile struct{
-	UserId         	uint
-	family_name    	string
-	name         	string
-	country_id      uint
-	cerficate_id    uint
-	invitation_code string
+	UserId         	uint 	`gorm:"primary_key"`
+	FamilyName    	string
+	Name         	string
+	CountryId      	uint
+	CerficateId    	uint
+	InvitationCode 	string
 	Createtime 		time.Time
 	Updatetime 		time.Time
 }
