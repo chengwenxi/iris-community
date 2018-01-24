@@ -8,7 +8,7 @@ type UserAuth struct {
 	Id         uint `gorm:"primary_key"`
 	UserId     uint
 	AuthCode   string
-	ExpiresIn  string
+	ExpiresIn  uint
 	Createtime time.Time
 	Updatetime time.Time
 }
