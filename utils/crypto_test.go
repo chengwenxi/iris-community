@@ -15,3 +15,8 @@ func TestSha1s(t *testing.T) {
 func TestRandomInfo(t *testing.T) {
 	fmt.Printf(RandomInfo(6))
 }
+
+func Test(t *testing.T){
+	b := 'a' + 1
+	fmt.Printf(string(b))
+}

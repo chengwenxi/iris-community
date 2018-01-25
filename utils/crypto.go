@@ -30,3 +30,11 @@ func RandomInfo(length int) string {
 	}
 	return string(result)
 }
+
+func intTo52(length int,seed int){
+	//str := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	//start := 380204032
+	//end := 19770609663
+	//b := 'a' + 1
+	//fmt.Printf(b)
+}

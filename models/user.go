@@ -2,11 +2,10 @@ package models
 
 import (
 	"time"
-	"github.com/jinzhu/gorm"
 )
 
 type Users struct {
-	Id         uint     `gorm:"primary_key"`
+	Id         uint `gorm:"primary_key"`
 	Email      string
 	Salt       string
 	Password   string
@@ -16,15 +15,34 @@ type Users struct {
 	Updatetime time.Time
 }
 
-func (user *Users) BeforeCreate(scope *gorm.Scope) error {
+func (user *Users) BeforeCreate() error {
 	now := time.Now()
 	user.Createtime = now
 	user.Updatetime = now
 	return nil
 }
 
-func (user *Users) Create() error {
-	return DB.Create(user).Error
+func (user *Users) Create(invitationCode string) error {
+	tx := DB.Begin()
+	//写入user
+	if err := tx.Create(user).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	//写入邀请码
+	if err := tx.Omit("CountryId", "CerficateId").Create(&UserProfile{UserId: user.Id, InvitationCode: invitationCode}).Error;
+		err != nil {
+		tx.Rollback()
+		return err
+	}
+	//写入被邀请信息
+	if err := tx.Omit().Create(&UserInvitation{InviteeId: user.Id, InvitationCode: invitationCode}).Error;
+		err != nil {
+		tx.Rollback()
+		return err
+	}
+	tx.Commit()
+	return nil
 }
 
 func (user *Users) Delete() error {
@@ -39,10 +57,10 @@ func (user *Users) Update() error {
 	return DB.Omit("Createtime", "Updatetime").Updates(user).Error
 }
 
-func AuthUser(email string, password string) (Users, error) {
-	var users Users
-	err := DB.Where("email = ? AND password = ?", email, password).Find(&users).Error
-	return users, err
+func FindUserByEmail(email string) (Users, error) {
+	var user Users
+	err := DB.Where("Email = ?", email).First(&user).Error
+	return user, err
 }
 
 func UserList(skip int, limit int) ([]Users, error) {

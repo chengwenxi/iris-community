@@ -13,6 +13,17 @@ type UserProfile struct{
 	Updatetime 		time.Time
 }
 
+func (userProfile *UserProfile) BeforeCreate() error {
+	now := time.Now()
+	userProfile.Createtime = now
+	userProfile.Updatetime = now
+	return nil
+}
+
+func (userProfile *UserProfile) Create() error {
+	return DB.Create(userProfile).Error
+}
+
 func (userProfile *UserProfile) First() error {
 	return DB.First(userProfile).Error
 }

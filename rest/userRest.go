@@ -39,14 +39,19 @@ func CreateUser(c *gin.Context) {
 	var user models.Users
 	if err := c.ShouldBindJSON(&user); err == nil {
 		if len(user.Email) == 0 || len(user.Password) == 0 {
-			c.JSON(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
+			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
+			return
+		}
+		user1, _ := models.FindUserByEmail(user.Email)
+		if user1.Id != 0 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "email has been registered."})
 			return
 		}
 		password := utils.Md5(user.Password)
 		salt := utils.RandomInfo(6)
 		user.Password = utils.Sha1s(salt + password)
 		user.Salt = salt
-		if dbErr := user.Create(); dbErr == nil {
+		if dbErr := user.Create("12345"); dbErr == nil {
 			c.JSON(http.StatusOK, user)
 		} else {
 			c.JSON(http.StatusBadRequest, gin.H{"error": dbErr.Error()})
@@ -72,13 +77,13 @@ func UpdateUser(c *gin.Context) {
 	var user models.Users
 	if err := c.ShouldBindJSON(&user); err == nil {
 		if len(user.Email) == 0 {
-			c.JSON(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
+			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
 			return
 		}
 		if dbErr := user.Update(); dbErr == nil {
 			c.JSON(http.StatusOK, user)
 		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"error": dbErr.Error()})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": dbErr.Error()})
 		}
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
