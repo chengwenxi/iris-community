@@ -3,3 +3,5 @@ import:
 - package: github.com/jinzhu/gorm
 - package: gopkg.in/gomail.v2
 - package: github.com/casbin/casbin
+- package: github.com/aliyun/aliyun-oss-go-sdk
+- package: github.com/pborman/uuid
