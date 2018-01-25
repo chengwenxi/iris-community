@@ -6,6 +6,8 @@ import (
 	"time"
 	"math/rand"
 	"crypto/sha1"
+	"math"
+	"math/big"
 )
 
 func Md5(s string) string {
@@ -31,10 +33,16 @@ func RandomInfo(length int) string {
 	return string(result)
 }
 
-func intTo52(length int,seed int){
-	//str := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	//start := 380204032
-	//end := 19770609663
-	//b := 'a' + 1
-	//fmt.Printf(b)
+func IntTo52(length int, seed int) string {
+	str := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	sc := big.NewInt(int64(int(math.Pow(52, float64(length-1))) + seed))
+	var code string
+	nData := big.NewInt(52)
+	nRem := big.NewInt(0)
+	for i := length; i > 0; i-- {
+		sc.DivMod(sc, nData, nRem)
+		rem := nRem.Int64()
+		code = code + string(str[rem])
+	}
+	return code
 }

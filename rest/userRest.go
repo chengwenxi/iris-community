@@ -51,7 +51,7 @@ func CreateUser(c *gin.Context) {
 		salt := utils.RandomInfo(6)
 		user.Password = utils.Sha1s(salt + password)
 		user.Salt = salt
-		if dbErr := user.Create("12345"); dbErr == nil {
+		if dbErr := user.Create(); dbErr == nil {
 			c.JSON(http.StatusOK, user)
 		} else {
 			c.JSON(http.StatusBadRequest, gin.H{"error": dbErr.Error()})

@@ -16,7 +16,6 @@ func TestRandomInfo(t *testing.T) {
 	fmt.Printf(RandomInfo(6))
 }
 
-func Test(t *testing.T){
-	b := 'a' + 1
-	fmt.Printf(string(b))
+func TestIntTo52(t *testing.T) {
+	fmt.Printf(IntTo52(6,5000145))
 }

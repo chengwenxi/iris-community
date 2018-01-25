@@ -2,6 +2,7 @@ package models
 
 import (
 	"time"
+	"github.com/irisnet/iris-community/utils"
 )
 
 type Users struct {
@@ -22,7 +23,7 @@ func (user *Users) BeforeCreate() error {
 	return nil
 }
 
-func (user *Users) Create(invitationCode string) error {
+func (user *Users) Create() error {
 	tx := DB.Begin()
 	//写入user
 	if err := tx.Create(user).Error; err != nil {
@@ -30,6 +31,7 @@ func (user *Users) Create(invitationCode string) error {
 		return err
 	}
 	//写入邀请码
+	invitationCode := utils.IntTo52(6, int(user.Id))
 	if err := tx.Omit("CountryId", "CerficateId").Create(&UserProfile{UserId: user.Id, InvitationCode: invitationCode}).Error;
 		err != nil {
 		tx.Rollback()
