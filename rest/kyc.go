@@ -23,7 +23,7 @@ func RegisterKyc(g *gin.RouterGroup) {
 
 	//查询国家列表
 	g.GET("/country", func(context *gin.Context) {
-		country,err:= models.CountryList()
+		country,err:= models.Country().List()
 		if err != nil {
 			log.Printf("Country is Empty,please init ")
 		}
@@ -32,7 +32,7 @@ func RegisterKyc(g *gin.RouterGroup) {
 
 	//查询证件类型列表
 	g.GET("/cerType", func(context *gin.Context) {
-		cerTypes,err:= models.CenficateTypeList()
+		cerTypes,err:= models.CerficateType().List()
 		if err != nil {
 			log.Printf("cerType is Empty,please init ")
 		}
