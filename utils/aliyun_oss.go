@@ -7,9 +7,10 @@ import (
 	"github.com/irisnet/iris-community/config"
 )
 
-var aliYun = config.Config.AliYun;
+
 
 func UploadByLocal(filename string)  (string,error) {
+	var aliYun = config.Config.AliYun;
 	client, err := oss.New(aliYun.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
 	if err != nil {
 		return "",err
@@ -30,6 +31,7 @@ func UploadByLocal(filename string)  (string,error) {
 }
 
 func UploadByBytes(content []byte) (string,error) {
+	var aliYun = config.Config.AliYun;
 	client, err := oss.New(aliYun.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
 	if err != nil {
 		return "",err
