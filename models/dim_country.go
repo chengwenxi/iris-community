@@ -1,14 +1,18 @@
 package models
 
-type Country struct {
+type DimCountry struct {
 	Id         uint `gorm:"primary_key"`
 	Code       string
 	Name       string
 	NameEn     string
 }
 
-func CountryList() ([]Country,error) {
-	var country []Country
+func CountryList() ([]DimCountry,error) {
+	var country []DimCountry
 	err := DB.Find(&country).Error
 	return country, err
+}
+
+func Country(){
+
 }
