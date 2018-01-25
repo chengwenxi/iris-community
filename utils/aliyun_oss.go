@@ -11,12 +11,12 @@ import (
 
 func UploadByLocal(filename string)  (string,error) {
 	var aliYun = config.Config.AliYun;
-	client, err := oss.New(aliYun.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
+	client, err := oss.New(aliYun.Oss.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
 	if err != nil {
 		return "",err
 	}
 
-	bucket, err := client.Bucket(aliYun.Bucket)
+	bucket, err := client.Bucket(aliYun.Oss.Bucket)
 	if err != nil {
 		return "",err
 	}
@@ -32,12 +32,12 @@ func UploadByLocal(filename string)  (string,error) {
 
 func UploadByBytes(content []byte) (string,error) {
 	var aliYun = config.Config.AliYun;
-	client, err := oss.New(aliYun.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
+	client, err := oss.New(aliYun.Oss.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
 	if err != nil {
 		return "",err
 	}
 
-	bucket, err := client.Bucket(aliYun.Bucket)
+	bucket, err := client.Bucket(aliYun.Oss.Bucket)
 	if err != nil {
 		return "",err
 	}

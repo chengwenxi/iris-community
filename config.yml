@@ -5,7 +5,7 @@ postgres:
   user: postgres
   password: admino0o0oo0
   sslmode: disable
-server: 0.0.0.0:80
+server: 0.0.0.0:8080
 mail:
   host: smtp.163.com
   port: 25
@@ -13,7 +13,11 @@ mail:
   password: XXX
 staticPath: D:\test\static  #静态文件路径
 aliYun:
-  endpoint:
-  accessKeyId:
-  accessKeySecret:
-  bucket:
+  accessKeyId: LTAIXvuWGlEeJmz5
+  accessKeySecret: 1NUb2UtYjyTOYeX8u9TaN0tCUSNJrx
+  oss:
+    endpoint: http://oss-cn-shanghai.aliyuncs.com
+    bucket: bianjie-default
+  sls:
+    endpoint: https://sts.aliyuncs.com
+    arn: acs:ram::1768586477174862:role/aliyuncloudmonitordefaultrole
