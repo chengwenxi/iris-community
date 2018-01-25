@@ -8,13 +8,12 @@ type DimCerficateType struct {
 	NameEn     string
 }
 
-// set CerficateType's table name to be `dim_cerficate_type`
-func (DimCerficateType) TableName() string {
-	return "dim_cerficate_type"
-}
-
-func CenficateTypeList() ([]DimCerficateType,error) {
+func (DimCerficateType) List() ([]DimCerficateType,error) {
 	var cerficateType []DimCerficateType
 	err := DB.Find(&cerficateType).Error
 	return cerficateType, err
+}
+
+func CerficateType()(DimCerficateType)  {
+	return DimCerficateType{}
 }

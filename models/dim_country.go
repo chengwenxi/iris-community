@@ -7,12 +7,12 @@ type DimCountry struct {
 	NameEn     string
 }
 
-func CountryList() ([]DimCountry,error) {
-	var country []DimCountry
-	err := DB.Find(&country).Error
-	return country, err
+func (DimCountry)List() ([]DimCountry,error) {
+	var countrys []DimCountry
+	err := DB.Find(&countrys).Error
+	return countrys, err
 }
 
-func Country(){
-
+func Country()(DimCountry){
+	return DimCountry{}
 }
