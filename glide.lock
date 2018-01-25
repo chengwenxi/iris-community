@@ -1,6 +1,10 @@
-hash: dcf5c01df89d0040b4cc79211e18c2cecb0c5307098125fc28a0d6e05a0c51c1
-updated: 2018-01-19T16:44:05.4682345+08:00
+hash: 0f6806c28e91a5290f1e703bc0e56e9d88a93bce51cb4e1d728a9cd24697e931
+updated: 2018-01-25T11:29:13.22639+08:00
 imports:
+- name: github.com/aliyun/aliyun-oss-go-sdk
+  version: 52de7239022ceba47354832fbcc65983aa8d019d
+  subpackages:
+  - oss
 - name: github.com/casbin/casbin
   version: 1b8f581b3213fee8295c7dc7018fb16566eb2cb9
   subpackages:
@@ -39,6 +43,8 @@ imports:
   - oid
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
+- name: github.com/pborman/uuid
+  version: e790cca94e6cc75c7064b1332e63811d4aae1a53
 - name: github.com/ugorji/go
   version: 9831f2c3ac1068a78f50999a30db84270f647af6
   subpackages:
