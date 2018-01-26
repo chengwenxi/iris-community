@@ -16,6 +16,6 @@ go run app.go
 We use PostgreSQL and Redis for repository, you can use them with docker.
 
 ```
-docker-compose -f docker\postgre.yml up -d
-docker-compose -f docker\redis.yml up -d
+docker-compose -f docker/postgre.yml up -d
+docker-compose -f docker/redis.yml up -d
 ```
