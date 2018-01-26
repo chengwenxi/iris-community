@@ -12,14 +12,29 @@ type Files struct {
 	Updatetime time.Time
 }
 
-func (file *Files) BeforeCreate(scope *gorm.Scope) error {
+func (f *Files) BeforeCreate(scope *gorm.Scope) error {
 	now := time.Now()
-	file.Createtime = now
-	file.Updatetime = now
+	f.Createtime = now
+	f.Updatetime = now
 	return nil
 }
 
-func (file *Files) Create() error {
-	return DB.Create(file).Error
+func (f *Files) Create() error {
+	return DB.Create(f).Error
 }
 
+func (f *Files) BatchQuery(ids []uint)([] Files,error){
+	var files []Files
+	err :=DB.Where(ids).Find(&files).Error
+	return files,err
+}
+
+func (f *Files) QueryById(id uint)(Files,error){
+	file := Files{Id:id}
+	err := DB.First(&file).Error
+	return file,err
+}
+
+func NewFiles() *Files{
+	return &Files{}
+}
