@@ -1,5 +1,5 @@
-hash: 0f6806c28e91a5290f1e703bc0e56e9d88a93bce51cb4e1d728a9cd24697e931
-updated: 2018-01-25T11:29:13.22639+08:00
+hash: bf1d727b3abcb4237ede80b379425eab772cec13d980d3c1fc2d439ddcf32c60
+updated: 2018-01-26T16:28:15.3684366+08:00
 imports:
 - name: github.com/aliyun/aliyun-oss-go-sdk
   version: 52de7239022ceba47354832fbcc65983aa8d019d
@@ -14,6 +14,11 @@ imports:
   - persist
   - rbac
   - util
+- name: github.com/garyburd/redigo
+  version: d1ed5c67e5794de818ea85e6b522fda02623a484
+  subpackages:
+  - internal
+  - redis
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
 - name: github.com/gin-gonic/gin
@@ -22,6 +27,8 @@ imports:
   - binding
   - json
   - render
+- name: github.com/GiterLab/urllib
+  version: ea0e875f90303d1469067f22ccda69f903380a87
 - name: github.com/golang/protobuf
   version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
   subpackages:
@@ -45,6 +52,8 @@ imports:
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/pborman/uuid
   version: e790cca94e6cc75c7064b1332e63811d4aae1a53
+- name: github.com/tobyzxj/uuid
+  version: aa0153c14395f4431fe668071eeda5d4a0290f95
 - name: github.com/ugorji/go
   version: 9831f2c3ac1068a78f50999a30db84270f647af6
   subpackages:
