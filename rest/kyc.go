@@ -149,14 +149,23 @@ func postKyc(kyc Kyc, authCode string) error {
 
 	userProfile.First()
 
-	err := tx.Model(&userProfile).Updates(models.UserProfile{
+	if err := tx.Model(&userProfile).Updates(models.UserProfile{
 		FamilyName:  kyc.FamilyName,
 		Name:        kyc.Name,
 		CountryId:   kyc.CountryId,
 		CerficateId: cer.Id,
-	}).Error
+	}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
 
-	if err != nil {
+	//4:插入用户审核表
+	approval := models.UserApproval{
+		UserId:         userAuth.UserId,
+		ApprovalStatus: "p",
+	}
+
+	if err := tx.FirstOrCreate(approval, models.UserApproval{UserId: userAuth.UserId}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
@@ -217,12 +226,12 @@ func queryKyc(authCode string) (KycInfo, error) {
 	}
 
 	//如果认证失败，查询失败原因
-	reasons :=[]models.DimApprovalFailedReason{}
+	reasons := []models.DimApprovalFailedReason{}
 	if approval.ApprovalStatus == "f" {
 		failedReason, _ := models.NewUserApprovalXFailedReason().QueryByUserId(userAuth.UserId)
 		for _, r := range failedReason {
 			if rx, err := models.NewReason().QueryByUserId(r.ReasonId); err == nil {
-				reasons = append(reasons,rx)
+				reasons = append(reasons, rx)
 			}
 		}
 	}
