@@ -7,5 +7,5 @@ import (
 
 func TestRegisterEmail(t *testing.T) {
 	config.LoadConfiguration("../config.yml")
-	RegisterEmail("XXX@qq.com","XXX","65")
+	RegisterEmail("760329367@qq.com", "1","65")
 }
