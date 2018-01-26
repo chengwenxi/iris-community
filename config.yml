@@ -7,9 +7,9 @@ postgres:
   sslmode: disable
 server: 0.0.0.0:8080
 mail:
-  host: smtp.163.com
+  host: smtp.ym.163.com
   port: 25
-  username: XXX@163.com
+  username: vincent@bianjie.ai
   password: XXX
 staticPath: D:\test\static  #静态文件路径
 aliYun:
