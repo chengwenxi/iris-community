@@ -10,8 +10,8 @@ import (
 type Result struct{
     Id         uint64     //用户ID
     Code       string
-    Invite     uint    //验证通过的邀请人
-    Complete        uint    //总邀请人
+    Invite     uint    //总邀请人
+    Complete        uint    //验证通过的邀请人
 
 }
 
