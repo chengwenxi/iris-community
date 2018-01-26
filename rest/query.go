@@ -46,7 +46,7 @@ func QueryInfo(c *gin.Context) {
 
             result.Invite++
 
-            if is_approved == "f" {
+            if is_approved == "p" {
                 result.Complete ++
             }
         }
