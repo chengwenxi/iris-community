@@ -1,5 +1,5 @@
-hash: 0f6806c28e91a5290f1e703bc0e56e9d88a93bce51cb4e1d728a9cd24697e931
-updated: 2018-01-25T11:29:13.22639+08:00
+hash: 38b8bcf1c0c4580634ac31eb6fc11fba9f1eadf51e7cc7b71ddafe9e5bf554a3
+updated: 2018-01-26T13:49:30.9212833+08:00
 imports:
 - name: github.com/aliyun/aliyun-oss-go-sdk
   version: 52de7239022ceba47354832fbcc65983aa8d019d
@@ -22,6 +22,8 @@ imports:
   - binding
   - json
   - render
+- name: github.com/GiterLab/urllib
+  version: ea0e875f90303d1469067f22ccda69f903380a87
 - name: github.com/golang/protobuf
   version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
   subpackages:
@@ -45,6 +47,8 @@ imports:
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/pborman/uuid
   version: e790cca94e6cc75c7064b1332e63811d4aae1a53
+- name: github.com/tobyzxj/uuid
+  version: aa0153c14395f4431fe668071eeda5d4a0290f95
 - name: github.com/ugorji/go
   version: 9831f2c3ac1068a78f50999a30db84270f647af6
   subpackages:
