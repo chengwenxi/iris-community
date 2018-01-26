@@ -165,7 +165,7 @@ func postKyc(kyc Kyc, authCode string) error {
 		ApprovalStatus: "p",
 	}
 
-	if err := tx.FirstOrCreate(approval, models.UserApproval{UserId: userAuth.UserId}).Error; err != nil {
+	if err := tx.FirstOrCreate(&approval, models.UserApproval{UserId: userAuth.UserId}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
