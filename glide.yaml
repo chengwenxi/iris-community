@@ -6,3 +6,4 @@ import:
 - package: github.com/aliyun/aliyun-oss-go-sdk
 - package: github.com/tobyzxj/uuid
 - package: github.com/GiterLab/urllib
+- package: github.com/garyburd/redigo/redis
