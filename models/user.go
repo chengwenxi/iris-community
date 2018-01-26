@@ -61,7 +61,7 @@ func (user *Users) Update() error {
 
 func FindUserByEmail(email string) (Users, error) {
 	var user Users
-	err := DB.Where("Email = ?", email).First(&user).Error
+	err := DB.Where("email = ?", email).First(&user).Error
 	return user, err
 }
 
