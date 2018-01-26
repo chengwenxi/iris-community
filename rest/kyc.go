@@ -8,15 +8,15 @@ import ("github.com/gin-gonic/gin"
 )
 
 type Kyc struct {
-	CertificateTypeId uint `form:"certificate_type"`
-	CertificateNum string `form:"certificate_num"`
-	CountryId uint `form:"country_id"`
-	FrontFile []byte `form:"front_file"`
-	ReverseFile []byte `form:"reverse_file"`
-	HandFile []byte `form:"hand_file"`
+	CertificateTypeId uint
+	CertificateNum string
+	CountryId uint
+	FrontFileKey string
+	ReverseFileKey string
+	HandFileKey string
 
-	FamilyName string `form:"family_name"`
-	Name string `form:"name"`
+	FamilyName string
+	Name string
 }
 
 func RegisterKyc(g *gin.RouterGroup) {
@@ -42,7 +42,7 @@ func RegisterKyc(g *gin.RouterGroup) {
 	//用户实名认证
 	g.POST("/cerficate", func(context *gin.Context) {
 		var kyc Kyc
-		if context.ShouldBind(&kyc) == nil {
+		if context.ShouldBindJSON(&kyc) == nil {
 			authCode := context.Request.Header.Get("Authorization")
 			if err := postKyc(kyc,authCode);err != nil {
 				context.JSON(http.StatusBadRequest, gin.H{"code":"fail","msg": "user certify fail"})
@@ -54,57 +54,27 @@ func RegisterKyc(g *gin.RouterGroup) {
 		}
 	})
 
-	//用户上传文件
-	//g.POST("/upload", func(context *gin.Context) {
-	//	//得到上传的文件
-	//	file, header, err := context.Request.FormFile("image") //image这个是uplaodify参数定义中的   'fileObjName':'image'
-	//	if err != nil {
-	//		context.String(http.StatusBadRequest, "Bad request")
-	//		return
-	//	}
-	//	t := time.Now().Unix()
-	//
-	//	//文件的名称
-	//	fileId := fmt.Sprintf("%d-%s",t,header.Filename)
-	//
-	//	//创建文件
-	//	out, err := os.Create("static/uploadfile/" + fileId)
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//
-	//	defer out.Close()
-	//
-	//	_, err = io.Copy(out, file)
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//
-	//	context.String(http.StatusOK, fileId)
-	//})
-
+	//获取临时授权账号(文件上传)
+	g.GET("/slsAuth", func(context *gin.Context){
+		resp := utils.Auth()
+		context.JSON(http.StatusOK, resp)
+	})
 
 }
 
 //提交用户实行认证信息
 func postKyc(kyc Kyc,authCode string) error{
-	//1:上传用户证件图片到阿里云服务
-	frontFileKey,reverseFileKey,handFileKey,err := uploadImage(kyc)
-	if err != nil {
-		return err
-	}
-
-	//2：保存用户证件信息到数据库
+	//1：保存用户证件信息到数据库
 	frontFile := models.Files{
-		OssKey:frontFileKey,
+		OssKey:kyc.FrontFileKey,
 	}
 
 	reverseFile := models.Files{
-		OssKey:reverseFileKey,
+		OssKey:kyc.ReverseFileKey,
 	}
 
 	handFile := models.Files{
-		OssKey:handFileKey,
+		OssKey:kyc.HandFileKey,
 	}
 
 	//开启事物
@@ -125,7 +95,7 @@ func postKyc(kyc Kyc,authCode string) error{
 		return err
 	}
 
-	//3:保存用户证件信息
+	//2:保存用户证件信息
 	cerficates := models.Cerficates{
 		TypeId:kyc.CertificateTypeId,
 		Num:kyc.CertificateNum,
@@ -139,7 +109,7 @@ func postKyc(kyc Kyc,authCode string) error{
 		return err
 	}
 
-	//4:更新用户信息
+	//3:更新用户信息
 	userAuth := models.UserAuth{
 		AuthCode:authCode,
 	}
@@ -152,7 +122,7 @@ func postKyc(kyc Kyc,authCode string) error{
 
 	userProfile.First()
 
-	err = tx.Model(&userProfile).Updates(models.UserProfile{
+	err := tx.Model(&userProfile).Updates(models.UserProfile{
 		FamilyName:kyc.FamilyName,
 		Name:kyc.Name,
 		CountryId:kyc.CountryId,
@@ -167,24 +137,4 @@ func postKyc(kyc Kyc,authCode string) error{
 	tx.Commit()
 	return nil
 
-}
-
-func uploadImage(kyc Kyc) (string,string,string,error) {
-	frontFileKey,err := utils.UploadByBytes(kyc.FrontFile)
-	if err != nil {
-		return "","","",err;
-	}
-
-	reverseFileKey,err := utils.UploadByBytes(kyc.ReverseFile)
-
-	if err != nil {
-		return "","","",err;
-	}
-
-	handFileKey,err := utils.UploadByBytes(kyc.HandFile)
-
-	if err != nil {
-		return "","","",err;
-	}
-	return frontFileKey,reverseFileKey,handFileKey,nil
 }

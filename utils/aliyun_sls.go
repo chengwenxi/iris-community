@@ -4,6 +4,8 @@ import (
 	"time"
 	"github.com/tobyzxj/uuid"
 	"fmt"
+	"github.com/irisnet/iris-community/config"
+	"encoding/json"
 )
 
 const (
@@ -44,4 +46,40 @@ func (s Sls) newRequset() *Request {
 	req.Put("RoleSessionName", fmt.Sprintf("Role%d",time.Now().Unix()))
 	req.Put("DurationSeconds", "3600")
 	return req
+}
+
+//获取用户临时权限
+func Auth()(*SlsResponse){
+	var aliYun = config.Config.AliYun;
+
+	acsClient := New(aliYun.AccessKeyId,aliYun.AccessKeySecret)
+	acsClient.SetArn(aliYun.Sls.Arn)
+	acsClient.SetEndPoint(aliYun.Sls.Endpoint)
+
+	req := NewSls(acsClient)
+	//resp,httpCode,err := acsClient.send(req.newRequset())
+	resp,_,_ := acsClient.send(req.newRequset())
+
+
+	var slsResponse SlsResponse
+	json.Unmarshal(resp,&slsResponse)
+	return &slsResponse
+}
+
+type Credentials struct {
+	AccessKeyId 	string	`json:"AccessKeyId"`
+	AccessKeySecret string	`json:"AccessKeySecret"`
+	Expiration 		string	`json:"Expiration"`
+	SecurityToken 	string	`json:"SecurityToken"`
+}
+
+type AssumedRoleUser struct {
+	Arn 				string	`json:"arn"`
+	AssumedRoleUserId 	string	`json:"AssumedRoleUserId"`
+}
+
+type SlsResponse struct {
+	Credentials 	Credentials		`json:"Credentials"`
+	AssumedRoleUser AssumedRoleUser	`json:"AssumedRoleUser"`
+	RequestId string				`json:"RequestId"`
 }
