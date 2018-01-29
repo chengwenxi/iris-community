@@ -13,12 +13,12 @@ mail:
   password: XXX
 staticPath: D:\test\static  #静态文件路径
 aliYun:
-  accessKeyId: xxxx
-  accessKeySecret: xxx
+  accessKeyId:
+  accessKeySecret:
   oss:
     endpoint: http://oss-cn-shanghai.aliyuncs.com
     bucket: bianjie-default
   sts:
     endpoint: https://sts.aliyuncs.com
-    arn: acs:ram::1768586477174862:role/ramwrite
+    arn: acs:ram::1768586477174862:role/aliyunosswriteandreadrole
     version: 2015-04-01
