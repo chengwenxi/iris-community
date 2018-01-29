@@ -7,3 +7,4 @@ import:
 - package: github.com/tobyzxj/uuid
 - package: github.com/GiterLab/urllib
 - package: github.com/garyburd/redigo/redis
+- package: github.com/mojocn/base64Captcha

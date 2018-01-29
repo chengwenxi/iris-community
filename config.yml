@@ -9,7 +9,7 @@ redis:
   url: localhost:6379
   actcTimeout: 7200 #激活码过期时间（秒，默认两小时）
   rescTimeout: 7200 #重置密码过期时间（秒，默认两小时）
-  vercTimeOut: 600 #验证码过期时间（秒,默认10分钟）
+  vercTimeOut: 200 #验证码过期时间（秒,默认10分钟）
 server: 0.0.0.0:8080
 mail:
   host: smtp.ym.163.com

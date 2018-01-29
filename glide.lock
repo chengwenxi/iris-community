@@ -1,5 +1,5 @@
-hash: bf1d727b3abcb4237ede80b379425eab772cec13d980d3c1fc2d439ddcf32c60
-updated: 2018-01-26T16:28:15.3684366+08:00
+hash: e41d384f8c6f607d48a74ae04cd0561ed3f0beb3b789c2696aa4a609707db655
+updated: 2018-01-29T17:36:59.6348129+08:00
 imports:
 - name: github.com/aliyun/aliyun-oss-go-sdk
   version: 52de7239022ceba47354832fbcc65983aa8d019d
@@ -29,6 +29,11 @@ imports:
   - render
 - name: github.com/GiterLab/urllib
   version: ea0e875f90303d1469067f22ccda69f903380a87
+- name: github.com/golang/freetype
+  version: e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4
+  subpackages:
+  - raster
+  - truetype
 - name: github.com/golang/protobuf
   version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
   subpackages:
@@ -50,6 +55,8 @@ imports:
   - oid
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
+- name: github.com/mojocn/base64Captcha
+  version: f8e0aa6194261e5c3e777ad815f1c872d2e3aeab
 - name: github.com/pborman/uuid
   version: e790cca94e6cc75c7064b1332e63811d4aae1a53
 - name: github.com/tobyzxj/uuid
@@ -58,6 +65,11 @@ imports:
   version: 9831f2c3ac1068a78f50999a30db84270f647af6
   subpackages:
   - codec
+- name: golang.org/x/image
+  version: 12117c17ca67ffa1ce22e9409f3b0b0a93ac08c7
+  subpackages:
+  - font
+  - math/fixed
 - name: golang.org/x/sys
   version: 83801418e1b59fb1880e363299581ee543af32ca
   subpackages:
