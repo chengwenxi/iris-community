@@ -67,8 +67,8 @@ func RegisterKyc(g *gin.RouterGroup) {
 	})
 
 	//获取临时授权账号(文件上传)
-	g.GET("/slsAuth", func(context *gin.Context) {
-		resp := utils.Auth()
+	g.GET("/stsAuth", func(context *gin.Context) {
+		resp := utils.AssumeRole()
 		context.JSON(http.StatusOK, resp)
 	})
 

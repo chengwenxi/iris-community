@@ -18,7 +18,7 @@ aliYun:
   oss:
     endpoint: http://oss-cn-shanghai.aliyuncs.com
     bucket: bianjie-default
-  sls:
+  sts:
     endpoint: https://sts.aliyuncs.com
     arn: acs:ram::1768586477174862:role/ramwrite
     version: 2015-04-01

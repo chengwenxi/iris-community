@@ -20,6 +20,8 @@ func TestAssumeRole(t *testing.T) {
 	acsClient.SetArn(aliYun.Sls.Arn)
 	acsClient.SetEndPoint(aliYun.Sls.Endpoint)
 
+	acsClient.SetVersion(aliYun.Sls.Version)
+
 	req := NewSls(acsClient)
 	resp,httpCode,err := acsClient.send(req.newRequset())
 

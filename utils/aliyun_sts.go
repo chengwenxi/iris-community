@@ -10,30 +10,29 @@ import (
 
 const (
 		Format   = "JSON"
-		Version  = "2015-04-01"
 		SignatureMethod  = "HMAC-SHA1"
 		SignatureVersion  = "1.0"
 		Timestamp  = "2006-01-02T15:04:05Z"
-		SLS_Action  = "AssumeRole"
+		STS_Action  = "AssumeRole"
 		)
 
-type Sls struct {
+type Sts struct {
 	c *Client
 }
 
-func NewSls(client *Client) *Sls{
-	return &Sls{
+func NewSls(client *Client) *Sts{
+	return &Sts{
 		c:client,
 	}
 }
 
 // 创建一个新的请求参数
-func (s Sls) newRequset() *Request {
+func (s Sts) newRequset() *Request {
 
 	req := &Request{Param: make(map[string]string)}
 
 	req.Put("Format", Format)
-	req.Put("Version", Version)
+	req.Put("Version", s.c.Version)
 	req.Put("AccessKeyId", s.c.AccessID)
 	req.Put("SignatureMethod", SignatureMethod)
 	req.Put("SignatureNonce", uuid.New())
@@ -41,7 +40,7 @@ func (s Sls) newRequset() *Request {
 	req.Put("Timestamp", time.Now().UTC().Format(Timestamp))
 
 	// 2. 业务API参数
-	req.Put("Action", SLS_Action)
+	req.Put("Action", STS_Action)
 	req.Put("RoleArn", s.c.Arn)
 	req.Put("RoleSessionName", fmt.Sprintf("Role%d",time.Now().Unix()))
 	req.Put("DurationSeconds", "3600")
@@ -49,19 +48,20 @@ func (s Sls) newRequset() *Request {
 }
 
 //获取用户临时权限
-func Auth()(*SlsResponse){
+func AssumeRole()(*StsResponse){
 	var aliYun = config.Config.AliYun;
 
 	acsClient := New(aliYun.AccessKeyId,aliYun.AccessKeySecret)
-	acsClient.SetArn(aliYun.Sls.Arn)
-	acsClient.SetEndPoint(aliYun.Sls.Endpoint)
+	acsClient.SetArn(aliYun.Sts.Arn)
+	acsClient.SetEndPoint(aliYun.Sts.Endpoint)
+	acsClient.SetVersion(aliYun.Sts.Version)
 
 	req := NewSls(acsClient)
 	//resp,httpCode,err := acsClient.send(req.newRequset())
 	resp,_,_ := acsClient.send(req.newRequset())
 
 
-	var slsResponse SlsResponse
+	var slsResponse StsResponse
 	json.Unmarshal(resp,&slsResponse)
 	return &slsResponse
 }
@@ -78,7 +78,7 @@ type AssumedRoleUser struct {
 	AssumedRoleUserId 	string	`json:"AssumedRoleUserId"`
 }
 
-type SlsResponse struct {
+type StsResponse struct {
 	Credentials 	Credentials		`json:"Credentials"`
 	AssumedRoleUser AssumedRoleUser	`json:"AssumedRoleUser"`
 	RequestId string				`json:"RequestId"`

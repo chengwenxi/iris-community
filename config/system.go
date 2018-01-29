@@ -34,15 +34,16 @@ type AliYun struct {
 	AccessKeyId     string `yaml:"accessKeyId"`
 	AccessKeySecret string `yaml:"accessKeySecret"`
 	Oss             *Oss   `yaml:"oss"`
-	Sls             *Sls   `yaml:"sls"`
+	Sts             *Sts   `yaml:"sts"`
 }
 type Oss struct {
 	Endpoint string `yaml:"endpoint"`
 	Bucket   string `yaml:"bucket"`
 }
-type Sls struct {
+type Sts struct {
 	Endpoint string `yaml:"endpoint"`
 	Arn      string `yaml:"arn"`
+	Version string `yaml:"version"`
 }
 
 var Config *Configuration
