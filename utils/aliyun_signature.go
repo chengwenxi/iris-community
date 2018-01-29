@@ -14,7 +14,7 @@ import (
 //     注意：计算签名时使用的 Key 就是您持有的 Access Key Secret 并加上一个 “&” 字符（ASCII:38），使用的哈希算法是 SHA1。
 // 计算签名值。
 //     按照 Base64 编码规则 把步骤 3 中的 HMAC 值编码成字符串，即得到签名值（Signature）。
-func signatureMethod(key, stringToSign string) string {
+func sign(key, stringToSign string) string {
 	// The signature method is supposed to be HmacSHA1
 	// A switch case is required if there is other methods available
 	mac := hmac.New(sha1.New, []byte(key+"&"))

@@ -18,11 +18,13 @@ mail:
   password: a345407031
 staticPath: D:\test\static  #静态文件路径
 aliYun:
-  accessKeyId: LTAIXvuWGlEeJmz5
-  accessKeySecret: 1NUb2UtYjyTOYeX8u9TaN0tCUSNJrx
+  accessKeyId:
+  accessKeySecret:
   oss:
     endpoint: http://oss-cn-shanghai.aliyuncs.com
     bucket: bianjie-default
-  sls:
+  sts:
     endpoint: https://sts.aliyuncs.com
-    arn: acs:ram::1768586477174862:role/aliyuncloudmonitordefaultrole
+    arn: acs:ram::1768586477174862:role/aliyunosswriteandreadrole
+    version: 2015-04-01
+    durationSeconds: 3600
