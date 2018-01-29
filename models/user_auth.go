@@ -24,6 +24,6 @@ func (userAuth *UserAuth) First() error {
 	return DB.First(userAuth).Error
 }
 
-func (userAuth *UserAuth) FindByAuth() error{
+func (userAuth *UserAuth) FindByAuth() error {
 	return DB.Where("auth_code = ?", userAuth.AuthCode).First(&userAuth).Error
 }
