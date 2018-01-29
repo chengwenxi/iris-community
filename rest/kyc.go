@@ -3,7 +3,6 @@ package rest
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/irisnet/iris-community/models"
-	"github.com/irisnet/iris-community/utils"
 	"log"
 	"net/http"
 	"errors"
@@ -65,13 +64,6 @@ func RegisterKyc(g *gin.RouterGroup) {
 			context.JSON(http.StatusBadRequest, "invalide json")
 		}
 	})
-
-	//获取临时授权账号(文件上传)
-	g.GET("/stsAuth", func(context *gin.Context) {
-		resp := utils.AssumeRole()
-		context.JSON(http.StatusOK, resp)
-	})
-
 	//查询用户认证信息
 	g.GET("/info", func(context *gin.Context) {
 		authCode := context.Request.Header.Get("Authorization")
