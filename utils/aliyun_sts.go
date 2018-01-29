@@ -61,9 +61,9 @@ func AssumeRole()(*StsResponse){
 	resp,_,_ := acsClient.send(req.newRequset())
 
 
-	var slsResponse StsResponse
-	json.Unmarshal(resp,&slsResponse)
-	return &slsResponse
+	var stsResp StsResponse
+	json.Unmarshal(resp,&stsResp)
+	return &stsResp
 }
 
 type Credentials struct {
