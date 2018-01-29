@@ -41,9 +41,10 @@ type Oss struct {
 	Bucket   string `yaml:"bucket"`
 }
 type Sts struct {
-	Endpoint string `yaml:"endpoint"`
-	Arn      string `yaml:"arn"`
-	Version string `yaml:"version"`
+	Endpoint 		string `yaml:"endpoint"`
+	Arn      		string `yaml:"arn"`
+	Version 		string `yaml:"version"`
+	DurationSeconds string `yaml:"durationSeconds"`
 }
 
 var Config *Configuration

@@ -22,3 +22,4 @@ aliYun:
     endpoint: https://sts.aliyuncs.com
     arn: acs:ram::1768586477174862:role/aliyunosswriteandreadrole
     version: 2015-04-01
+    durationSeconds: 3600

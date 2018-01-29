@@ -43,7 +43,7 @@ func (s Sts) newRequset() *Request {
 	req.Put("Action", STS_Action)
 	req.Put("RoleArn", s.c.Arn)
 	req.Put("RoleSessionName", fmt.Sprintf("Role%d",time.Now().Unix()))
-	req.Put("DurationSeconds", "3600")
+	req.Put("DurationSeconds", s.c.DurationSeconds)
 	return req
 }
 
@@ -55,6 +55,7 @@ func AssumeRole()(*StsResponse){
 	acsClient.SetArn(aliYun.Sts.Arn)
 	acsClient.SetEndPoint(aliYun.Sts.Endpoint)
 	acsClient.SetVersion(aliYun.Sts.Version)
+	acsClient.SetDurationSeconds(aliYun.Sts.DurationSeconds)
 
 	req := NewSls(acsClient)
 	//resp,httpCode,err := acsClient.send(req.newRequset())

@@ -125,7 +125,8 @@ type Client struct {
 
 	//STS设置 start
 	// 全局资源描述符 每个角色都有一个唯一的全局资源描述符，规定格式为 acs:ram::$accountID:role/$roleName
-	Arn string
+	Arn string// 全局资源描述符 每个角色都有一个唯一的全局资源描述符，规定格式为 acs:ram::$accountID:role/$roleName
+	DurationSeconds string
 }
 
 // SetVersion API版本
@@ -163,10 +164,16 @@ func (c *Client) SetAccessKey(accesskey string) {
 	}
 }
 
-// SetAccessKey 设置短信服务的accesskey，通过官方网站申请或通过管理员获取
+// SetArn 设置角色,通过官方网站申请或通过管理员获取
 func (c *Client) SetArn(arn string) {
 	if c != nil {
 		c.Arn = arn
+	}
+}
+// SetArn 设置角色,通过官方网站申请或通过管理员获取
+func (c *Client) SetDurationSeconds(durationSeconds string) {
+	if c != nil {
+		c.DurationSeconds = durationSeconds
 	}
 }
 
