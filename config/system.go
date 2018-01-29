@@ -8,6 +8,7 @@ import (
 
 type Configuration struct {
 	Postgres   *Postgres `yaml:"postgres"`
+	Redis      *Redis    `yaml:"redis"`
 	Server     string    `yaml:"server"`
 	Mail       *Mail     `yaml:"mail"`
 	StaticPath string    `yaml:"staticPath"`
@@ -21,6 +22,13 @@ type Postgres struct {
 	Dbname   string `yaml:"dbname"`
 	Password string `yaml:"password"`
 	Sslmode  string `yaml:"sslmode"`
+}
+
+type Redis struct {
+	Url         string `yaml:"host"`
+	ActcTimeout int    `yaml:"actcTimeout"`
+	RescTimeout int    `yaml:"rescTimeout"`
+	VercTimeOut int    `yaml:"vercTimeOut"`
 }
 
 type Mail struct {

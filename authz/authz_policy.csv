@@ -1,4 +1,4 @@
 p, user, /user*, *
 p, user, /auth*, *
 p, guest, /auth*, *
-p, guest, /user, POST
+p, guest, /user*, *

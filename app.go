@@ -11,6 +11,7 @@ import (
 	"github.com/irisnet/iris-community/config"
 	"github.com/casbin/casbin"
 	"github.com/irisnet/iris-community/authz"
+	"github.com/irisnet/iris-community/models/redis"
 )
 
 func main() {
@@ -43,13 +44,12 @@ func main() {
 
 	//db
 	models.InitDB()
+	redis.InitRedis()
 
 	//rest
 	rest.UserRegisterAll(r.Group("/user")) //user
 	rest.AuthRegisterAll(r.Group("/auth")) //auth
 	rest.RegisterKyc(r.Group("/kyc"))
 	rest.QueryRegister(r.Group("/query"))
-
 	r.Run(config.Config.Server) // listen and serve on 0.0.0.0:8080
-	log.Println("server start")
 }
