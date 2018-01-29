@@ -19,11 +19,7 @@ func Login(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
 			return
 		}
-		user1, dbErr := models.FindUserByEmail(user.Email)
-		if dbErr != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": http.StatusText(http.StatusInternalServerError)})
-			return
-		}
+		user1, _ := models.FindUserByEmail(user.Email)
 		if user1.Id == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "email not exist"})
 			return
@@ -35,7 +31,7 @@ func Login(c *gin.Context) {
 				UserId: user1.Id,
 			}
 			userAuth.Create()
-			c.Header("Authorization",userAuth.AuthCode)
+			c.Header("Authorization", userAuth.AuthCode)
 			c.JSON(http.StatusOK, userAuth)
 		} else {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "email or password error"})

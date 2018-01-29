@@ -7,11 +7,11 @@ import (
 )
 
 type Configuration struct {
-	Postgres        *Postgres `yaml:"postgres"`
-	Server          string    `yaml:"server"`
-	Mail            *Mail     `yaml:"mail"`
-	StaticPath      string    `yaml:"staticPath"`
-	AliYun      	*AliYun    `yaml:"aliYun"`
+	Postgres   *Postgres `yaml:"postgres"`
+	Server     string    `yaml:"server"`
+	Mail       *Mail     `yaml:"mail"`
+	StaticPath string    `yaml:"staticPath"`
+	AliYun     *AliYun   `yaml:"aliYun"`
 }
 
 type Postgres struct {
@@ -30,19 +30,19 @@ type Mail struct {
 	Password string `yaml:"password"`
 }
 
-type AliYun struct{
-	AccessKeyId string `yaml:"accessKeyId"`
+type AliYun struct {
+	AccessKeyId     string `yaml:"accessKeyId"`
 	AccessKeySecret string `yaml:"accessKeySecret"`
-	Oss *Oss `yaml:"oss"`
-	Sls *Sls `yaml:"sls"`
+	Oss             *Oss   `yaml:"oss"`
+	Sls             *Sls   `yaml:"sls"`
 }
-type Oss struct{
+type Oss struct {
 	Endpoint string `yaml:"endpoint"`
-	Bucket string `yaml:"bucket"`
+	Bucket   string `yaml:"bucket"`
 }
-type Sls struct{
+type Sls struct {
 	Endpoint string `yaml:"endpoint"`
-	Arn string `yaml:"arn"`
+	Arn      string `yaml:"arn"`
 }
 
 var Config *Configuration

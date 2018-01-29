@@ -9,13 +9,23 @@ import (
 
 	"github.com/casbin/casbin"
 	"github.com/gin-gonic/gin"
+	"github.com/irisnet/iris-community/models"
 )
 
 // NewAuthorizer returns the authorizer, uses a Casbin enforcer as input
 func NewAuthorizer(e *casbin.Enforcer) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		a := &BasicAuthorizer{enforcer: e}
-		if !a.CheckPermission(c.Request) {
+		r := c.Request
+		user, status := a.GetUserRole(r)
+		method := r.Method
+		path := r.URL.Path
+		if !a.enforcer.Enforce(user, path, method) {
+			if status == 401 {
+				c.Abort() //stop the current handler and not execute next
+				a.RequireAuthorized(c.Writer)
+				return
+			}
 			c.Abort() //stop the current handler and not execute next
 			a.RequirePermission(c.Writer)
 			return
@@ -30,25 +40,35 @@ type BasicAuthorizer struct {
 
 // GetUserName gets the user name from the request.
 // Currently, only HTTP basic authentication is supported
-func (a *BasicAuthorizer) GetUserName(r *http.Request) string {
-	username, _, _ := r.BasicAuth()
-	return username
-}
-
-// CheckPermission checks the user/method/path combination from the request.
-// Returns true (permission granted) or false (permission forbidden)
-func (a *BasicAuthorizer) CheckPermission(r *http.Request) bool {
-	user := a.GetUserName(r)
-	if user == "" {
-		user = "guest" //访客用户
+func (a *BasicAuthorizer) GetUserRole(r *http.Request) (string, int) {
+	if authorization := r.Header.Get("Authorization"); authorization == "" {
+		return "guest", 0 //访客用户
+	} else {
+		userAuth := &models.UserAuth{
+			AuthCode: authorization,
+		}
+		userAuth.FindByAuth()
+		if userAuth.Id != 0 {
+			user := &models.Users{
+				Id: uint(userAuth.UserId),
+			}
+			user.First()
+			return "user", 0 //普通用户
+		} else {
+			return "guest", 401 //访客用户
+		}
 	}
-	method := r.Method
-	path := r.URL.Path
-	return a.enforcer.Enforce(user, path, method)
+	return "guest", 0 //访客用户
 }
 
 // RequirePermission returns the 403 Forbidden to the client
 func (a *BasicAuthorizer) RequirePermission(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusForbidden)
 	w.Write([]byte(http.StatusText(http.StatusForbidden)))
+}
+
+// Unauthorized returns the 401 Unauthorized to the client
+func (a *BasicAuthorizer) RequireAuthorized(w http.ResponseWriter) {
+	w.WriteHeader(http.StatusUnauthorized)
+	w.Write([]byte(http.StatusText(http.StatusUnauthorized)))
 }
