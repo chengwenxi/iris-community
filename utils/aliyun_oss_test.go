@@ -17,10 +17,10 @@ func TestAssumeRole(t *testing.T) {
 	var aliYun = config.Config.AliYun;
 
 	acsClient := New(aliYun.AccessKeyId,aliYun.AccessKeySecret)
-	acsClient.SetArn(aliYun.Sls.Arn)
-	acsClient.SetEndPoint(aliYun.Sls.Endpoint)
+	acsClient.SetArn(aliYun.Sts.Arn)
+	acsClient.SetEndPoint(aliYun.Sts.Endpoint)
 
-	acsClient.SetVersion(aliYun.Sls.Version)
+	acsClient.SetVersion(aliYun.Sts.Version)
 
 	req := NewSls(acsClient)
 	resp,httpCode,err := acsClient.send(req.newRequset())
