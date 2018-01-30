@@ -697,41 +697,41 @@ the blockchain where the provider is connected;
 4. Service responses or resolution meant for a remote consumer are routed
 back to the blockchain where the consumer is connected.
 
-When processing a CreateServiceDefinitionTx transaction, the application
-first validates and stores ServiceDefinition locally, and then creates
-an IBCPacket containing the definition for each neighboring chain. Each
+When processing a `CreateServiceDefinitionTx` transaction, the application
+first validates and stores `ServiceDefinition` locally, and then creates
+an `IBCPacket` containing the definition for each neighboring chain. Each
 neighbor eventually receives -- from the corresponding relay process --
-an IBCPacketTx containing the packet, if the definition does not already
+an `IBCPacketTx` containing the packet, if the definition does not already
 exist in the receiving chain, the latter will pass on the definition by
-creating an IBCPacket for each of *its* neighbors -- except the source
+creating an `IBCPacket` for each of *its* neighbors -- except the source
 chain from which it received the packet in the first place; if the
 definition already exists, the receiving chain stops passing on the
 definition.
 
-Similarly, when a ServiceBinding is created or updated with its
+Similarly, when a `ServiceBinding` is created or updated with its
 BindingType set or updated to Global, an IBCPacket containing the
 binding is created for each neighboring chain, and gets propagated to
 the whole IRIS network.
 
-An IBCPacket described above is composed of:
+An `IBCPacket` described above is composed of:
 
-Header (IBCPacketHeader): The packet header
+* `Header (IBCPacketHeader)`: The packet header
 
-Payload (ServiceDefinition or ServiceBinding): The bytes of the service
+* `Payload (ServiceDefinition or ServiceBinding)`: The bytes of the service
 definition or binding
 
-The IBCPacketHeader above is composed of:
+The `IBCPacketHeader` above is composed of:
 
-SrcChainID (string): The ID of the blockchain creating this packet
+* `SrcChainID (string)`: The ID of the blockchain creating this packet
 
-DstChainID (string): The ID of the neighboring blockchain this packet is
+* `DstChainID (string)`: The ID of the neighboring blockchain this packet is
 destined for
 
-Number (int): A unique number for all packets
+* `Number (int)`: A unique number for all packets
 
-Status (enum): NoAck
+* `Status (enum): NoAck`
 
-Type (string): "iris-service-definition" or "iris-service-binding"
+* `Type (string): "iris-service-definition" or "iris-service-binding"`
 
 Now let's look at how interchain service invocation happens through IBC.
 When a request is made for a Unicast service, the application checks if
@@ -741,24 +741,24 @@ IBCPacket containing the ServiceRequest will be created instead.
 
 An IBCPacket containing a ServiceRequest is composed of:
 
-Header (IBCPacketHeader): The packet header
+* `Header (IBCPacketHeader)`: The packet header
 
-Payload (ServiceRequest): The bytes of the service request
+* `Payload (ServiceRequest)`: The bytes of the service request
 
 The IBCPacketHeader above is composed of:
 
-SrcChainID (string): The ID of the blockchain creating this packet
+* `SrcChainID (string)`: The ID of the blockchain creating this packet
 
-DstChainID (string): The ID of the blockchain where the remote provider
+* `DstChainID (string)`: The ID of the blockchain where the remote provider
 is located, i.e., ServiceRequest.ServiceBinding.ChainID
 
-Number (int): A unique number for all packets
+* `Number (int)`: A unique number for all packets
 
-Status (enum): AckPending
+* `Status (enum)`: AckPending
 
-Type (string): "iris-service-request"
+* `Type (string)`: "iris-service-request"
 
-MaxHeight (int): Current height + ServiceRequest.Timeout
+* `MaxHeight (int)`: Current height + ServiceRequest.Timeout
 
 As a remote request finally arrives at the destination chain, the
 application will append it to the corresponding endpoint (request table)
