@@ -14,8 +14,8 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 ## Table of Contents ###########################################################
 
 * [IRIS OVERVIEW](#IRIS-OVERVIEW)
-	* Cosmos/Tendermint 
-	* New Innovations from IRIS 
+	* [Cosmos/Tendermint](#Cosmos/Tendermint)
+	* [New Innovations from IRIS](#New-Innovations-from-IRIS) 
 * [IRIS Network Design](#IRIS-Network-Design)
 	* Network Actors
 	* IRIS Services
@@ -116,22 +116,22 @@ performance, security and business governance requirements.
 
 **Our vision of distributed business infrastructure needs to have the Interoperability of many heterogeneous chains including public/consortium/ permission/private chains.** 
 
-Inter-chain technology is a very nature answer to this requirement,
-however till today, the proposed Inter-chain technologies are mainly
+Inter-chain technology is a very nature answer to the requirement.
+However, till today, the existing Inter-chain technologies are mainly
 designed to provide interoperability among existing blockchains and
-focusing on the token value transfer. How to cross-chain consuming the
-resource provided in different chains is still unanswered.
+focus on token value transfer. The question of how to consume the
+resource provided in different chains still remains unanswered.
 
 Comparing the proposed inter-chain technologies like Cosmos \[3\] and
-Polkadot \[4\], we find that Cosmos provides more mature base for
-interoperability and scalability. Especially we found the design of
-"many hubs and many zones" and "each zones are independent blockchains
-having independent governance models" from Cosmos provides a very
+Polkadot \[4\], we find out that Cosmos provides more mature base for
+interoperability and scalability. Especially, we found the design of
+"`many hubs and many zones`" and "`each zones are independent blockchains
+having independent governance models`" from Cosmos provides a very
 suitable architecture for modeling the real world complexity in a SOC
-way. To best reuse the existing work, we present the IRIS Network, a
+way. To best reuse the existing framework, we present the IRIS Network, a
 decentralized inter-chain network composing hub and zones with
 implementing a layer of service infrastructure based on
-Cosmos/Tendermint\[5\], with enhancement of token usage.
+Cosmos/Tendermint\[5\], with enhanced usage of token .
 
 Since our work is built on top of Cosmos/Tendermint, we will overview
 Cosmos/Tendermint to set the stage, summarize the features we inherit
@@ -157,29 +157,32 @@ chain domain including Oracle \[ORA\], Hyperledger Burrow \[BURROW\] and
 CITA \[CITA\].
 
 Tendermint is used as the consensus protocol for building the first zone
-on Cosmos which is called Cosmos Hub. Hub can connect to many different
+on Cosmos Hub. Hub can connect to many different
 kinds of zones, and the communication is achieved via an
 inter-blockchain communication (IBC) protocol, a kind of virtual UDP or
 TCP for blockchains. Tokens can be transferred from one zone to another
-securely through the Cosmos hub, without the need for a liquid exchange
+securely through the Cosmos Hub, without the need for an exchange
 or a trusted third party between zones.
 
 To develop robust interoperable blockchains and blockchain applications
 with Cosmos Hub, Cosmos SDK provides blockchain development
-\'starter-pack\' of common blockchain modules while not enforcing their
-use thus giving maximum flexibility for application customization.
+\'starter-kit\' of common blockchain modules while not enforcing 
+user stories thus giving maximum flexibility for application customization.
 
 ### New Innovations from IRIS 
 ------------------------------
 
-IRIS network aims to build technology foundation Facilitating
-construction of distributed business applications, goes beyond today's
-blockchain systems mainly for digital assets.
+IRIS network aims to build technology foundation which facilitate
+construction of distributed business applications. It goes beyond today's
+blockchain systems which are mainly for digitalized assets.
 
-The key challenges we are addressing in IRIS are two parts: A.
-Integration and collaboration of off-chain computing and resources with
-a distributed ledger; B. interoperability of the services across
-heterogeneous chains. We address those challenges through incorporation
+The key challenges we are addressing in IRIS are two parts: 
+* Integration and collaboration of off-chain computing and resources on
+a distributed ledger; 
+* interoperability of the services across
+heterogeneous chains. 
+
+We address those challenges through incorporation
 of a service oriented infrastructure into Cosmos/Tendermint which we
 call iService.
 
