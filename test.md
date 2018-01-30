@@ -435,9 +435,9 @@ A ServiceBinding is composed of:
 
 **Service Invocation**
 
-Consumers and providers interact with each other through *endpoints*.
-There are two kinds of endpoints -- *request table* and *response table*
-(see Figure?). Service requests are posted to request tables monitored
+Consumers and providers interact with each other through `*endpoints*`.
+There are two kinds of endpoints -- `*request table*` and `*response table*`
+(see Figure above). Service requests are posted to request tables monitored
 by interested provider(s) which pick up and process requests addressed
 to them; service results (or errors) are posted back to response tables
 monitored in turn by matched consumers.
@@ -449,31 +449,31 @@ dedicated response table will be created and managed for each consumer.
 
 A ServiceRequest is composed of:
 
-ChainID (string): The ID of the blockchain where the consumer is
+* `ChainID (string)`: The ID of the blockchain where the consumer is
 connected
 
-ConsumerAddress (\[\]byte): The blockchain address of the consumer
+* `ConsumerAddress (\[\]byte)`: The blockchain address of the consumer
 
-DefinitionHash (\[\]byte): The hash of the service definition
+* `DefinitionHash (\[\]byte)`: The hash of the service definition
 
-MethodID (int): The ID of the method to be invoked
+* `MethodID (int)`: The ID of the method to be invoked
 
-InputValue (string): A structured representation of input values
+* `InputValue (string)`: A structured representation of input values
 
-BindingHash (\[\]byte): The hash of the target binding, in case of a
+* `BindingHash (\[\]byte)`: The hash of the target binding, in case of a
 Unicast service. *Optional*
 
-MaxServiceFee (int64): The max amount of service fee the consumer is
+* `MaxServiceFee (int64)`: The max amount of service fee the consumer is
 willing to pay for a Multicast request. *Optional*
 
-Timeout (int): The max number of blocks the consumer is willing to wait
+* `Timeout (int)`: The max number of blocks the consumer is willing to wait
 for response(s) to come back
 
 A PostServiceRequestTx transaction is composed of:
 
-Requests (\[\]ServiceRequest): The service requests to be posted
+* `Requests (\[\]ServiceRequest)`: The service requests to be posted
 
-RequestDeposits (\[\]int64): The consumer must put down for each request
+* `RequestDeposits (\[\]int64)`: The consumer must put down for each request
 a deposit (in terms of iGas amount) that is greater than the value of
 MinRequestDeposit; a larger deposit may imply more sincerity of the
 consumer
