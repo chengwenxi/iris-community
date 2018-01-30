@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func RegisterEmail(email string, id string, code string) {
+func RegisterEmail(email string, id string, code string) error {
 	mail := config.Config.Mail
 	D := gomail.NewDialer(mail.Host, mail.Port, mail.Username, mail.Password)
 	m := gomail.NewMessage()
@@ -17,12 +17,14 @@ func RegisterEmail(email string, id string, code string) {
 		"请在24小时内点击下方按钮或复制下方链接进行邮箱验证"+ id+ " "+ code) //内容
 
 	// Send email
-	if err := D.DialAndSend(m); err != nil {
+	err := D.DialAndSend(m)
+	if err != nil {
 		log.Println(err)
 	}
+	return err
 }
 
-func ResetEmail(email string, id string, code string) {
+func ResetEmail(email string, id string, code string) error {
 	mail := config.Config.Mail
 	D := gomail.NewDialer(mail.Host, mail.Port, mail.Username, mail.Password)
 	m := gomail.NewMessage()
@@ -33,7 +35,9 @@ func ResetEmail(email string, id string, code string) {
 		"请在24小时内点击下方按钮或复制下方链接进行邮箱验证"+ id+ " "+ code) //内容
 
 	// Send email
-	if err := D.DialAndSend(m); err != nil {
+	err := D.DialAndSend(m)
+	if err != nil {
 		log.Println(err)
 	}
+	return err
 }

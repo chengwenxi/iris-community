@@ -16,6 +16,7 @@ import (
 func UserRegisterAll(g *gin.RouterGroup) {
 	g.POST("", CreateUser)
 	g.GET("/activate", ActivateUser)
+	g.POST("/resendAct", ResendAct)
 	g.PUT("/updatePwd", UpdateUserPwd)
 	g.POST("/reset", ResetUser)
 }
@@ -92,6 +93,37 @@ func ActivateUser(c *gin.Context) {
 	}
 }
 
+//resend email to activate user
+func ResendAct(c *gin.Context) {
+	var req RequestUsers
+	if err := c.ShouldBindJSON(&req); err == nil {
+		if len(req.Email) == 0 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
+			return
+		}
+		user, _ := models.FindUserByEmail(req.Email)
+		if user.Id == 0 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "email does not exist"})
+			return
+		}
+		con := myredis.Pool.Get()
+		uid := uuid.NewUUID().String()
+		_, err := con.Do("SET", "actc_"+uid, user.Id)
+		_, err = con.Do("EXPIRE", "actc_"+uid, config.Config.Redis.RescTimeout) //10 seconds expired
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		if err = utils.RegisterEmail(user.Email, strconv.Itoa(int(user.Id)), uid); err == nil {
+			c.JSON(http.StatusOK, user)
+		} else {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "send email fail"})
+		}
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+}
+
 //reset user password by email
 func ResetUser(c *gin.Context) {
 	var req RequestUsers
@@ -113,8 +145,11 @@ func ResetUser(c *gin.Context) {
 			log.Println(err)
 			return
 		}
-		utils.ResetEmail(user.Email, strconv.Itoa(int(user.Id)), uid)
-		c.JSON(http.StatusOK, user)
+		if err = utils.ResetEmail(user.Email, strconv.Itoa(int(user.Id)), uid); err == nil {
+			c.JSON(http.StatusOK, user)
+		} else {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "send email fail"})
+		}
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
