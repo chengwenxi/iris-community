@@ -774,15 +774,15 @@ responses, and therefore will not be elaborated here.
 
 Below is a complete list of application-dependent IBCPacket types:
 
---------------------------- ---------------------
-  **Type**                    **iService Object**
-  "iris-service-definition"   ServiceDefinition
-  "iris-service-binding"      ServiceBinding
-  "iris-service-request"      ServiceRequest
-  "iris-service-response"     ServiceResponse
-  "iris-complaint"            Complaint
-  "iris-resolution"           Resolution
---------------------------- ---------------------
+  **Type** | **iService Object**|
+  --------- | --------|
+  "iris-service-definition"  | ServiceDefinition|
+  "iris-service-binding"     | ServiceBinding|
+  "iris-service-request"    |  ServiceRequest|
+  "iris-service-response"  |   ServiceResponse|
+  "iris-complaint"        |    Complaint|
+  "iris-resolution"      |     Resolution|
+
 
 Use Cases {#use-cases .ListParagraph}
 =========
