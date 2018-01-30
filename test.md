@@ -183,25 +183,25 @@ a distributed ledger;
 heterogeneous chains. 
 
 We address those challenges through incorporation
-of a service oriented infrastructure into Cosmos/Tendermint which we
-call iService.
+of a service oriented infrastructure into Cosmos/Tendermint which is
+called `iService`.
 
-The design of iService inherits the design thinking established from
-many years' SOA practices. SOA is an architectural approach to creating
+The design of iService inherits the  thinking pattern from
+many years' SOA practices. SOA is an architectural approach to create
 systems built from autonomous services which have explicit boundaries,
-share schema and contract \[SOA\]. The earlier practice of SOA focused
-on implementation of an Enterprise Service Bus (ESB) which allows
-communication among services via a common communication bus that
+share schema and contract \[SOA\]. Earlier practice of SOA focus
+on implementation of Enterprise Service Bus (ESB) which enables
+communication among services via a common communication bus which
 consists of a variety of point-to-point connections between providers
 and consumers. Centralized management of services through ESB could
-become a single point of failure, also adds dependency of service
-deployment. The recent surge of Microservices Architectural Style can be
-seen as a specialization of SOA without focusing on ESB rather using
+trigger a single point of failure, also adds dependency of service
+deployment. The recent surge of Micro-services Architectural Style can be
+seen as a development of SOA without focusing on ESB rather using
 light message queues for inter service communication. In IRIS network,
 the inter service communication is implemented over blockchain to
-leverage blockchain as a trust machine for mediating business
-collaborations without prerequisite of existing trust among service
-provider and service consumer which is very costly to establish.
+leverage blockchain as a trusted machine for mediating business
+collaborations. It runs without prerequisite of existing trust among service
+provider and service consumer which is very hard to establish.
 
 IRIS network utilizing Tendermint core as a high-performance consensus
 engine. Leveraging the flexibility provided by tendermint's Application
