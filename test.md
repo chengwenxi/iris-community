@@ -659,14 +659,6 @@ Below is a (not exhaustive) summary of supported queries:
 
 **Service Objects**
 
------------------------------------------- ---------------------------------------------------------------------------- -----------------------
-  **Object**                                 **Commonly Used Filters**                                                    **Authorization**
-  Service Definition                         Name, keywords, source (chain id), messaging type, with active bindings...   Anyone can query
-  Service Binding (for a given definition)   Location (local or remote), pricing, service level, expiration...            Anyone can query
-  Service Request                            Service definition and binding, blockchain height, batch size                Only matched provider
-  Service Response                           Service request, blockchain height, batch size                               Only matched consumer
------------------------------------------- ---------------------------------------------------------------------------- -----------------------
-
 
 **Object**  | **Commonly Used Filters**|**Authorization**|
 --------- | --------|--------|
@@ -678,13 +670,15 @@ Below is a (not exhaustive) summary of supported queries:
 
 **Performance Metrics**
 
------------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
-  **Area**                      **Metrics**                                                                                                                                                    **Authorization**
-  Provider (address)            Number of services provided (ever and active), active time, requests served (local and remote), requests missed, complaints received, complaints missed, ...   Anyone can query
-  Provider (binding)            Active time, requests served (local and remote), requests missed, complaints received, complaints missed, ...                                                  Anyone can query
-  Consumer (address)            Number of services ever used, requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ...                              Anyone can query
-  Consumer (service, binding)   Requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ...                                                            Anyone can query
------------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
+
+  **Area** | **Metrics** | **Authorization**|
+  --------- | --------|--------|
+  Provider (address) | Number of services provided (ever and active), active time, requests served (local and remote), requests missed, complaints received, complaints missed, ...  | Anyone can query|
+  Provider (binding) |Active time, requests served (local and remote), requests missed, complaints received, complaints missed, ... | Anyone can query|
+  Consumer (address) | Number of services ever used, requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ... |Anyone can query|
+  Consumer (service, binding)| Requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ... |Anyone can query|
+
+
 
 IBC Enhancement
 ---------------
