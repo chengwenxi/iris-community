@@ -2,7 +2,8 @@ Whitepaper Version 0.2
 
 
 
-#Building Inter-chain Service Infrastructure and protocol for Trustworthy and Efficient Business Collaborations#
+Building Inter-chain Service Infrastructure and protocol for Trustworthy and Efficient Business Collaborations
+===========================
 
 **Technology Foundation for the Distributed Business New Digital Economy**
 
