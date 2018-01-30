@@ -17,9 +17,9 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 	* [Cosmos/Tendermint](#Cosmos/Tendermint)
 	* [New Innovations from IRIS](#New-Innovations-from-IRIS) 
 * [IRIS Network Design](#IRIS-Network-Design)
-	* Network Actors
-	* IRIS Services
-	* IBC Enhancement
+	* [Network Actors](#Network-Actors)
+	* [IRIS Services](#IRIS-Services)
+	* [IBC Enhancement](#IBC-Enhancement)
 * [Use Cases](#Use-Case)
 * [Token Economics](#Token-Economics)
 * [Fundraiser](#Fundraiser)
@@ -269,31 +269,31 @@ to increase the scalability and diversity of the Cosmos network, to increase
 value transfer volume through the Cosmos hub, and to increase the
 overall value of the network.
 
-Network Actors {#network-actors .ListParagraph}
+### Network Actors 
 --------------
 
-**Consumers** are users who consume off-chain services by sending
+1. **Consumers** are users who consume off-chain services by sending
 requests to and receiving responses from the network.
 
-**Providers** offer implementation of one or more iService definitions
+2. **Providers** offer implementation of one or more `iService` definitions
 and often act as *adaptors* of off-chain services and resources located
 in other public and consortium chains as well as enterprise legacy
 systems. They monitor and process incoming requests and send responses
 back to the network. A provider could at the same time act as a consumer
 by sending requests to other providers. Providers will charge a fee for
 any services they might offer, and the service fee, by default, is
-priced in the IRIS network's native fee token known as *iGas*; providers
+priced in the IRIS network's native fee token known as `*iGas*`; providers
 could also price their services in other whitelisted Cosmos fee tokens
 such as photon \[?\].
 
-**Profiler** is a special user working on behalf of the IRIS Foundation,
+3. **Profiler** is a special user working on behalf of the IRIS Foundation,
 a Hong Kong based nonprofit organization in charge of building and
 promoting the IRIS network. Profiler is the sole user authorized to
 invoke iServices in the profiling mode, which helps to create and
 maintain objective *provider profiles* that become handy for consumers
 when it comes to selecting the right providers (see ?).
 
-IRIS Services {#iris-services .ListParagraph}
+### IRIS Services 
 -------------
 
 **Service Definition**
