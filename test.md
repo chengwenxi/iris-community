@@ -1084,7 +1084,7 @@ to create a provably secure proof-of-stake algorithm, an alternative to
 proof-of-work mining. In addition to Tendermint, Jae is also the creator
 of Cosmos, the network of blockchains.
 
-**Tom Tao **
+**Tom Tao**
 
 Since joining Wanxiang in August 2016. Tom Tao is responsible for
 Wanxiang Blcokchain Consulting service, WanCloud Baas Platform as well
@@ -1100,7 +1100,7 @@ Leading-edge technologies. Tom has a Master's degree in Physics from
 Fudan University and a Bachelor's degree in Electronic Engineering from
 Nankai University.
 
-7.2 Advisors
+### Advisors
 ------------
 
 Jim Yang
@@ -1111,37 +1111,36 @@ Adrian Brink
 
 Michael Yuan
 
-Reference
-=========
+## Reference
 
-Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
+* [1] Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
 " Blockchain and Distributed Business Whitepaper", September, 2017.
 
-Ethereum Foundation, "Ethereum Homestead Documentation",
+* [2] Ethereum Foundation, "Ethereum Homestead Documentation",
 [[http://ethdocs.org/en/latest/]{.underline}](http://ethdocs.org/en/latest/)
 
-\[CWP\]Jae Kwon, Ethan Buchman，"Cosmos, A Network of Distributed
+* [3] \[CWP\]Jae Kwon, Ethan Buchman，"Cosmos, A Network of Distributed
 Ledgers", [<https://cosmos.network/whitepaper> ]{.underline}
 
-Gavin Wood,"Polkadot: Vision For a Heterogeneous Muilti-chain
+* [4] Gavin Wood,"Polkadot: Vision For a Heterogeneous Muilti-chain
 Framework", [[https://polkadot.io/]{.underline}](https://polkadot.io/)
 
-Tendermint, [https://tendermint.readthedocs.io/en/master/]{.underline}
+* [5] Tendermint, [https://tendermint.readthedocs.io/en/master/]{.underline}
 
-\[EMT\] Ethermint,
+* [6] \[EMT\] Ethermint,
 [[https://ethermint.zone/]{.underline}](https://ethermint.zone/)
 
-\[ORA\] Oracle International Corporation, "Accountability and Trust in
+* [7] \[ORA\] Oracle International Corporation, "Accountability and Trust in
 Distributed Ledger Systems", USA Patent Application 20170236120, August
 17, 2017
 
-\[CITA\] Jan Xie, "CITA Technical Whitepaper",
+* [8] \[CITA\] Jan Xie, "CITA Technical Whitepaper",
 <https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md>
 
-\[BURROW\] "Hyperledger Burrow",
+* [9]\[BURROW\] "Hyperledger Burrow",
 [[https://github.com/hyperledger/burrow]{.underline}](https://github.com/hyperledger/burrow)
 
-\[LIG\] Joseph Poon, Thaddeus Dryja,"The Bitcoin Lightning Network:
+* [10] \[LIG\] Joseph Poon, Thaddeus Dryja,"The Bitcoin Lightning Network:
 Scalable Off-Chain Instant Payments",
 [[https://lightning.network/lightning-network-paper.pdf]{.underline}](https://lightning.network/lightning-network-paper.pdf),
 January 14, 2016
@@ -1178,7 +1177,7 @@ April
 [Vitalik Buterin](http://vitalik.ca/), "Engineering Security Through
 Coordination Problems", http://vitalik.ca/, 2017 Aug
 
-**THANK YOU. **
+## Acknowledgements
 
 FOR MORE INFORMATION CONTACT:
 
