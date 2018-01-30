@@ -13,7 +13,7 @@ Economy**
 
 ## Table of Contents ###########################################################
 
-1.  IRIS OVERVIEW 6
+1.  [IRIS OVERVIEW](#IRIS OVERVIEW) 6
 
 1.2 Cosmos/Tendermint 9
 
@@ -92,7 +92,8 @@ services and enjoy the rewards in an open network. To achieve this goal,
 we identified following challenges/opportunities for technology
 innovations:
 
-Not all computation could or should be implemented as on-chain
+* Not all computation could or should be implemented as on-chain
+
 computations such as smart contracts
 
 The
@@ -120,7 +121,8 @@ this type of replicated computing.
 a distributed ledger is key to further advance the adoption of
 blockchain technology for more real world usage scenarios.**
 
-How to reuse the existing blockchain resources: both public chains and
+* How to reuse the existing blockchain resources: both public chains and
+
 consortium chains
 
 It is infeasible to use one public chain addressing all the problems.
@@ -140,9 +142,7 @@ Besides there are many (near) real time business transactions do need
 more close form consortium/permission/private chains to address
 performance, security and business governance requirements.
 
-**Our vision of distributed business infrastructure needs to have the
-Interoperability of many heterogeneous chains including
-public/consortium/ permission/private chains. **
+**Our vision of distributed business infrastructure needs to have the Interoperability of many heterogeneous chains including public/consortium/ permission/private chains.** 
 
 Inter-chain technology is a very nature answer to this requirement,
 however till today, the proposed Inter-chain technologies are mainly
