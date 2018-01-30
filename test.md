@@ -302,41 +302,41 @@ when it comes to selecting the right providers (see ?).
 
 A Method is composed of:
 
-* ID (int): The unique ID of this method in the encompassing iService
+* `ID (int)`: The unique ID of this method in the encompassing iService
 
-* Name (string): The unique name of this method in the iService
+* `Name (string)`: The unique name of this method in the iService
 
-* Description (string): A description of this method
+* `Description (string)`: A description of this method
 
-* Input (string): A structured definition of the input parameters
+* `Input (string)`: A structured definition of the input parameters
 
-* Output (string): A structured definition of the output result
+* `Output (string)`: A structured definition of the output result
 
-* Error (string): A structured definition of all possible error conditions
+* `Error (string)`: A structured definition of all possible error conditions
 
-* OutputPrivacy (enum): Can be one of NoPrivacy or PubKeyEncryption
+* `OutputPrivacy (enum)`: Can be one of NoPrivacy or PubKeyEncryption
 
 A ServiceDefinition is composed of:
 
-* Name (string): The name of this iService
+* `Name (string)`: The name of this iService
 
-* Description (string): A description of this iService
+* `Description (string)`: A description of this iService
 
-* Tags (string): Comma separated keywords about this iService
+* `Tags (string)`: Comma separated keywords about this iService
 
-* Creator (string): A self-description of the iService creator. *Optional*
+* `Creator (string)`: A self-description of the iService creator. *Optional*
 
-* ChainID (string): The ID of the blockchain where this iService was
+* `ChainID (string)`: The ID of the blockchain where this iService was
 originally defined
 
-* Messaging (enum): Can be one of Unicast or Multicast
+* `Messaging (enum)`: Can be one of Unicast or Multicast
 
-* Methods (\[\]Method): The definition of methods available in this
+* `Methods (\[\]Method)`: The definition of methods available in this
 `iService`
 
 A CreateServiceDefinitionTx transaction is composed of:
 
-* Definition (ServiceDefinition): The service definition to be created
+* `Definition (ServiceDefinition)`: The service definition to be created
 
 **Service Binding**:
 
@@ -344,46 +344,46 @@ A CreateServiceDefinitionTx transaction is composed of:
 
 A CreateServiceBindingTx transaction is composed of:
 
-* DefinitionHash (\[\]byte): The hash of the service definition that the
+* `DefinitionHash (\[\]byte)`: The hash of the service definition that the
 provider is binding to
 
-* ChainID (string): The ID of the blockchain where the provider is
+* `ChainID (string)`: The ID of the blockchain where the provider is
 connected
 
-* ProviderAddress (\[\]byte): The provider's blockchain address
+* `ProviderAddress (\[\]byte)`: The provider's blockchain address
 
-* BindingType (enum): Can be one of Local or Global; choose Global if a
+* `BindingType (enum)`: Can be one of Local or Global; choose Global if a
 provider wants the binding to be exposed to the rest of the world;
 otherwise, use Local
 
-* ProviderDeposit (int64): To create an effective binding, the provider
+* `ProviderDeposit (int64)`: To create an effective binding, the provider
 must put down a deposit (in terms of iGas amount) that is greater than
 the value of the system parameter MinProviderDeposit; a larger deposit
 may imply more trustworthiness of the provider
 
-* ServicePricing (string): A structured definition of the service pricing
+* `ServicePricing (string)`: A structured definition of the service pricing
 model on a per method basis, including cost per call, volume discount,
 promotional terms etc.; service fee is by default listed in iGas but
 could also be quoted in other whitelisted fee tokens.
 
-* ServiceLevel (string): A structured definition of service level the
+* `ServiceLevel (string)`: A structured definition of service level the
 provider agrees to bind himself to, in terms of response time,
 availability etc.
 
-* BindingExpiration (int64): The blockchain height where this binding
+* `BindingExpiration (int64)`: The blockchain height where this binding
 expires; a negative number means "never expire"
 
 An UpdateServiceBindingTx transaction is composed of:
 
-* DefinitionHash (\[\]byte): The hash of the service definition the
+* `DefinitionHash (\[\]byte)`: The hash of the service definition the
 provider has bound to
 
-* ChainID (string): The ID of the blockchain where the provider is
+* `ChainID (string)`: The ID of the blockchain where the provider is
 connected
 
-* ProviderAddress (\[\]byte): The provider's blockchain address
+* `ProviderAddress (\[\]byte)`: The provider's blockchain address
 
-* ChangeSet (string): A structured definition of desired changes to an
+* `ChangeSet (string)`: A structured definition of desired changes to an
 existing binding identified by the preceding three fields
 
 A provider can update ServicePricing, ServiceLevel and BindingExpiration
@@ -416,19 +416,19 @@ will be created or updated accordingly.
 
 A ServiceBinding is composed of:
 
-* DefinitionHash (\[\]byte)
+* `DefinitionHash (\[\]byte)`
 
-* ChainID (string)
+* `ChainID (string)`
 
-* ProviderAddress (\[\]byte)
+* `ProviderAddress (\[\]byte)`
 
-* ServiceLevel (string)
+* `ServiceLevel (string)`
 
-* ServicePricing (string)
+* `ServicePricing (string)`
 
-* BindingExpiration (int64)
+* `BindingExpiration (int64)`
 
-* IsValid (enum): Can be one of True or False
+* `IsValid (enum)`: Can be one of True or False
 
 ![Figure of IRIS Service](https://github.com/irisnet/iris-community/blob/query/pics/chap2-2.png)
 
