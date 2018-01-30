@@ -1,4 +1,6 @@
-*Whitepaper Version 0.2 *
+Whitepaper Version 0.2 
+
+
 
 **Building Inter-chain Service Infrastructure and protocol for
 Trustworthy and Efficient Business Collaborations**
@@ -52,70 +54,7 @@ Economy**
 
 Reference 40
 
-1.  Wanxiang Blochchain Inc., Distributed Business Value Research
-    Institute, " Blockchain and Distributed Business Whitepaper",
-    September, 2017. 40
 
-2.  Ethereum Foundation, "Ethereum Homestead Documentation",
-    http://ethdocs.org/en/latest/ 40
-
-3.  \[CWP\]Jae Kwon, Ethan Buchman，"Cosmos, A Network of Distributed
-    Ledgers", https://cosmos.network/whitepaper 40
-
-4.  Gavin Wood,"Polkadot: Vision For a Heterogeneous Muilti-chain
-    Framework", https://polkadot.io/ 40
-
-5.  Tendermint, https://tendermint.readthedocs.io/en/master/ 40
-
-6.  \[EMT\] Ethermint, https://ethermint.zone/ 40
-
-7.  \[ORA\] Oracle International Corporation, "Accountability and Trust
-    in Distributed Ledger Systems", USA Patent Application 20170236120,
-    August 17, 2017 40
-
-8.  \[CITA\] Jan Xie, "CITA Technical Whitepaper",
-    https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md
-    40
-
-9.  \[BURROW\] "Hyperledger Burrow",
-    https://github.com/hyperledger/burrow 40
-
-10. \[LIG\] Joseph Poon, Thaddeus Dryja,"The Bitcoin Lightning Network:
-    Scalable Off-Chain Instant Payments",
-    https://lightning.network/lightning-network-paper.pdf, January 14,
-    2016 40
-
-11. \[PLA\] Joseph Poon, Vitalik Buterin, "Plasma: Scalable Autonomous
-    Smart Contracts", https://www.plasma.io/plasma.pdf, August 11, 2017
-    40
-
-12. \[IBC\] Ethan Frey, "Cosmos IBC Specification", Sep. 29, 2017 40
-
-13. \[SOA\] Thomas Erl,  "SOA: Principles of Service Design", Prentice
-    Hall; 1st edition (July 28, 2007) 40
-
-14. \[buf\] protobuf referece goes here 40
-
-15. \[DAI\]Dean, J., Corrado, G.S., Monga, R., et al, Ng, A. Y. "Large
-    Scale Distributed Deep Networks". In Proceedings of the Neural
-    Information Processing Systems (NIPS'12) (Lake Tahoe, Nevada, United
-    States, December 3--6, 2012). Curran Associates, Inc, 57 Morehouse
-    Lane, Red Hook, NY, 2013, 1223-1232. 41
-
-16. \[ECO\]Tendermint Blog, "Cosmos Validator Economics ---Revenue
-    Streams", https://medium.com/@tendermint/b5b2c682a292, Jan, 2018 41
-
-17. \[CTM\] Sunny Aggarwal, "Cosmos Token Model",
-    https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view,
-    Dec, 2017 41
-
-18. Gideon Greenspan, "Why Many Smart Contract Use Cases Are Simply
-    Impossible",
-    https://www.coindesk.com/three-smart-contract-misconceptions/, 2016
-    April 41
-
-19. Vitalik Buterin, "Engineering Security Through Coordination
-    Problems", http://vitalik.ca/, 2017 Aug 41
 
 IRIS OVERVIEW {#iris-overview .ListParagraph}
 =============
