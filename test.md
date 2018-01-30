@@ -55,7 +55,7 @@ Reference 40
 
 
 ## IRIS OVERVIEW
------------
+
 
 > IRIS network is named after the Greek goddess of Rainbow who is the
 > faithful messenger between heaven and the mortals
@@ -119,9 +119,7 @@ this type of replicated computing.
 a distributed ledger is key to further advance the adoption of
 blockchain technology for more real world usage scenarios.**
 
-* How to reuse the existing blockchain resources: both public chains and
-
-consortium chains
+* How to reuse the existing blockchain resources: both public chains and consortium chains
 
 It is infeasible to use one public chain addressing all the problems.
 Every day there are different chains going live focusing on one aspect
@@ -165,7 +163,7 @@ from Cosmos/Tendermint and the innovations we are building on top of
 existing work.
 
 ### Cosmos/Tendermint 
-----------------------
+
 
 Cosmos \[CWP\] is an ambitious project aiming at building the internet
 of blockchain. It is a network of many independent blockchains, called
