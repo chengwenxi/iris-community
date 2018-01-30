@@ -1113,14 +1113,18 @@ Michael Yuan
 
 ## Reference
 
+[1]: https://bitcoin.org/bitcoin.pdf
+[2]: http://ethdocs.org/en/latest/
+[3]: https://cosmos.network/whitepaper
+
+
 * [1] Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
 " Blockchain and Distributed Business Whitepaper", September, 2017.
 
-* [2] Ethereum Foundation, "Ethereum Homestead Documentation",
-[[http://ethdocs.org/en/latest/]{.underline}](http://ethdocs.org/en/latest/)
+* [2] Ethereum Foundation, "Ethereum Homestead Documentation", http://ethdocs.org/en/latest/
 
 * [3] \[CWP\]Jae Kwon, Ethan Buchman，"Cosmos, A Network of Distributed
-Ledgers", [<https://cosmos.network/whitepaper> ]{.underline}
+Ledgers", https://cosmos.network/whitepaper
 
 * [4] Gavin Wood,"Polkadot: Vision For a Heterogeneous Muilti-chain
 Framework", [[https://polkadot.io/]{.underline}](https://polkadot.io/)
