@@ -13,13 +13,13 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 
 ## Table of Contents ###########################################################
 
-* [IRIS OVERVIEW](#IRIS OVERVIEW)
+* [IRIS OVERVIEW](#IRIS-OVERVIEW)
 
-1.2 Cosmos/Tendermint 9
+	* Cosmos/Tendermint 
 
-1.3 New Innovations from IRIS 10
+	* New Innovations from IRIS 
 
-1.  IRIS Network Design 13
+* [IRIS Network Design](#IRIS-Network-Design)
 
     1.  Network Actors 14
 
@@ -262,8 +262,9 @@ for a specific service definition, SDKs are provided for generating the
 service provider side skeleton as well as service consumer side stub for
 major language.
 
-IRIS Network Design {#iris-network-design .ListParagraph}
-===================
+
+###IRIS Network Design
+-----------
 
 ![](media/image1.png){width="6.0in" height="3.375in"}
 
