@@ -14,8 +14,8 @@ server: 0.0.0.0:8080
 mail:
   host: smtp.ym.163.com
   port: 25
-  username: vincent@bianjie.ai
-  password: a760329367#
+  username: XXX
+  password: XXX
 staticPath: D:\test\static  #静态文件路径
 aliYun:
   accessKeyId:
