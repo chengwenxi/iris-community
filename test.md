@@ -203,7 +203,7 @@ leverage blockchain as a trusted machine for mediating business
 collaborations. It runs without prerequisite of existing trust among service
 provider and service consumer which is very hard to establish.
 
-IRIS network utilizing Tendermint core as a high-performance consensus
+IRIS network use Tendermint protocol as a high-performance consensus
 engine. Leveraging the flexibility provided by tendermint's Application
 BlockChain Interface (ABCI), we define a set of service infrastructure
 transaction types including service provisioning, service consumption
@@ -214,30 +214,29 @@ application specific logics and transaction processing off the
 blockchain itself and use the blockchain only to get consensus on the
 results generated through those services. This idea is also inspired by
 existing work from blockchain community when address performance issues
-of moving some heavy computation off the main chain, such as Lightning
+of moving some complicated computation off the main chain, such as Lightning
 Network's off-chain state channels \[LIG\] as well as Plasma's fraud
 proof side chains \[PLA\]. Although we are not implementing side chains,
-we move the blockchain unsuitable traditional business computation off
-chain and use the blockchain as a trustworthy mediation bus for
+we rip traditional business logic computation off the blockchain
+ and use it as a trustworthy mediation bus for
 complicated business collaboration.
 
-For cross chain communication, Cosmos IBC\[IBC\] defined a protocol for
-transferring token from an account on one chain to an account on the
-other chain. IRIS leveraging IBC designed new semantics to allow cross
-chain computation being invoked. This capability is very important when
-building scalable business applications which we will illustrate its use
-case in later chapter.
+For inter chain communication, Cosmos IBC\[IBC\] defines a protocol for
+transferring values from an account on one chain to an account on the
+other chain. IRIS  designe new semantics to allow cross
+chain computation to be invoked by leveraging IBC. This capability is very important when
+building scalable business applications. More on its use
+case is in later chapter.
 
-Iris network provides the service infrastructure for handing the
+IRIS network provides the service infrastructure for handing the
 coordination of on-chain transaction processing with off-chain data
-processing and business logic execution. The iServices also have defined
-protocol for them to be invoked cross chain if the business requirements
-require. IRIS also provides client-side tools including smart wallet for
-inter-chain multi-asset as well as for accessing iServices. IRIS project
-plans to provide SDKs for easy construction of iServices. For example,
-for a specific service definition, SDKs are provided for generating the
+processing and business logic execution. The `iServices` also have defined
+protocols for them to be invoked cross chain if required. IRIS also provides 
+client-side tools including smart wallet for inter-chain multi-asset as well as for accessing `iServices`. 
+IRIS project plans to provide SDKs for easy construction of `iServices`. 
+For example, for a specific service definition, SDKs are provided for generating the
 service provider side skeleton as well as service consumer side stub for
-major language.
+major languages.
 
 
 ##IRIS Network Design
