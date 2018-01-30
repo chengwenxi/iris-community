@@ -9,23 +9,31 @@ import (
 )
 
 type Kyc struct {
+	//证件类型id
 	CertificateTypeId uint
-	CertificateNum    string
-	CountryId         uint
-	FrontFileKey      string
-	ReverseFileKey    string
-	HandFileKey       string
+	//证件类型名称
+	CertificateNum 	string
+	//国家id
+	CountryId		uint
+	//证件正面照
+	FrontFileKey	string
+	//证件反面照
+	ReverseFileKey	string
+	//手持照片
+	HandFileKey		string
 
-	FamilyName string
-	Name       string
+	//姓氏
+	FamilyName		string
+	//名称
+	Name			string
 }
 
-type KycInfo struct {
+type KycAuthInfo struct {
 	Kyc    Kyc
-	Result KycResult
+	Result KycAuthResult
 }
 
-type KycResult struct {
+type KycAuthResult struct {
 	Status string
 	Errors []models.DimApprovalFailedReason
 }
@@ -53,15 +61,21 @@ func RegisterKyc(g *gin.RouterGroup) {
 	//用户实名认证
 	g.POST("/cerficate", func(context *gin.Context) {
 		var kyc Kyc
-		if context.ShouldBindJSON(&kyc) == nil {
-			authCode := context.Request.Header.Get("Authorization")
-			if err := postKyc(kyc, authCode); err != nil {
-				context.JSON(http.StatusBadRequest, gin.H{"code": "fail", "msg": "user certify fail"})
-			} else {
-				context.JSON(http.StatusOK, gin.H{"code": "success", "msg": "user certify success"})
-			}
-		} else {
+
+		if context.ShouldBindJSON(&kyc) != nil {
 			context.JSON(http.StatusBadRequest, "invalide json")
+			return
+		}
+		//检查参数
+		if err := checkKyc(kyc);err != nil {
+			context.JSON(http.StatusBadRequest, err)
+		}
+
+		authCode := context.Request.Header.Get("Authorization")
+		if err := postKyc(kyc, authCode); err != nil {
+			context.JSON(http.StatusBadRequest, gin.H{"code": "fail", "msg": "user certify fail"})
+		} else {
+			context.JSON(http.StatusOK, gin.H{"code": "success", "msg": "user certify success"})
 		}
 	})
 	//查询用户认证信息
@@ -168,8 +182,8 @@ func postKyc(kyc Kyc, authCode string) error {
 }
 
 //查询用户实名认证信息
-func queryKyc(authCode string) (KycInfo, error) {
-	var kycInfo KycInfo
+func queryKyc(authCode string) (KycAuthInfo, error) {
+	var kycInfo KycAuthInfo
 
 	//查询用户信息
 	userAuth := models.UserAuth{
@@ -228,9 +242,9 @@ func queryKyc(authCode string) (KycInfo, error) {
 		}
 	}
 
-	kycInfo = KycInfo{
+	kycInfo = KycAuthInfo{
 		Kyc: kyc,
-		Result: KycResult{
+		Result: KycAuthResult{
 			Status: approval.ApprovalStatus,
 			Errors: reasons,
 		},
@@ -238,4 +252,44 @@ func queryKyc(authCode string) (KycInfo, error) {
 
 	return kycInfo, nil
 
+}
+
+func checkKyc(kyc Kyc) error{
+
+	if kyc.CertificateTypeId == 0 {
+		return errors.New("CertificateTypeId is empty")
+	}
+
+	if kyc.CertificateNum == "" {
+		return errors.New("CertificateNum is empty")
+	}
+
+	if kyc.CountryId == 0 {
+		return errors.New("CountryId is empty")
+	}
+
+
+	if kyc.FrontFileKey == "" {
+		return errors.New("FrontFileKey is empty")
+	}
+
+
+	if kyc.ReverseFileKey == "" {
+		return errors.New("ReverseFileKey is empty")
+	}
+
+
+	if kyc.HandFileKey == "" {
+		return errors.New("HandFileKey is empty")
+	}
+
+	if kyc.FamilyName == "" {
+		return errors.New("FamilyName is empty")
+	}
+
+	if kyc.Name == "" {
+		return errors.New("Name is empty")
+	}
+
+	return nil
 }
