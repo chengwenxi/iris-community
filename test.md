@@ -2,8 +2,8 @@ Whitepaper Version 0.2
 
 
 
-**Building Inter-chain Service Infrastructure and protocol for
-Trustworthy and Efficient Business Collaborations**
+*Building Inter-chain Service Infrastructure and protocol for
+Trustworthy and Efficient Business Collaborations*
 
 **Technology Foundation for the Distributed Business New Digital
 Economy**
@@ -12,7 +12,7 @@ Economy**
 
 **January 2018**
 
-**CONTENTS**
+## Table of Contents ###########################################################
 
 1.  IRIS OVERVIEW 6
 
@@ -55,12 +55,11 @@ Economy**
 Reference 40
 
 
+##IRIS OVERVIEW  ################################################################
 
-IRIS OVERVIEW {#iris-overview .ListParagraph}
-=============
 
-> *IRIS network is named after the Greek goddess of Rainbow who is the
-> faithful messenger between heaven and the mortals*
+> IRIS network is named after the Greek goddess of Rainbow who is the
+> faithful messenger between heaven and the mortals
 
 As we all agree, [contractual
 relationship](http://www.baidu.com/link?url=KhVK0OgIDwEjNp8ktOEEQT6B0BfQGQMU2xZZz_m9ZgXdLfwagXyqfDJw2DAAYf2jNoywaOxUWKepvQnCK7j2wuydn7QQXM-49mc40icufHBPDhtlW2IyCMZ2bx7_Fxps)
@@ -690,23 +689,23 @@ Below is a (not exhaustive) summary of supported queries:
 
 **Service Objects**
 
-  ------------------------------------------ ---------------------------------------------------------------------------- -----------------------
+------------------------------------------ ---------------------------------------------------------------------------- -----------------------
   **Object**                                 **Commonly Used Filters**                                                    **Authorization**
   Service Definition                         Name, keywords, source (chain id), messaging type, with active bindings...   Anyone can query
   Service Binding (for a given definition)   Location (local or remote), pricing, service level, expiration...            Anyone can query
   Service Request                            Service definition and binding, blockchain height, batch size                Only matched provider
   Service Response                           Service request, blockchain height, batch size                               Only matched consumer
-  ------------------------------------------ ---------------------------------------------------------------------------- -----------------------
+------------------------------------------ ---------------------------------------------------------------------------- -----------------------
 
 **Performance Metrics**
 
-  ----------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
+----------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
   **Area**                      **Metrics**                                                                                                                                                    **Authorization**
   Provider (address)            Number of services provided (ever and active), active time, requests served (local and remote), requests missed, complaints received, complaints missed, ...   Anyone can query
   Provider (binding)            Active time, requests served (local and remote), requests missed, complaints received, complaints missed, ...                                                  Anyone can query
   Consumer (address)            Number of services ever used, requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ...                              Anyone can query
   Consumer (service, binding)   Requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ...                                                            Anyone can query
-  ----------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
+----------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
 
 IBC Enhancement {#ibc-enhancement .ListParagraph}
 ---------------
@@ -803,7 +802,7 @@ responses, and therefore will not be elaborated here.
 
 Below is a complete list of application-dependent IBCPacket types:
 
-  --------------------------- ---------------------
+--------------------------- ---------------------
   **Type**                    **iService Object**
   "iris-service-definition"   ServiceDefinition
   "iris-service-binding"      ServiceBinding
@@ -811,7 +810,7 @@ Below is a complete list of application-dependent IBCPacket types:
   "iris-service-response"     ServiceResponse
   "iris-complaint"            Complaint
   "iris-resolution"           Resolution
-  --------------------------- ---------------------
+--------------------------- ---------------------
 
 Use Cases {#use-cases .ListParagraph}
 =========
