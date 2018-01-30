@@ -13,7 +13,7 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 
 ## Table of Contents ###########################################################
 
-* [IRIS OVERVIEW](#IRIS OVERVIEW) 6
+* [IRIS OVERVIEW](#IRIS OVERVIEW)
 
 1.2 Cosmos/Tendermint 9
 
@@ -54,8 +54,8 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 Reference 40
 
 
-IRIS OVERVIEW
-------
+###IRIS OVERVIEW
+-----------
 
 > IRIS network is named after the Greek goddess of Rainbow who is the
 > faithful messenger between heaven and the mortals
