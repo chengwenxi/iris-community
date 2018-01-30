@@ -569,14 +569,15 @@ application will refund the associated escrow balance and request
 deposit, in full, back to the consumer. However, if the consumer does
 not confirm a response in time (before ResponseConfirmTimeout +
 blockchain height of the response), a small penalty (defined by
-ResponseConfirmDelayPenaltyRate) will be applied before the request
+`ResponseConfirmDelayPenaltyRate`) will be applied before the request
 deposit is refunded to the consumer, while the associated service fee
 will be released to the provider as usual.
 
 (A summary of the nice things about the design, especially the service
 invocation process, would be added later...)
 
-![图片 30](media/image3.png){width="6.0in" height="2.808333333333333in"}
+![Figure of Multicast Service](https://github.com/irisnet/iris-community/blob/query/pics/chap2-3.png)
+
 
 **Dispute Resolution**
 
