@@ -768,11 +768,11 @@ source chain and appended to the remote endpoint (response table) for
 the originating consumer.
 
 Request for a remote Multicast service is treated in the same way except
-that more than one IBCPacket could be generated in the source chain.
+that more than one `IBCPacket` could be generated in the source chain.
 Remote complaints and resolutions work exactly like requests and
 responses, and therefore will not be elaborated here.
 
-Below is a complete list of application-dependent IBCPacket types:
+Below is a complete list of application-dependent `IBCPacket` types:
 
   **Type** | **iService Object**|
   --------- | --------|
@@ -784,14 +784,14 @@ Below is a complete list of application-dependent IBCPacket types:
   "iris-resolution"      |     Resolution|
 
 
-Use Cases {#use-cases .ListParagraph}
-=========
+## Use Cases 
 
-**Distributed AI for privacy preserving data analysis**
+### Distributed AI for privacy preserving data analysis
+---------
 
 The proposed service infrastructure has been prototyped by Bianjie AI, a
-Shanghai based startup, into its permission product BEAN (Blockchain
-Edge Analytics Network) to solve the longstanding challenge of getting
+Shanghai based startup, into its permission product `BEAN (Blockchain
+Edge Analytics Network)` to solve the longstanding challenge of getting
 data for running analytics models. Although homomorphic encryption is
 one of the methods which allows computing to be done over encrypted
 data, due to its impractical for solving real world machine learning
@@ -806,17 +806,18 @@ definition. Since only partial model is released to the client, the
 model developer doesn\'t have to worry about someone stealing his/her
 idea; on the other hand, the data owner never needs to worry about their
 data leaving the premises and thus losing control of its usage. Other
-benefits include: (1) only a small amount of parametric data is
-exchanged on blockchain providing a lot of performance gain; (2)
-providing a more practical way for data usage auditing, which is often
+benefits include: 
+1. only a small amount of parametric data is
+exchanged on blockchain providing a lot of performance gain; 
+2. providing a more practical way for data usage auditing, which is often
 needed in the healthcare domain.
 
-Healthcare data's high privacy and security requirements put great
+Healthcare data is high private and security requirements put great
 challenge for it being used for cross organization collaboration, such
 as cross hospital clinic records search for diagnosis assistance, new
 drug clinic test patient identification, health insurance automatic
 claim process etc. This MVP service layer implementation is built on top
-of Ethermint for connecting hospitals, insurance companies as well as
+of `Ethermint` for connecting hospitals, insurance companies as well as
 analytics service providers in providing privacy preserving healthcare
 data analytics capability. Smart contracts have been implemented to
 support on-chain service registration and invocation. One example of the
@@ -825,10 +826,10 @@ grouping analytics service. When hospital user invokes DRGs service, the
 raw medical record is processed off-chain using service provider
 provided client side NLP(implemented as SQL and Python) code stub to
 exact structured data inputs for receiving DRGs service over blockchain
-without passing the highly confidential raw medical records. The BEAN
+without passing the highly confidential raw medical records. The `BEAN`
 scenario demonstrated a most complicated service use case including
 implementing distributed analytics, and connecting service providers as
-well as service consumers, utilizing blockchain to provide auditable
+well as service consumers, utilizing blockchain to provide audible
 transaction ledge as well as trustworthy distributed computing
 foundation.
 
