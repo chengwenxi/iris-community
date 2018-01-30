@@ -1124,6 +1124,10 @@ Michael Yuan
 [10]: https://lightning.network/lightning-network-paper.pdf
 [11]:  https://www.plasma.io/plasma.pdf
 [12]: https://github.com/cosmos/ibc/blob/master/README.md
+[16]: https://medium.com/@tendermint/b5b2c682a292
+[17]: https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view
+[18]: https://www.coindesk.com/three-smart-contract-misconceptions/
+[19]: http://vitalik.ca/
 
 
 * [1] Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
@@ -1169,20 +1173,17 @@ Processing Systems (NIPS'12) (Lake Tahoe, Nevada, United States,
 December 3--6, 2012). Curran Associates, Inc, 57 Morehouse Lane, Red
 Hook, NY, 2013, 1223-1232.
 
-* [16] Tendermint Blog, "Cosmos Validator Economics ---Revenue Streams",
-[[https://medium.com/@tendermint/b5b2c682a292]{.underline}](https://medium.com/@tendermint/b5b2c682a292),
+* [16] Tendermint Blog, "Cosmos Validator Economics ---Revenue Streams", https://medium.com/@tendermint/b5b2c682a292),
 Jan, 2018
 
-* [17] Sunny Aggarwal, "Cosmos Token Model",
-[[https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view]{.underline}](https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view),
+* [17] Sunny Aggarwal, "Cosmos Token Model",https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view,
 Dec, 2017
 
 * [18] Gideon Greenspan, "Why Many Smart Contract Use Cases Are Simply
-Impossible",
-<https://www.coindesk.com/three-smart-contract-misconceptions/>, 2016
+Impossible", https://www.coindesk.com/three-smart-contract-misconceptions/, 2016
 April
 
-* [19] [Vitalik Buterin](http://vitalik.ca/), "Engineering Security Through
+* [19] Vitalik Buterin(http://vitalik.ca/), "Engineering Security Through
 Coordination Problems", http://vitalik.ca/, 2017 Aug
 
 ## Acknowledgements
