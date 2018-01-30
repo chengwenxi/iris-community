@@ -16,8 +16,14 @@ func AuthRegisterAll(g *gin.RouterGroup) {
 	g.GET("/user", AuthUser)
 }
 
+type RequestAuthUsers struct {
+	RequestUsers
+	Password       string `binding:"required"`
+	VerifyCode     string `binding:"required"`
+}
+
 func Login(c *gin.Context) {
-	var req RequestUsers
+	var req RequestAuthUsers
 	if err := c.ShouldBindJSON(&req); err == nil {
 		if len(req.VerifyCode) == 0 || len(req.Email) == 0 || len(req.Password) == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
