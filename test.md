@@ -214,13 +214,13 @@ blockchain itself and use the blockchain only to get consensus on the
 results generated through those services. This idea is also inspired by
 existing work from blockchain community when address performance issues
 of moving some complicated computation off the main chain, such as Lightning
-Network's off-chain state channels \[LIG\] as well as Plasma's fraud
-proof side chains \[PLA\]. Although we are not implementing side chains,
+Network's off-chain state channels \[10\] as well as Plasma's fraud
+proof side chains \[11\]. Although we are not implementing side chains,
 we rip traditional business logic computation off the blockchain
  and use it as a trustworthy mediation bus for
 complicated business collaboration.
 
-For inter chain communication, Cosmos IBC\[IBC\] defines a protocol for
+For inter chain communication, Cosmos IBC\[12\] defines a protocol for
 transferring values from an account on one chain to an account on the
 other chain. IRIS  designe new semantics to allow cross
 chain computation to be invoked by leveraging IBC. This capability is very important when
@@ -1122,6 +1122,8 @@ Michael Yuan
 [8]: https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md
 [9]: https://github.com/hyperledger/burrow
 [10]: https://lightning.network/lightning-network-paper.pdf
+[11]:  https://www.plasma.io/plasma.pdf
+[12]: https://github.com/cosmos/ibc/blob/master/README.md
 
 
 * [1] Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
@@ -1151,12 +1153,12 @@ Distributed Ledger Systems", USA Patent Application 20170236120, August
 Scalable Off-Chain Instant Payments",January 14, 2016,https://lightning.network/lightning-network-paper.pdf
 
 
-\[PLA\] Joseph Poon, Vitalik Buterin, "Plasma: Scalable Autonomous Smart
+* [11]\[PLA\] Joseph Poon, Vitalik Buterin, "Plasma: Scalable Autonomous Smart
 Contracts", https://www.plasma.io/plasma.pdf, August 11, 2017
 
-\[IBC\] Ethan Frey, "Cosmos IBC Specification", Sep. 29, 2017
+* [12]\[IBC\] Ethan Frey, "Cosmos IBC Specification", Sep. 29, 2017,https://github.com/cosmos/ibc/blob/master/README.md
 
-\[SOA\] Thomas Erl,  "SOA: Principles of Service Design", Prentice Hall;
+* [13]\[SOA\] Thomas Erl,  "SOA: Principles of Service Design", Prentice Hall;
 1st edition (July 28, 2007)
 
 \[buf\] protobuf referece goes here
@@ -1187,5 +1189,4 @@ Coordination Problems", http://vitalik.ca/, 2017 Aug
 
 FOR MORE INFORMATION CONTACT:
 
-Harriet Cao,
-(mailto:harriet@bianjie.ai)
+Harriet Cao, harriet@bianjie.ai
