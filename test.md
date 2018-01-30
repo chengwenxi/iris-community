@@ -490,62 +490,62 @@ deducted from the consumer's account and locked up in escrow.
 
 A GetServiceRequest query is composed of:
 
-DefinitionHash (\[\]byte): The hash of the service definition
+* `DefinitionHash (\[\]byte)`: The hash of the service definition
 
-BindingHash (\[\]byte): The hash of this provider's binding to the
+* `BindingHash (\[\]byte)`: The hash of this provider's binding to the
 service in question; the application will verify that the binding is
 valid and the caller matches the binding's ChainID and ProviderAddress
 
-BeginHeight (uint64): The blockchain height from where the application
+* `BeginHeight (uint64)`: The blockchain height from where the application
 should start to retrieve requests for the provider, up to a total number
 that is the lesser of BatchSize and MaxRequestGetBatch
 
-BatchSize (int): The max number of requests to be returned
+* `BatchSize (int)`: The max number of requests to be returned
 
 A ServiceResponse is composed of:
 
-RequestHash (\[\]byte): The hash of the matched request
+* `RequestHash (\[\]byte)`: The hash of the matched request
 
-BindingHash (\[\]byte): The hash of this provider's service binding
+* `BindingHash (\[\]byte)`: The hash of this provider's service binding
 
-OutputValue (\[\]byte): A structured (potentially encrypted)
+* `OutputValue (\[\]byte)`: A structured (potentially encrypted)
 representation of output result. *Optional*
 
-ErrorMsg (string): A structured representation of error messages.
+* `ErrorMsg (string)`: A structured representation of error messages.
 *Optional*
 
 A PostServiceResponseTx transaction is composed of:
 
-Responses (\[\]ServiceResponse): The service responses to be posted
+* `Responses (\[\]ServiceResponse)`: The service responses to be posted
 
 The application will verify that the responses are coming from a
-provider with matching ChainID and ProviderAddress, and that the number
+provider with matching `ChainID` and `ProviderAddress`, and that the number
 of responses in the transaction is less than MaxResponsePostBatch. A
 verified request will be appended to the response table for the intended
 consumer.
 
 A GetServiceResponse query is composed of:
 
-RequestHash (\[\]byte): The hash of the original request; the
+* `RequestHash (\[\]byte)`: The hash of the original request; the
 application will verify that the caller matches the request's ChainID
 and ConsumerAddress
 
-BeginHeight (uint64): The blockchain height from where the application
+* `BeginHeight (uint64)`: The blockchain height from where the application
 should start to retrieve responses for the consumer, up to a total
-number that is the lesser of BatchSize and MaxResponseGetBatch
+number that is the lesser of `BatchSize` and `MaxResponseGetBatch`
 
-BatchSize (int): The max number of responses to be returned
+* `BatchSize (int)`: The max number of responses to be returned
 
 A ConfirmServiceResponseTx transaction is composed of:
 
-ResponseHash (\[\]\[\]byte): The hash of responses to be confirmed
+* `ResponseHash (\[\]\[\]byte)`: The hash of responses to be confirmed
 
 The application will verify that the responses to be confirmed are
 indeed for a request originated by the caller, and that the number of
-responses in the transaction is less than MaxResponseConfirmBatch.
+responses in the transaction is less than `MaxResponseConfirmBatch`.
 
 Responses that fall out of the Timeout window (and, in case of Multicast
-responses, when MaxServiceFee runs out as more responses come back) will
+responses, when `MaxServiceFee` runs out as more responses come back) will
 not be accepted by the application. A consumer starts processing a
 Unicast response immediately upon receiving it. However, for Multicast
 responses, a consumer will wait until the Timeout window elapses before
