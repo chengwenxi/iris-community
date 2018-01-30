@@ -13,7 +13,7 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 
 ## Table of Contents ###########################################################
 
-* [1. IRIS OVERVIEW](#IRIS OVERVIEW) 6
+* [IRIS OVERVIEW](#IRIS OVERVIEW) 6
 
 1.2 Cosmos/Tendermint 9
 
@@ -92,9 +92,7 @@ services and enjoy the rewards in an open network. To achieve this goal,
 we identified following challenges/opportunities for technology
 innovations:
 
-* Not all computation could or should be implemented as on-chain
-
-computations such as smart contracts
+* Not all computation could or should be implemented as on-chain computations such as smart contracts
 
 The
  [Turing-complete](https://en.wikipedia.org/wiki/Turing_completeness) [virtual
