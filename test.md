@@ -922,20 +922,20 @@ Cosmos plus IRIS staking token as well as iGas. The benefit for
 separating fee token from staking token is explained in \[CTM\].
 
 Supporting variety of whitelisted fee tokens is a very innovative design
-from Cosmos and provides better experience for both validators as well
-as users. In Cosmos, for network fee token, each validator has a config
+from Cosmos and it provides better experience for both validators as well
+as users. In Cosmos, for `network fee token`, each validator has a config
 file defines his personal weighting of how much they value each fee
 token. Validator can run a separate cron job to update the config file
 based on validator preferred live market data or maybe just use a
 default config value.
 
-For the service fee token design, similarly multi-token model is
+For the `service fee token` design, similarly multi-token model is
 supported, the service provider has the freedom to charge the service
-through his preferred token on whitelist or simply using the iGas.
-Generation of iGas will help bootstrapping the service binding and
-consumption. When service provider binds a service, iGas deposits need
+through his preferred token on whitelist or simply using the `iGas`.
+Generation of `iGas` will help bootstrapping the service binding and
+consumption. When service provider binds a service, `iGas` deposits need
 to be escrowed. The deposit might be slashed as punishment if service
-provider conducts bad behaviors. Detailed design of iGas token economics
+provider conducts bad behaviors. Detailed design of `iGas` token economics
 will be released in future technical yellow papers.
 
 To help IRIS network validators and service providers to mitigating the
@@ -943,29 +943,28 @@ crypto-currency price volatility, IRIS foundation plans to facilitate
 the deployment of global iServices for retrieving market data from
 different exchanges or introducing oracles. Those market data iServices
 can be conveniently used by validators as well as service providers to
-define the weights in config file as well as adjusting the iGas amount
+define the weights in config file as well as adjusting the `iGas` amount
 for the bonded services.
 
 Tax, % from all fees (Haifeng ?)
 
-Fundraiser {#fundraiser .ListParagraph}
-==========
+## Fundraiser 
 
 On Genesis, the initial token supply will be 2,000,000,000 IRIS, and the
 distribution of IRIS tokens is following:
 
-Pre-Sale: 20%
+* **Pre-Sale**: 20%
 
-IRIS Foundation: 15%, reserved to support the operation of foundation,
+* **IRIS Foundation**: 15%, reserved to support the operation of foundation,
 POS validation etc.
 
-Core Developer Team: 15% (locked up for 12 months starting from IRIS hub
+* **Core Developer Team**: 15% (locked up for 12 months starting from IRIS hub
 launch, and linear monthly release for 2 years afterwards)
 
-ATOM Holder Airdrop: 5% (detailed airdrop plan will be announced after
+* **ATOM Holder Airdrop**: 5% (detailed airdrop plan will be announced after
 Cosmos Hub is alive)
 
-Ecosystem Development: 45% (swap with zones connecting to IRIS hub;
+* **Ecosystem Development**: 45% (swap with zones connecting to IRIS hub;
 bestowal to potential users; awards to outstanding partners)
 
 After the IRIS network is fully deployed, the annual inflation rate is
