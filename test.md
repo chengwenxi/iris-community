@@ -14,44 +14,20 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 ## Table of Contents ###########################################################
 
 * [IRIS OVERVIEW](#IRIS-OVERVIEW)
-
 	* Cosmos/Tendermint 
-
 	* New Innovations from IRIS 
-
 * [IRIS Network Design](#IRIS-Network-Design)
-
-    1.  Network Actors 14
-
-    2.  IRIS Services 15
-
-    <!-- -->
-
-    1.  IBC Enhancement 25
-
-<!-- -->
-
-1.  Use Cases 27
-
-2.  Token Economics 31
-
-<!-- -->
-
-1.  Fundraiser 33
-
-<!-- -->
-
-1.  Roadmap 35
-
-<!-- -->
-
-3.  The Team 36
-
-7.1 Core Members 36
-
-7.2 Advisors 38
-
-Reference 40
+	* Network Actors
+	* IRIS Services
+	* IBC Enhancement
+* [Use Cases](#Use-Case)
+* [Token Economics](#Token-Economics)
+* [Fundraiser](#Fundraiser)
+* [Roadmap](#Roadmap)
+* [The Team](#The-Team)
+* [Core Members](#Core-Members)
+* [Advisors](#Advisors)
+* [Reference](#Reference)
 
 
 ## IRIS OVERVIEW
@@ -151,7 +127,7 @@ Polkadot \[4\], we find that Cosmos provides more mature base for
 interoperability and scalability. Especially we found the design of
 "many hubs and many zones" and "each zones are independent blockchains
 having independent governance models" from Cosmos provides a very
-suitable architecture for modeling the real world compleixity in a SOC
+suitable architecture for modeling the real world complexity in a SOC
 way. To best reuse the existing work, we present the IRIS Network, a
 decentralized inter-chain network composing hub and zones with
 implementing a layer of service infrastructure based on
