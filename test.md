@@ -31,7 +31,7 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 
 
 ## IRIS OVERVIEW
-
+------------------------------
 
 > IRIS network is named after the Greek goddess of Rainbow who is the
 > faithful messenger between heaven and the mortals
@@ -139,7 +139,7 @@ from Cosmos/Tendermint and the innovations we are building on top of
 existing work.
 
 ### Cosmos/Tendermint 
-
+------------------------------
 
 Cosmos \[CWP\] is an ambitious project aiming at building the internet
 of blockchain. It is a network of many independent blockchains, called
@@ -239,10 +239,8 @@ service provider side skeleton as well as service consumer side stub for
 major languages.
 
 
-##IRIS Network Design
------------
+## IRIS Network Design
 
-![](media/image1.png){width="6.0in" height="3.375in"}
 
 Figure 1. IRIS Network
 
