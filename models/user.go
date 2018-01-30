@@ -47,16 +47,16 @@ func (user *Users) Create() error {
 	return nil
 }
 
-func (user *Users) Delete() error {
-	return DB.Delete(user).Error
-}
-
 func (user *Users) First() error {
 	return DB.First(user).Error
 }
 
-func (user *Users) Update() error {
-	return DB.Omit("Createtime", "Updatetime").Updates(user).Error
+func (user *Users) ActivateUser()  error{
+	return DB.Model(&user).Update("IsActived", true).Error
+}
+
+func (user *Users) UpdatePwd(salt string,password string) error {
+	return DB.Model(&user).Update(map[string]interface{}{"salt": salt, "password": password}).Error
 }
 
 func FindUserByEmail(email string) (Users, error) {
@@ -65,8 +65,3 @@ func FindUserByEmail(email string) (Users, error) {
 	return user, err
 }
 
-func UserList(skip int, limit int) ([]Users, error) {
-	var users []Users
-	err := DB.Limit(limit).Offset(skip).Find(&users).Error
-	return users, err
-}

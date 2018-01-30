@@ -5,10 +5,14 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"github.com/irisnet/iris-community/utils"
+	myredis "github.com/irisnet/iris-community/models/redis"
+	"github.com/garyburd/redigo/redis"
+	"strconv"
 )
 
 func AuthRegisterAll(g *gin.RouterGroup) {
 	g.POST("", Login)
+	g.GET("/reset", AuthRest)
 	g.GET("/user", AuthUser)
 }
 
@@ -27,6 +31,10 @@ func Login(c *gin.Context) {
 		password := utils.Md5(user.Password)
 		salt := user1.Salt
 		if user1.Password == utils.Sha1s(salt+password) {
+			if user1.IsBlocked {
+				c.JSON(http.StatusOK, gin.H{"error": "You've been blacklisted"})
+				return
+			}
 			userAuth := &models.UserAuth{
 				UserId: user1.Id,
 			}
@@ -57,5 +65,36 @@ func AuthUser(c *gin.Context) {
 		} else {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "authorization error"})
 		}
+	}
+}
+
+func AuthRest(c *gin.Context) {
+	id := c.Query("id")
+
+	code := c.Query("code")
+	if id == "" || code == "" {
+		c.JSON(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
+		return
+	}
+	con := myredis.Pool.Get()
+	v, _ := redis.String(con.Do("GET", "resc_"+code))
+	if v == id {
+		iid, _ := strconv.Atoi(id)
+		user := &models.Users{
+			Id: uint(iid),
+		}
+		user.First()
+		if user.IsBlocked {
+			c.JSON(http.StatusOK, gin.H{"error": "You've been blacklisted"})
+			return
+		}
+		userAuth := &models.UserAuth{
+			UserId: uint(iid),
+		}
+		userAuth.Create()
+		c.Header("Authorization", userAuth.AuthCode)
+		c.JSON(http.StatusOK, userAuth)
+	} else {
+		c.JSON(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized))
 	}
 }

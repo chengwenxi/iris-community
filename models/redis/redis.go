@@ -7,7 +7,7 @@ import (
 )
 
 func InitRedis()  {
-	pool = NewPool(*redisServer)
+	Pool = NewPool(*redisServer)
 }
 
 func NewPool(addr string) *redis.Pool {
@@ -19,6 +19,6 @@ func NewPool(addr string) *redis.Pool {
 }
 
 var (
-	pool *redis.Pool
+	Pool *redis.Pool
 	redisServer = flag.String("redisServer", "localhost:6379", "")
 )

@@ -10,6 +10,7 @@ import (
 	"github.com/casbin/casbin"
 	"github.com/gin-gonic/gin"
 	"github.com/irisnet/iris-community/models"
+	"time"
 )
 
 // NewAuthorizer returns the authorizer, uses a Casbin enforcer as input
@@ -49,6 +50,10 @@ func (a *BasicAuthorizer) GetUserRole(r *http.Request) (string, int) {
 		}
 		userAuth.FindByAuth()
 		if userAuth.Id != 0 {
+			expiresIn := time.Now().Sub(userAuth.Updatetime).Seconds()
+			if expiresIn > float64(userAuth.ExpiresIn) {
+				return "guest", 401 //访客用户,授权超时
+			}
 			user := &models.Users{
 				Id: uint(userAuth.UserId),
 			}

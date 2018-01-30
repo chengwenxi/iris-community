@@ -9,19 +9,19 @@ import (
 
 func TestRedis(t *testing.T) {
 	InitRedis()
-	v, err := pool.Get().Do("SET", "name", "red")
+	v, err := Pool.Get().Do("SET", "name", "red")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println(v)
-	v, err = pool.Get().Do("EXPIRE", "name", 3) //10 seconds expired
+	v, err = Pool.Get().Do("EXPIRE", "name", 3) //10 seconds expired
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println(v)
-	v, err = pool.Get().Do("GET", "name")
+	v, err = Pool.Get().Do("GET", "name")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -31,7 +31,7 @@ func TestRedis(t *testing.T) {
 	}
 
 	time.Sleep(3 * time.Second)
-	v, err = pool.Get().Do("GET", "name")
+	v, err = Pool.Get().Do("GET", "name")
 	if err != nil {
 		fmt.Println(err)
 		return

@@ -9,8 +9,7 @@ import (
 	"os"
 	"log"
 	"github.com/irisnet/iris-community/config"
-	"github.com/casbin/casbin"
-	"github.com/irisnet/iris-community/authz"
+	"github.com/irisnet/iris-community/models/redis"
 )
 
 func main() {
@@ -30,8 +29,8 @@ func main() {
 	log.SetOutput(gin.DefaultWriter) // You may need this
 
 	//authorizer
-	e := casbin.NewEnforcer("./authz/authz_model.conf", "./authz/authz_policy.csv")
-	r.Use(authz.NewAuthorizer(e))
+	//e := casbin.NewEnforcer("./authz/authz_model.conf", "./authz/authz_policy.csv")
+	//r.Use(authz.NewAuthorizer(e))
 
 	//init user and role by db
 	//e.AddRoleForUser("test","admin")
@@ -43,6 +42,7 @@ func main() {
 
 	//db
 	models.InitDB()
+	redis.InitRedis()
 
 	//rest
 	rest.UserRegisterAll(r.Group("/user")) //user
@@ -50,7 +50,6 @@ func main() {
 	rest.RegisterKyc(r.Group("/kyc"))
 	rest.RegisterAliyun(r.Group("/aliyun"))
 	rest.QueryRegister(r.Group("/query"))
-
+	rest.VerifyRegisterAll(r.Group("/verify"))
 	r.Run(config.Config.Server) // listen and serve on 0.0.0.0:8080
-	log.Println("server start")
 }
