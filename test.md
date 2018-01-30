@@ -41,15 +41,15 @@ relationship](http://www.baidu.com/link?url=KhVK0OgIDwEjNp8ktOEEQT6B0BfQGQMU2xZZ
 is one of the most basic relationships constituting human society, the
 importance of blockchain technology lies in providing a very efficient
 and cost effective way of realizing a most reliable contractual
-relationship. For the first time trust is not needed (which is also very
+relationship. For the first time, trust is not needed (which is also very
 costly to establish) when multi-parties participating in sophisticated
 business interactions. It has been said, blockchain technology provides
-the impotent elements for distributed business: lifting network effect,
+the important elements for distributed business: lifting network effect,
 very low transaction cost. More and more people see the potential of
 blockchain as the new internet of value and can gradually transform the
 current business models into more efficient distributed ones. Especially
 the token mechanism embedded by blockchain emphasizing each network
-participants' right will disrupt the business form \[1\].
+participant's right will disrupt the business form \[1\].
 
 However, blockchain technology is still in its infancy with drawbacks
 such as poor or limited performance and immature governance mechanisms,
@@ -57,10 +57,10 @@ making it unfit to support real-world distributed business
 collaboration. Consortium chains such as Hyperledger Fabric, R3 Corda,
 Ethereum Enterprise are trying to address the performance and governance
 issues and make blockchain technology more suitable for business
-collaboration. However today consortium chains are basically big
-enterprises' game and its close form off chain governance model
+collaboration. However, today consortium chains are basically big
+enterprise's game and its closed-form off chain governance model
 establishment is very inefficient. Without token economics model and the
-openness existing in public chains, the consortium chains are lacking of
+openness existing in public chains, the consortium chains are lack of
 vitality. We would like to enhance the current blockchain technology and
 make it possible to enable thousands and millions of SMBs and even
 individual freelance business service providers to provide their
@@ -93,12 +93,12 @@ this type of replicated computing.
 
 **Integration and collaboration of off-chain services and resources with
 a distributed ledger is key to further advance the adoption of
-blockchain technology for more real world usage scenarios.**
+blockchain technology for more real-world use scenarios.**
 
-* How to reuse the existing blockchain resources: both public chains and consortium chains
+* How to reuse the existing blockchain resources? : both public chains and consortium chains
 
 It is infeasible to use one public chain addressing all the problems.
-Every day there are different chains going live focusing on one aspect
+Every day there are different chains going live which focus on one aspect
 of problem solving such as distributed storage, predict market etc.
 According to the coinmarketcap.com, there are more than 1000
 cryptocurrencies currently active on various exchanges.
@@ -106,11 +106,11 @@ cryptocurrencies currently active on various exchanges.
 While building business applications involve handling storage and also
 different source of data feeds. Another motivation of our work involves
 how to support building distributed business applications by reusing
-some of the existing work like storage (IPFS, SIA, Storj.io etc.), data
+some of the existing work like storage (IPFS, SIA, Storj.io etc.), data feed
 (Augur, Gnosis, Oraclize etc.) and IoT (IOTA etc.) provided by those
-dedicated networks and not to reinvent the wheel.
+dedicated blockchains and not reinventing the wheel.
 
-Besides there are many (near) real time business transactions do need
+Besides, there are many (near) real-time business transactions do need
 more close form consortium/permission/private chains to address
 performance, security and business governance requirements.
 
