@@ -882,21 +882,23 @@ envisioned business value more efficiently.
 Same as Cosmos Network, the IRIS network also supports a multi-token
 model. Besides the tokens held by zone themselves and can be moved from
 one zone to another via Hub. There are two types of tokens supporting
-IRIS Network's operation: staking token IRIS, fee token iGas.
+IRIS Network's operation: 
+* staking token `**IRIS**`
+* fee token `**iGas**`
 
-**IRIS staking token **
+### IRIS staking token
 
 Taking the same staking mechanism design of Cosmos\[ECO\], IRIS Hub has
 its own special native token for staking which is called IRIS. IRIS will
 be used in following ways:
 
-Stakes deposited by validators to be eligible to validate transactions
+* Stakes deposited by validators to be eligible to validate transactions
 and commit new blocks
 
-Non-validator lent out RIS to any validator to earn a share of their
+* Non-validator lent out RIS to any validator to earn a share of their
 block fees and rewards
 
-Voting power to participate in IRIS network governance
+* Voting power to participate in IRIS network governance
 
 Additional inflationary IRIS and block transaction fees are rewarded to
 validators and delegators who delegate to validators. The inflation rate
@@ -905,7 +907,7 @@ to safe guard the network. The yearly inflation rate (a number between
 7% and 20%) is dynamically adjusted to support a convergence of 2/3 IRIS
 in circulation will be bonded as staking token.
 
-**IRIS fee token **
+### IRIS fee token
 
 There are two types of fee token in IRIS network: The network fee token
 is for spam-prevention and payment to validators in maintaining the
