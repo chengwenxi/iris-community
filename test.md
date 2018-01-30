@@ -239,7 +239,7 @@ major languages.
 
 
 ## IRIS Network Design
-
+![Figure of IRIS Network](https://github.com/irisnet/iris-community/blob/query/pics/chap2.png)
 
 Figure 1. IRIS Network
 
