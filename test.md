@@ -977,54 +977,53 @@ Funds raised will be used for the development of IRIS network and for
 the ongoing expenses required to support the growth of the ecosystem,
 following is planned usage distribution:
 
-Foundation Operations: 5% (advisor compensation, fees for professional
+* **Foundation Operations**: 5% (advisor compensation, fees for professional
 services etc.)
 
-Software Development: 40%
+* **Software Development**: 40%
 
-Developer Enablement: 10% (hackathons, awards to volunteers, training
+* **Developer Enablement**: 10% (hackathons, awards to volunteers, training
 programs etc.)
 
-R&D Sponsorship: 10% (conference, research programs, university outreach
+* **R&D Sponsorship**: 10% (conference, research programs, university outreach
 etc.)
 
-Marketing & Operations: 10%
+* **Marketing & Operations**: 10%
 
-Risk Contingency 25%
+* **Risk Contingency**: 25%
 
-Roadmap {#roadmap .ListParagraph}
-=======
+## Roadmap 
+
 
 The IRIS project roadmap includes the following milestones:
 
-**PANGU** (January 2018 \~ June 2018) As the first stage of the IRIS
+* **PANGU** (January 2018 \~ June 2018) As the first stage of the IRIS
 project, we will focus on having the IRIS Hub up and running as one of
 the earliest regional hubs that connect to the Cosmos Hub; we'll get a
 couple of public blockchains to connect to the IRIS Hub as "zones", and
 release an initial version of the mobile client for the IRIS Network.
 
-**NUWA** (July 2018 \~ November 2018) The is the stage where we will
+* **NUWA** (July 2018 \~ November 2018) The is the stage where we will
 build out the fundamental IRIS Service Layer: upgrade the network to
 enable service definition, binding, invocation and query; have a beta
 version of the IRIS SDK ready for developers and upgrade the mobile
 client to support IRIS Services; form strategic alliances with service
 providers and have more zones connected the IRIS Hub.
 
-**KUAFU** (December 2018 \~ May 2019) Upgrade the network to support
+* **KUAFU** (December 2018 \~ May 2019) Upgrade the network to support
 advanced IRIS Service governance features, such as profiling and dispute
 resolution; keep improving the SDK and mobile client; rapidly expand the
 network to connect with more zones and integrate more service providers.
 
-**HOUYI** (Beyond June 2019) Move toward the realization of a
+* **HOUYI** (Beyond June 2019) Move toward the realization of a
 distributed business ecosystem, through relentless technology
 innovations, effective community building and sustained developer
 empowerment.
 
-The Team {#the-team .ListParagraph}
-========
+## The Team 
 
-Tendermint (the team building Cosmos), Wancloud(a subsidiary of Wanxiang
-Blockchain) and Bianjie AI will team together to build IRIS
+**Tendermint** (the team building Cosmos), **Wancloud**(a subsidiary of Wanxiang
+Blockchain) and **Bianjie AI** will team together to build IRIS
 infrastructure. Tendermint is going to give technical advice/development
 support to IRIS project in extending Tendermint ABCI and Cosmos IBC
 (inter blockchain communication). Wancloud will be the key strategy
@@ -1037,18 +1036,18 @@ services for healthcare data analysis and exchange.  Bianjie AI is a
 Shanghai based startup established in 2016 and focuses on developing
 innovative products and solutions for healthcare and financial
 industries, using advanced Blockchain and AI technologies. One of
-Bianjie's core products BEAN (Blockchain Edge Analytics Network) is a
+Bianjie's core products `BEAN (Blockchain Edge Analytics Network)` is a
 permission chain which delivers distributed data analytics services for
 privacy preserving healthcare data analysis and exchange using nature
 language processing and machine learning technologies. Bianjie AI is
-currently extending BEAN capabilities to build IRIS -- a public
-inter-blockchain network for distributed business ecosystems. Bianjie AI
+currently extending `BEAN` capabilities to build IRIS -- a public
+inter-blockchain network for distributed business ecosystems. **Bianjie AI**
 is also the operation and service partner of Cosmos Network in China.
 
-7.1 Core Members
+### Core Members
 ----------------
 
-**Harriet Cao **
+**Harriet Cao**
 
 Founder of Bianjie AI, which a shanghai based startup focusing on
 building smart services for Blockchain that enable trustworthy and
