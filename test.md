@@ -430,8 +430,8 @@ A ServiceBinding is composed of:
 
 * IsValid (enum): Can be one of True or False
 
-![图片 29](media/image2.png){width="6.0in"
-height="1.6979166666666667in"}
+![Figure of IRIS Service](https://github.com/irisnet/iris-community/blob/query/pics/chap2-2.png)
+
 
 **Service Invocation**
 
@@ -676,7 +676,7 @@ Below is a (not exhaustive) summary of supported queries:
   Consumer (service, binding)   Requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ...                                                            Anyone can query
 ----------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
 
-IBC Enhancement {#ibc-enhancement .ListParagraph}
+IBC Enhancement
 ---------------
 
 One unique advantage of establishing our service infrastructure on top
