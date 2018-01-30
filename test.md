@@ -241,34 +241,32 @@ major languages.
 ## IRIS Network Design
 ![Figure of IRIS Network](https://github.com/irisnet/iris-community/blob/query/pics/chap2.png)
 
-Figure 1. IRIS Network
-
-Being part of the Cosmos ecosystem, the IRIS network builds on top of
+Being part of the Cosmos ecosystem, IRIS network builds on top of
 the Tendermint & Cosmos technology stack by introducing a comprehensive
-service infrastructure with enhanced IBC processing.
+service infrastructure and enhanced IBC processing.
 
-As illustrated in Figure 1, the IRIS network has the same topology as
-the Cosmos network, with the IRIS hub itself being connected to the
-Cosmos Hub as one of its zones. IRIS full nodes are developed using
+As illustrated in figure above, IRIS network has the same topology as
+Cosmos network, with IRIS Hub itself being connected to the
+Cosmos Hub as one of IRIS zones. IRIS full nodes are developed with
 IRIS-SDK, which extends Cosmos-SDK with a service infrastructure and
-integrates with a local IPFS full node.
+integrates with an embeded IPFS node.
 
-IRIS Services (a.k.a. *iServices*) bridge the gap between the blockchain
-world and the conventional business application world, mediating the
+IRIS Services (a.k.a. `iServices`) bridge the gap between blockchain
+world and conventional business application world, mediating a
 complete lifecycle of off-chain services -- from their definition,
 binding (provider registration), invocation, to their governance
 (profiling and dispute resolution). By enhancing the IBC processing
 logic to support service semantics, IRIS-SDK allows distributed business
-services to become available across an internet of blockchains.
+services to be available across the internet of blockchains.
 
-Although the IRIS network focuses on providing an innovative solution
-for distributed business applications, it is still an integral part of
-the larger Cosmos network. All zones connected to the IRIS hub can
+Although the IRIS network focus on providing an innovative solution
+for distributed business applications, it is still part of
+the broader Cosmos network. All zones connected to the IRIS hub can
 interact with any other zone in the Cosmos network over the standard IBC
 protocol. In fact, by introducing a layer of service semantics and thus
 enabling a whole new set of business scenarios, the IRIS network helps
-to increase the scale and diversity of the Cosmos network, to increase
-token transfer volume through the Cosmos hub, and to increase the
+to increase the scalability and diversity of the Cosmos network, to increase
+value transfer volume through the Cosmos hub, and to increase the
 overall value of the network.
 
 Network Actors {#network-actors .ListParagraph}
