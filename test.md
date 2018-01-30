@@ -188,7 +188,7 @@ called `iService`.
 The design of iService inherits the  thinking pattern from
 many years' SOA practices. SOA is an architectural approach to create
 systems built from autonomous services which have explicit boundaries,
-share schema and contract \[SOA\]. Earlier practice of SOA focus
+share schema and contract \[13\]. Earlier practice of SOA focus
 on implementation of Enterprise Service Bus (ESB) which enables
 communication among services via a common communication bus which
 consists of a variety of point-to-point connections between providers
@@ -795,7 +795,7 @@ data for running analytics models. Although homomorphic encryption is
 one of the methods which allows computing to be done over encrypted
 data, due to its impractical for solving real world machine learning
 problems, BEAN took a different route which is borrowing the idea of
-model parallelism from the traditional distributed AI study \[DAI\] and
+model parallelism from the traditional distributed AI study \[15\] and
 utilizing SOA design patterns in developing distributed analytics
 services over blockchain.
 
@@ -888,7 +888,7 @@ IRIS Network's operation:
 
 ### IRIS staking token
 ------
-Taking the same staking mechanism design of Cosmos\[ECO\], IRIS Hub has
+Taking the same staking mechanism design of Cosmos\[16\], IRIS Hub has
 its own special native token for staking which is called IRIS. IRIS will
 be used in following ways:
 
@@ -919,7 +919,7 @@ who deploys iServices and a default payment service token is called
 
 IRIS Network will support all the whitelisted fee tokens from
 Cosmos plus IRIS staking token as well as iGas. The benefit for
-separating fee token from staking token is explained in \[CTM\].
+separating fee token from staking token is explained in \[17\].
 
 Supporting variety of whitelisted fee tokens is a very innovative design
 from Cosmos and it provides better experience for both validators as well
@@ -1139,50 +1139,50 @@ Framework", https://polkadot.io/)
 
 * [5] Tendermint, https://tendermint.readthedocs.io/en/master/
 
-* [6] \[EMT\] Ethermint,https://ethermint.zone/
+* [6]  Ethermint,https://ethermint.zone/
 
-* [7] \[ORA\] Oracle International Corporation, "Accountability and Trust in
+* [7]  Oracle International Corporation, "Accountability and Trust in
 Distributed Ledger Systems", USA Patent Application 20170236120, August
 17, 2017
 
-* [8] \[CITA\] Jan Xie, "CITA Technical Whitepaper", https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md
+* [8] Jan Xie, "CITA Technical Whitepaper", https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md
 
-* [9]\[BURROW\] "Hyperledger Burrow", https://github.com/hyperledger/burrow
+* [9] "Hyperledger Burrow", https://github.com/hyperledger/burrow
 
-* [10] \[LIG\] Joseph Poon, Thaddeus Dryja,"The Bitcoin Lightning Network:
+* [10]  Joseph Poon, Thaddeus Dryja,"The Bitcoin Lightning Network:
 Scalable Off-Chain Instant Payments",January 14, 2016,https://lightning.network/lightning-network-paper.pdf
 
 
-* [11]\[PLA\] Joseph Poon, Vitalik Buterin, "Plasma: Scalable Autonomous Smart
+* [11]Joseph Poon, Vitalik Buterin, "Plasma: Scalable Autonomous Smart
 Contracts", https://www.plasma.io/plasma.pdf, August 11, 2017
 
-* [12]\[IBC\] Ethan Frey, "Cosmos IBC Specification", Sep. 29, 2017,https://github.com/cosmos/ibc/blob/master/README.md
+* [12] Ethan Frey, "Cosmos IBC Specification", Sep. 29, 2017,https://github.com/cosmos/ibc/blob/master/README.md
 
-* [13]\[SOA\] Thomas Erl,  "SOA: Principles of Service Design", Prentice Hall;
+* [13] Thomas Erl,  "SOA: Principles of Service Design", Prentice Hall;
 1st edition (July 28, 2007)
 
-\[buf\] protobuf referece goes here
+* [14] \[buf\] protobuf referece goes here
 
-\[DAI\]Dean, J., Corrado, G.S., Monga, R., et al, Ng, A. Y. "Large Scale
+* [15] Dean, J., Corrado, G.S., Monga, R., et al, Ng, A. Y. "Large Scale
 Distributed Deep Networks". In Proceedings of the Neural Information
 Processing Systems (NIPS'12) (Lake Tahoe, Nevada, United States,
 December 3--6, 2012). Curran Associates, Inc, 57 Morehouse Lane, Red
 Hook, NY, 2013, 1223-1232.
 
-\[ECO\]Tendermint Blog, "Cosmos Validator Economics ---Revenue Streams",
+* [16] Tendermint Blog, "Cosmos Validator Economics ---Revenue Streams",
 [[https://medium.com/@tendermint/b5b2c682a292]{.underline}](https://medium.com/@tendermint/b5b2c682a292),
 Jan, 2018
 
-\[CTM\] Sunny Aggarwal, "Cosmos Token Model",
+* [17] Sunny Aggarwal, "Cosmos Token Model",
 [[https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view]{.underline}](https://drive.google.com/file/d/1jtyYtx7t1xy9gxEi2T5lXFNd8xUY7bhJ/view),
 Dec, 2017
 
-Gideon Greenspan, "Why Many Smart Contract Use Cases Are Simply
+* [18] Gideon Greenspan, "Why Many Smart Contract Use Cases Are Simply
 Impossible",
 <https://www.coindesk.com/three-smart-contract-misconceptions/>, 2016
 April
 
-[Vitalik Buterin](http://vitalik.ca/), "Engineering Security Through
+* [19] [Vitalik Buterin](http://vitalik.ca/), "Engineering Security Through
 Coordination Problems", http://vitalik.ca/, 2017 Aug
 
 ## Acknowledgements
