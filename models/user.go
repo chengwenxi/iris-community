@@ -6,10 +6,10 @@ import (
 )
 
 type Users struct {
-	Id         uint `gorm:"primary_key"`
+	Id         uint   `gorm:"primary_key"`
 	Email      string
-	Salt       string
-	Password   string
+	Salt       string `json:"-"`
+	Password   string `json:"-"`
 	IsActived  bool
 	IsBlocked  bool
 	Createtime time.Time
@@ -23,26 +23,29 @@ func (user *Users) BeforeCreate() error {
 	return nil
 }
 
-func (user *Users) Create() error {
+func (user *Users) Create(invitationCode string) error {
 	tx := DB.Begin()
 	//写入user
-	if err := tx.Create(user).Error; err != nil {
+	if err := tx.Omit("InvitationCode", "VerifyCode").Create(user).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
 	//写入邀请码
-	invitationCode := utils.IntTo52(6, int(user.Id))
-	if err := tx.Omit("CountryId", "CerficateId").Create(&UserProfile{UserId: user.Id, InvitationCode: invitationCode}).Error;
+	selfCode := utils.IntTo52(6, int(user.Id))
+	if err := tx.Omit("CountryId", "CerficateId").Create(&UserProfile{UserId: user.Id, InvitationCode: selfCode}).Error;
 		err != nil {
 		tx.Rollback()
 		return err
 	}
 	//写入被邀请信息
-	if err := tx.Omit().Create(&UserInvitation{InviteeId: user.Id, InvitationCode: invitationCode}).Error;
-		err != nil {
-		tx.Rollback()
-		return err
+	if invitationCode != "" {
+		if err := tx.Omit().Create(&UserInvitation{InviteeId: user.Id, InvitationCode: invitationCode}).Error;
+			err != nil {
+			tx.Rollback()
+			return err
+		}
 	}
+
 	tx.Commit()
 	return nil
 }
@@ -51,11 +54,11 @@ func (user *Users) First() error {
 	return DB.First(user).Error
 }
 
-func (user *Users) ActivateUser()  error{
+func (user *Users) ActivateUser() error {
 	return DB.Model(&user).Update("IsActived", true).Error
 }
 
-func (user *Users) UpdatePwd(salt string,password string) error {
+func (user *Users) UpdatePwd(salt string, password string) error {
 	return DB.Model(&user).Update(map[string]interface{}{"salt": salt, "password": password}).Error
 }
 
@@ -64,4 +67,3 @@ func FindUserByEmail(email string) (Users, error) {
 	err := DB.Where("email = ?", email).First(&user).Error
 	return user, err
 }
-

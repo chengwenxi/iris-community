@@ -17,26 +17,26 @@ func AuthRegisterAll(g *gin.RouterGroup) {
 }
 
 func Login(c *gin.Context) {
-	var user models.Users
-	if err := c.ShouldBindJSON(&user); err == nil {
-		if len(user.Email) == 0 || len(user.Password) == 0 {
+	var req RequestUsers
+	if err := c.ShouldBindJSON(&req); err == nil {
+		if len(req.VerifyCode) == 0 || len(req.Email) == 0 || len(req.Password) == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
 			return
 		}
-		user1, _ := models.FindUserByEmail(user.Email)
-		if user1.Id == 0 {
+		user, _ := models.FindUserByEmail(req.Email)
+		if user.Id == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "email not exist"})
 			return
 		}
-		password := utils.Md5(user.Password)
-		salt := user1.Salt
-		if user1.Password == utils.Sha1s(salt+password) {
-			if user1.IsBlocked {
+		password := utils.Md5(req.Password)
+		salt := user.Salt
+		if user.Password == utils.Sha1s(salt+password) {
+			if user.IsBlocked {
 				c.JSON(http.StatusOK, gin.H{"error": "You've been blacklisted"})
 				return
 			}
 			userAuth := &models.UserAuth{
-				UserId: user1.Id,
+				UserId: user.Id,
 			}
 			userAuth.Create()
 			c.Header("Authorization", userAuth.AuthCode)

@@ -20,24 +20,38 @@ func UserRegisterAll(g *gin.RouterGroup) {
 	g.POST("/reset", ResetUser)
 }
 
+type RequestUsers struct {
+	Email          string
+	Password       string
+	InvitationCode string
+	VerifyCode     string
+}
+
 //create user
 func CreateUser(c *gin.Context) {
-	var user models.Users
-	if err := c.ShouldBindJSON(&user); err == nil {
-		if len(user.Email) == 0 || len(user.Password) == 0 {
+	var req RequestUsers
+	if err := c.ShouldBindJSON(&req); err == nil {
+		if len(req.VerifyCode) == 0 || len(req.Email) == 0 || len(req.Password) == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
 			return
 		}
-		user1, _ := models.FindUserByEmail(user.Email)
+		if !VerifyCode(req.Email, req.VerifyCode) {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "verify code error"})
+			return
+		}
+		user1, _ := models.FindUserByEmail(req.Email)
 		if user1.Id != 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "email has been registered."})
 			return
 		}
-		password := utils.Md5(user.Password)
+		password := utils.Md5(req.Password)
 		salt := utils.RandomInfo(6)
-		user.Password = utils.Sha1s(salt + password)
-		user.Salt = salt
-		if dbErr := user.Create(); dbErr == nil {
+		user := &models.Users{
+			Email:    req.Email,
+			Salt:     salt,
+			Password: utils.Sha1s(salt + password),
+		}
+		if dbErr := user.Create(req.InvitationCode); dbErr == nil {
 			con := myredis.Pool.Get()
 			uid := uuid.NewUUID().String()
 			_, err := con.Do("SET", "actc_"+uid, user.Id)
@@ -80,26 +94,26 @@ func ActivateUser(c *gin.Context) {
 
 //reset user password by email
 func ResetUser(c *gin.Context) {
-	var user models.Users
-	if err := c.ShouldBindJSON(&user); err == nil {
-		if len(user.Email) == 0 {
+	var req RequestUsers
+	if err := c.ShouldBindJSON(&req); err == nil {
+		if len(req.Email) == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
 			return
 		}
-		user1, _ := models.FindUserByEmail(user.Email)
-		if user1.Id == 0 {
+		user, _ := models.FindUserByEmail(req.Email)
+		if user.Id == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "email does not exist"})
 			return
 		}
 		con := myredis.Pool.Get()
 		uid := uuid.NewUUID().String()
-		_, err := con.Do("SET", "resc_"+uid, user1.Id)
+		_, err := con.Do("SET", "resc_"+uid, user.Id)
 		_, err = con.Do("EXPIRE", "resc_"+uid, config.Config.Redis.RescTimeout) //10 seconds expired
 		if err != nil {
 			log.Println(err)
 			return
 		}
-		utils.ResetEmail(user1.Email, strconv.Itoa(int(user1.Id)), uid)
+		utils.ResetEmail(user.Email, strconv.Itoa(int(user.Id)), uid)
 		c.JSON(http.StatusOK, user)
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -122,9 +136,9 @@ func UpdateUserPwd(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized))
 	}
 
-	var user1 models.Users
-	if err := c.ShouldBindJSON(&user1); err == nil {
-		if len(user1.Password) == 0 {
+	var req RequestUsers
+	if err := c.ShouldBindJSON(&req); err == nil {
+		if len(req.Password) == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
 			return
 		}
@@ -133,7 +147,7 @@ func UpdateUserPwd(c *gin.Context) {
 		}
 		user.First()
 		salt := utils.RandomInfo(6)
-		password := utils.Sha1s(salt + utils.Md5(user1.Password))
+		password := utils.Sha1s(salt + utils.Md5(req.Password))
 		user.UpdatePwd(salt, password)
 		c.JSON(http.StatusOK, user)
 		return
