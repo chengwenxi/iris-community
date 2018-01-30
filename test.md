@@ -331,7 +331,7 @@ originally defined
 
 * `Messaging (enum)`: Can be one of Unicast or Multicast
 
-* `Methods (\[\]Method)`: The definition of methods available in this
+* `Methods ([]Method)`: The definition of methods available in this
 `iService`
 
 A CreateServiceDefinitionTx transaction is composed of:
@@ -344,13 +344,13 @@ A CreateServiceDefinitionTx transaction is composed of:
 
 A CreateServiceBindingTx transaction is composed of:
 
-* `DefinitionHash (\[\]byte)`: The hash of the service definition that the
+* `DefinitionHash ([]byte)`: The hash of the service definition that the
 provider is binding to
 
 * `ChainID (string)`: The ID of the blockchain where the provider is
 connected
 
-* `ProviderAddress (\[\]byte)`: The provider's blockchain address
+* `ProviderAddress ([]byte)`: The provider's blockchain address
 
 * `BindingType (enum)`: Can be one of Local or Global; choose Global if a
 provider wants the binding to be exposed to the rest of the world;
@@ -375,13 +375,13 @@ expires; a negative number means "never expire"
 
 An UpdateServiceBindingTx transaction is composed of:
 
-* `DefinitionHash (\[\]byte)`: The hash of the service definition the
+* `DefinitionHash ([]byte)`: The hash of the service definition the
 provider has bound to
 
 * `ChainID (string)`: The ID of the blockchain where the provider is
 connected
 
-* `ProviderAddress (\[\]byte)`: The provider's blockchain address
+* `ProviderAddress ([]byte)`: The provider's blockchain address
 
 * `ChangeSet (string)`: A structured definition of desired changes to an
 existing binding identified by the preceding three fields
@@ -416,11 +416,11 @@ will be created or updated accordingly.
 
 A ServiceBinding is composed of:
 
-* `DefinitionHash (\[\]byte)`
+* `DefinitionHash ([]byte)`
 
 * `ChainID (string)`
 
-* `ProviderAddress (\[\]byte)`
+* `ProviderAddress ([]byte)`
 
 * `ServiceLevel (string)`
 
@@ -452,15 +452,15 @@ A ServiceRequest is composed of:
 * `ChainID (string)`: The ID of the blockchain where the consumer is
 connected
 
-* `ConsumerAddress (\[\]byte)`: The blockchain address of the consumer
+* `ConsumerAddress ([]byte)`: The blockchain address of the consumer
 
-* `DefinitionHash (\[\]byte)`: The hash of the service definition
+* `DefinitionHash ([]byte)`: The hash of the service definition
 
 * `MethodID (int)`: The ID of the method to be invoked
 
 * `InputValue (string)`: A structured representation of input values
 
-* `BindingHash (\[\]byte)`: The hash of the target binding, in case of a
+* `BindingHash ([]byte)`: The hash of the target binding, in case of a
 Unicast service. *Optional*
 
 * `MaxServiceFee (int64)`: The max amount of service fee the consumer is
@@ -471,9 +471,9 @@ for response(s) to come back
 
 A PostServiceRequestTx transaction is composed of:
 
-* `Requests (\[\]ServiceRequest)`: The service requests to be posted
+* `Requests ([]ServiceRequest)`: The service requests to be posted
 
-* `RequestDeposits (\[\]int64)`: The consumer must put down for each request
+* `RequestDeposits ([]int64)`: The consumer must put down for each request
 a deposit (in terms of iGas amount) that is greater than the value of
 MinRequestDeposit; a larger deposit may imply more sincerity of the
 consumer
@@ -490,9 +490,9 @@ deducted from the consumer's account and locked up in escrow.
 
 A GetServiceRequest query is composed of:
 
-* `DefinitionHash (\[\]byte)`: The hash of the service definition
+* `DefinitionHash ([]byte)`: The hash of the service definition
 
-* `BindingHash (\[\]byte)`: The hash of this provider's binding to the
+* `BindingHash ([]byte)`: The hash of this provider's binding to the
 service in question; the application will verify that the binding is
 valid and the caller matches the binding's ChainID and ProviderAddress
 
@@ -504,11 +504,11 @@ that is the lesser of BatchSize and MaxRequestGetBatch
 
 A ServiceResponse is composed of:
 
-* `RequestHash (\[\]byte)`: The hash of the matched request
+* `RequestHash ([]byte)`: The hash of the matched request
 
-* `BindingHash (\[\]byte)`: The hash of this provider's service binding
+* `BindingHash ([]byte)`: The hash of this provider's service binding
 
-* `OutputValue (\[\]byte)`: A structured (potentially encrypted)
+* `OutputValue ([]byte)`: A structured (potentially encrypted)
 representation of output result. *Optional*
 
 * `ErrorMsg (string)`: A structured representation of error messages.
@@ -516,7 +516,7 @@ representation of output result. *Optional*
 
 A PostServiceResponseTx transaction is composed of:
 
-* `Responses (\[\]ServiceResponse)`: The service responses to be posted
+* `Responses ([]ServiceResponse)`: The service responses to be posted
 
 The application will verify that the responses are coming from a
 provider with matching `ChainID` and `ProviderAddress`, and that the number
@@ -526,7 +526,7 @@ consumer.
 
 A GetServiceResponse query is composed of:
 
-* `RequestHash (\[\]byte)`: The hash of the original request; the
+* `RequestHash ([]byte)`: The hash of the original request; the
 application will verify that the caller matches the request's ChainID
 and ConsumerAddress
 
@@ -538,7 +538,7 @@ number that is the lesser of `BatchSize` and `MaxResponseGetBatch`
 
 A ConfirmServiceResponseTx transaction is composed of:
 
-* `ResponseHash (\[\]\[\]byte)`: The hash of responses to be confirmed
+* `ResponseHash ([][]byte)`: The hash of responses to be confirmed
 
 The application will verify that the responses to be confirmed are
 indeed for a request originated by the caller, and that the number of
@@ -603,7 +603,7 @@ slashed if he fails to respond to a complaint in a timely manner.
 
 A Complaint is composed of:
 
-* `ResponseHash (\[\]byte)`: The hash of the response in dispute
+* `ResponseHash ([]byte)`: The hash of the response in dispute
 
 * `Problem (string)`: A description of the problem with the service response
 
@@ -611,13 +611,13 @@ A Complaint is composed of:
 
 A Resolution is composed of:
 
-* `ComplaintHash (\[\]byte)`: The hash of the matched complaint
+* `ComplaintHash ([]byte)`: The hash of the matched complaint
 
 * `Disposal (enum)`: Can be one of Refund or Redo
 
 * `Refund (uint64)`: Service fee refund. *Optional*
 
-* `OutputValue (\[\]byte)`: A structured (potentially encrypted)
+* `OutputValue ([]byte)`: A structured (potentially encrypted)
 representation of output result. *Optional*
 
 **Service Profiling**
