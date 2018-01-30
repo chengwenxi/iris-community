@@ -54,7 +54,7 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 Reference 40
 
 
-###IRIS OVERVIEW
+## IRIS OVERVIEW
 -----------
 
 > IRIS network is named after the Greek goddess of Rainbow who is the
@@ -164,7 +164,7 @@ Cosmos/Tendermint to set the stage, summarize the features we inherit
 from Cosmos/Tendermint and the innovations we are building on top of
 existing work.
 
-1.2 Cosmos/Tendermint 
+### Cosmos/Tendermint 
 ----------------------
 
 Cosmos \[CWP\] is an ambitious project aiming at building the internet
@@ -195,7 +195,7 @@ with Cosmos Hub, Cosmos SDK provides blockchain development
 \'starter-pack\' of common blockchain modules while not enforcing their
 use thus giving maximum flexibility for application customization.
 
-1.3 New Innovations from IRIS 
+### New Innovations from IRIS 
 ------------------------------
 
 IRIS network aims to build technology foundation Facilitating
@@ -263,7 +263,7 @@ service provider side skeleton as well as service consumer side stub for
 major language.
 
 
-###IRIS Network Design
+##IRIS Network Design
 -----------
 
 ![](media/image1.png){width="6.0in" height="3.375in"}
