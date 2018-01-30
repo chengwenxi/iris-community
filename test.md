@@ -622,14 +622,14 @@ representation of output result. *Optional*
 
 **Service Profiling**
 
-Bootstrapping the iService ecosystem presents a few challenges, one of
+Bootstrapping the `iService` ecosystem presents a few challenges, one of
 which is how to make it easy for consumers to find the right providers.
 This is a chicken-and-egg problem: consumers need performance metrics to
 evaluate and select a provider, yet without consumer usage no
 performance metrics will be available.
 
 Here we introduce a profiling mechanism where a privileged system user,
-known as Profiler, invokes all the active services on a regular
+known as `Profiler`, invokes all the active services on a regular
 schedule, leaving objective performance traces in the network (such as
 response time, availability, complaint handling etc.) that are useful
 for real consumers.
