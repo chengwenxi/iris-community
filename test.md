@@ -586,15 +586,15 @@ to be a mechanism in place for him to issue a complaint to the provider,
 who in turn has an opportunity to present a resolution. Due to the lack
 of central authorities in a decentralized world, the dispute resolution
 mechanism cannot rely on third party arbitration, and should avoid
-introducing subjective performance evaluation -- which could be abused
+introducing subjective evaluation -- which could be abused
 by either side. The blockchain faithfully records what happened and let
-the objective facts speak for themselves.
+the facts speak for themselves.
 
 The process to resolve a dispute is very much like that of service
-invocation, except that a consumer sends a Complaint to the provider,
+invocation, except that a consumer sends a `Complaint` to the provider,
 and the provider responds with a Resolution; and the interactions happen
-through a pair of global endpoints known as *complaint table* and
-*resolution table*.
+through a pair of global endpoints known as `*complaint table*` and
+`*resolution table*`.
 
 A consumer deposit is required for filing a complaint, and a penalty
 will be deducted from this deposit if the consumer does not confirm a
@@ -603,21 +603,21 @@ slashed if he fails to respond to a complaint in a timely manner.
 
 A Complaint is composed of:
 
-ResponseHash (\[\]byte): The hash of the response in dispute
+* `ResponseHash (\[\]byte)`: The hash of the response in dispute
 
-Problem (string): A description of the problem with the service response
+* `Problem (string)`: A description of the problem with the service response
 
-PreferredDisposal (enum): Can be one of Refund or Redo
+* `PreferredDisposal (enum)`: Can be one of Refund or Redo
 
 A Resolution is composed of:
 
-ComplaintHash (\[\]byte): The hash of the matched complaint
+* `ComplaintHash (\[\]byte)`: The hash of the matched complaint
 
-Disposal (enum): Can be one of Refund or Redo
+* `Disposal (enum)`: Can be one of Refund or Redo
 
-Refund (uint64): Service fee refund. *Optional*
+* `Refund (uint64)`: Service fee refund. *Optional*
 
-OutputValue (\[\]byte): A structured (potentially encrypted)
+* `OutputValue (\[\]byte)`: A structured (potentially encrypted)
 representation of output result. *Optional*
 
 **Service Profiling**
