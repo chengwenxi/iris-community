@@ -13,7 +13,7 @@ Building Inter-chain Service Infrastructure and protocol for Trustworthy and Eff
 
 ## Table of Contents ###########################################################
 
-1. [IRIS OVERVIEW](#IRIS OVERVIEW) 6
+* [1. IRIS OVERVIEW](#IRIS OVERVIEW) 6
 
 1.2 Cosmos/Tendermint 9
 
