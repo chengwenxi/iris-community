@@ -152,8 +152,8 @@ heterogeneous blockchains including public blockchains such as Ethermint
 \[6\], which is a blazing fast Proof-of-Stake implementation of
 Ethereum, as well as performance critical permission/consortium chains.
 The successful stories on using Tendermint in the permission/consortium
-chain domain including Oracle \[ORA\], Hyperledger Burrow \[BURROW\] and
-CITA \[CITA\].
+chain domain including Oracle \[7\], Hyperledger Burrow \[9\] and
+CITA \[8\].
 
 Tendermint is used as the consensus protocol for building the first zone
 on Cosmos Hub. Hub can connect to many different
@@ -1119,6 +1119,9 @@ Michael Yuan
 [4]: https://polkadot.io/
 [5]: https://tendermint.readthedocs.io/en/master/
 [6]: https://ethermint.zone/
+[8]: https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md
+[9]: https://github.com/hyperledger/burrow
+[10]: https://lightning.network/lightning-network-paper.pdf
 
 
 * [1] Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
@@ -1140,16 +1143,13 @@ Framework", https://polkadot.io/)
 Distributed Ledger Systems", USA Patent Application 20170236120, August
 17, 2017
 
-* [8] \[CITA\] Jan Xie, "CITA Technical Whitepaper",
-<https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md>
+* [8] \[CITA\] Jan Xie, "CITA Technical Whitepaper", https://github.com/cryptape/cita-whitepaper/blob/master/en/technical-whitepaper.md
 
-* [9]\[BURROW\] "Hyperledger Burrow",
-[[https://github.com/hyperledger/burrow]{.underline}](https://github.com/hyperledger/burrow)
+* [9]\[BURROW\] "Hyperledger Burrow", https://github.com/hyperledger/burrow
 
 * [10] \[LIG\] Joseph Poon, Thaddeus Dryja,"The Bitcoin Lightning Network:
-Scalable Off-Chain Instant Payments",
-[[https://lightning.network/lightning-network-paper.pdf]{.underline}](https://lightning.network/lightning-network-paper.pdf),
-January 14, 2016
+Scalable Off-Chain Instant Payments",January 14, 2016,https://lightning.network/lightning-network-paper.pdf
+
 
 \[PLA\] Joseph Poon, Vitalik Buterin, "Plasma: Scalable Autonomous Smart
 Contracts", https://www.plasma.io/plasma.pdf, August 11, 2017
@@ -1188,4 +1188,4 @@ Coordination Problems", http://vitalik.ca/, 2017 Aug
 FOR MORE INFORMATION CONTACT:
 
 Harriet Cao,
-[[harriet@bianjie.ai]{.underline}](mailto:harriet@bianjie.ai)
+(mailto:harriet@bianjie.ai)
