@@ -7,6 +7,6 @@ import (
 
 func TestVerifyCode(t *testing.T) {
 	redis.InitRedis()
-	code := "81541"
+	code := "48151"
 	println(VerifyCode("760329367@qq.com", code))
 }
