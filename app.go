@@ -10,8 +10,6 @@ import (
 	"log"
 	"github.com/irisnet/iris-community/config"
 	"github.com/irisnet/iris-community/models/redis"
-	"github.com/casbin/casbin"
-	"github.com/irisnet/iris-community/authz"
 )
 
 func main() {
