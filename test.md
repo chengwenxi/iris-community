@@ -787,7 +787,6 @@ Below is a complete list of application-dependent `IBCPacket` types:
 ## Use Cases 
 
 ### Distributed AI for privacy preserving data analysis
----------
 
 The proposed service infrastructure has been prototyped by Bianjie AI, a
 Shanghai based startup, into its permission product `BEAN (Blockchain
@@ -833,19 +832,19 @@ well as service consumers, utilizing blockchain to provide audible
 transaction ledge as well as trustworthy distributed computing
 foundation.
 
-**AI + Blockchain use cases**
+### AI + Blockchain use cases
 
 We have studied many proposed AI+Blockchain projects. Most of the
 projects are mainly targeting to provide data exchange markets as well
-as analytics API markets. With proposed IRIS infrastructure, those
+as analytics API markets. With proposed `IRIS` infrastructure, those
 networks can be built with ease through publishing data as data services
-and wrapping analytics API as analytics services utilizing the IRIS
+and wrapping analytics API as analytics services utilizing the `IRIS`
 service provider SDK.
 
-**Distributed e-commerce **
+### Distributed e-commerce
 
-With proposed IRIS infrastructure, integration with traditional systems
-like ERP to get inventory info, or inter-chain query on trusted data
+With proposed `IRIS` infrastructure, integration with traditional systems
+like `ERP` to get inventory info, or inter-chain query on trusted data
 sources on getting information like transportation and weather will be
 quite similar way as many enterprise application developers are already
 familiar with. With those services integrated to support distributed
@@ -853,7 +852,7 @@ e-commerce applications, it is possible for distributed e-commerce
 applications to provide similar user experience as the centralized
 systems such as Amazon, Alibaba provides.
 
-**Public chain & consortium chain hybrid system example **
+### Public chain & consortium chain hybrid system example
 
 For many business scenario, taking a hybrid architecture of combining
 the good features from both public chain and consortium chain can
@@ -865,21 +864,20 @@ of certain diseases occurrence as global service which can be invoked
 from other public chains. The received fee can be awarded back to
 those information providers in the consortium chain, which motivate the
 system participants to improve and promote services. With the
-infrastructure provided by IRIS to efficient support a hybrid system
+infrastructure provided by `IRIS` to efficient support a hybrid system
 architecture, large-scale spontaneous collaboration is made possible
 while still support the performance and security requirements needed
 from many business applications.
 
-There are many use cases can be supported by the IRIS service
+There are many use cases can be supported by the `IRIS` service
 infrastructure, such as more efficient asset based security systems,
 distributed regulation technology such as due diligence, mutual aid
-marketplace etc. One of IRIS project plans is also working closely with
+marketplace etc. One of `IRIS` project plans is also working closely with
 such application project teams to support and enable them with needed
 blockchain infrastructure and allow them to focus on delivering the
 envisioned business value more efficiently.
 
-Token Economics {#token-economics .ListParagraph}
-===============
+## Token Economics
 
 Same as Cosmos Network, the IRIS network also supports a multi-token
 model. Besides the tokens held by zone themselves and can be moved from
