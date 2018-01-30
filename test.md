@@ -679,23 +679,22 @@ Below is a (not exhaustive) summary of supported queries:
   Consumer (service, binding)| Requests made, requests confirmed (in time and missed), complaints made, resolutions confirmed, ... |Anyone can query|
 
 
-
-IBC Enhancement
----------------
+### IBC Enhancement 
+-------------
 
 One unique advantage of establishing our service infrastructure on top
 of Cosmos is to allow services to be *deployed once and invoked
 everywhere*, over an internet of blockchains. Specifically, we need to
 accomplish the following:
 
-Service definitions are broadcast to every zone in the IRIS network;
+1. Service definitions are broadcast to every zone in the IRIS network;
 
-Global service bindings are broadcast to every zone in the IRIS network;
+2. Global service bindings are broadcast to every zone in the IRIS network;
 
-Service requests or complaints targeting a remote provider are routed to
+3. Service requests or complaints targeting a remote provider are routed to
 the blockchain where the provider is connected;
 
-Service responses or resolution meant for a remote consumer are routed
+4. Service responses or resolution meant for a remote consumer are routed
 back to the blockchain where the consumer is connected.
 
 When processing a CreateServiceDefinitionTx transaction, the application
