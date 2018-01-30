@@ -19,8 +19,8 @@ func TestAssumeRole(t *testing.T) {
 	acsClient := New(aliYun.AccessKeyId,aliYun.AccessKeySecret)
 	acsClient.SetArn(aliYun.Sts.Arn)
 	acsClient.SetEndPoint(aliYun.Sts.Endpoint)
-
 	acsClient.SetVersion(aliYun.Sts.Version)
+	acsClient.SetDurationSeconds(aliYun.Sts.DurationSeconds)
 
 	req := NewSls(acsClient)
 	resp,httpCode,err := acsClient.send(req.newRequset())
