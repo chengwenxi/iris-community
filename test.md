@@ -667,6 +667,15 @@ Below is a (not exhaustive) summary of supported queries:
   Service Response                           Service request, blockchain height, batch size                               Only matched consumer
 ------------------------------------------ ---------------------------------------------------------------------------- -----------------------
 
+
+**Object**  | **Commonly Used Filters**|**Authorization**|
+--------- | --------|--------|
+ Service Definition  | Name, keywords, source (chain id), messaging type, with active bindings... |Anyone can query|
+ Service Binding (for a given definition)  | Location (local or remote), pricing, service level, expiration... |Anyone can query|
+ Service Request|Service definition and binding, blockchain height, batch size|Service definition and binding, blockchain height, batch size|Only matched provider|
+ Service Response|Service request, blockchain height, batch size|Only matched consumer|
+
+
 **Performance Metrics**
 
 ----------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------
