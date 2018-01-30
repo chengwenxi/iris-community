@@ -298,23 +298,23 @@ when it comes to selecting the right providers (see ?).
 
 **Service Definition**
 
-CreateServiceDefinitionTx
+##### CreateServiceDefinitionTx
 
 A Method is composed of:
 
-ID (int): The unique ID of this method in the encompassing iService
+* ID (int): The unique ID of this method in the encompassing iService
 
-Name (string): The unique name of this method in the iService
+* Name (string): The unique name of this method in the iService
 
-Description (string): A description of this method
+* Description (string): A description of this method
 
-Input (string): A structured definition of the input parameters
+* Input (string): A structured definition of the input parameters
 
-Output (string): A structured definition of the output result
+* Output (string): A structured definition of the output result
 
-Error (string): A structured definition of all possible error conditions
+* Error (string): A structured definition of all possible error conditions
 
-OutputPrivacy (enum): Can be one of NoPrivacy or PubKeyEncryption
+* OutputPrivacy (enum): Can be one of NoPrivacy or PubKeyEncryption
 
 A ServiceDefinition is composed of:
 
