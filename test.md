@@ -140,7 +140,7 @@ existing work.
 ### Cosmos/Tendermint 
 ------------------------------
 
-Cosmos \[CWP\] is an ambitious project aiming at building the internet
+Cosmos \[3\] is an ambitious project aiming at building the internet
 of blockchain. It is a network of many independent blockchains, called
 zones. Each zone is powered by classical Byzantine fault-tolerant (BFT)
 consensus protocols like [Tendermint](https://tendermint.com/).
@@ -149,7 +149,7 @@ Tendermint provides a high-performance, consistent, secure BFT consensus
 engine, where strict fork-accountability guarantees hold over the
 behavior of malicious actors. Tendermint is well suited for scaling
 heterogeneous blockchains including public blockchains such as Ethermint
-\[EMT\], which is a blazing fast Proof-of-Stake implementation of
+\[6\], which is a blazing fast Proof-of-Stake implementation of
 Ethereum, as well as performance critical permission/consortium chains.
 The successful stories on using Tendermint in the permission/consortium
 chain domain including Oracle \[ORA\], Hyperledger Burrow \[BURROW\] and
@@ -1113,9 +1113,12 @@ Michael Yuan
 
 ## Reference
 
-[1]: https://bitcoin.org/bitcoin.pdf
+[1]: https://drive.google.com/file/d/1bI7JIOe-CfJ5fPHKxYlFub2Kg-KCGU6r/view?usp=sharing
 [2]: http://ethdocs.org/en/latest/
 [3]: https://cosmos.network/whitepaper
+[4]: https://polkadot.io/
+[5]: https://tendermint.readthedocs.io/en/master/
+[6]: https://ethermint.zone/
 
 
 * [1] Wanxiang Blochchain Inc., Distributed Business Value Research Institute,
@@ -1123,16 +1126,15 @@ Michael Yuan
 
 * [2] Ethereum Foundation, "Ethereum Homestead Documentation", http://ethdocs.org/en/latest/
 
-* [3] \[CWP\]Jae Kwon, Ethan Buchman，"Cosmos, A Network of Distributed
+* [3] Jae Kwon, Ethan Buchman，"Cosmos, A Network of Distributed
 Ledgers", https://cosmos.network/whitepaper
 
 * [4] Gavin Wood,"Polkadot: Vision For a Heterogeneous Muilti-chain
-Framework", [[https://polkadot.io/]{.underline}](https://polkadot.io/)
+Framework", https://polkadot.io/)
 
-* [5] Tendermint, [https://tendermint.readthedocs.io/en/master/]{.underline}
+* [5] Tendermint, https://tendermint.readthedocs.io/en/master/
 
-* [6] \[EMT\] Ethermint,
-[[https://ethermint.zone/]{.underline}](https://ethermint.zone/)
+* [6] \[EMT\] Ethermint,https://ethermint.zone/
 
 * [7] \[ORA\] Oracle International Corporation, "Accountability and Trust in
 Distributed Ledger Systems", USA Patent Application 20170236120, August
