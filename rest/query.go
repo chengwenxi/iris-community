@@ -31,7 +31,7 @@ func QueryInfo(c *gin.Context) {
         
         //query join result
         result := Result{Id:id,Code:target.InvitationCode}
-        rows, err := models.DB.Table("user_invitation").Select("users.id,user_invitation.invitation_code, users.is_actived").Joins("left join users on users.id = user_invitation.invitee_id").Where("user_invitation.invitation_code = ?",target.InvitationCode).Rows()
+        rows, err := models.DB.Table("user_invitation").Select("user_approval.user_id,user_invitation.invitation_code, user_approval.approval_status").Joins("left join user_approval on user_approval.user_id = user_invitation.invitee_id").Where("user_invitation.invitation_code = ?",target.InvitationCode).Rows()
        
         if err != nil{
             panic(err)
