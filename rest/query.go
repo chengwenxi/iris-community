@@ -9,7 +9,7 @@ import (
 )
 
 type Result struct{
-    Id         uint64     //用户ID
+    Id         uint     //用户ID
     Code       string
     Invite     uint    //总邀请人
     Complete   uint    //验证通过的邀请人
@@ -17,12 +17,22 @@ type Result struct{
 }
 
 func QueryRegister(g *gin.RouterGroup) {
-    g.GET("/:id", QueryInfo)
+    g.GET("", QueryInfo)
 }
 
 
 func QueryInfo(c *gin.Context) {
-    id, _ := strconv.ParseUint(c.Param("id"), 10, 64)
+    authCode := c.Request.Header.Get("Authorization")
+
+    userAuth := models.UserAuth{
+        AuthCode: authCode,
+    }
+
+    userAuth.FindByAuth()
+
+    id := userAuth.UserId
+
+    //id, _ := strconv.ParseUint(c.Param("id"), 10, 64)
        //get invitation_code
       var target models.UserProfile
        models.DB.Where("user_id = ?", id).First(&target)
