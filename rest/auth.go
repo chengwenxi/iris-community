@@ -18,39 +18,44 @@ func AuthRegisterAll(g *gin.RouterGroup) {
 
 type RequestAuthUsers struct {
 	RequestUsers
-	Password       string `binding:"required"`
-	VerifyCode     string `binding:"required"`
+	Password   string `binding:"required"`
+	VerifyCode string `binding:"required"`
 }
 
 func Login(c *gin.Context) {
 	var req RequestAuthUsers
-	if err := c.ShouldBindJSON(&req); err == nil {
-		if len(req.VerifyCode) == 0 || len(req.Email) == 0 || len(req.Password) == 0 {
-			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if len(req.VerifyCode) == 0 || len(req.Email) == 0 || len(req.Password) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})
+		return
+	}
+	user, _ := models.FindUserByEmail(req.Email)
+	if user.Id == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "email not exist"})
+		return
+	}
+	password := utils.Md5(req.Password)
+	salt := user.Salt
+	if user.Password == utils.Sha1s(salt+password) {
+		if user.IsBlocked {
+			c.JSON(http.StatusOK, gin.H{"error": "Account have been blacklisted"})
 			return
 		}
-		user, _ := models.FindUserByEmail(req.Email)
-		if user.Id == 0 {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "email not exist"})
+		if !user.IsActived {
+			c.JSON(http.StatusOK, gin.H{"error": "Account is not activated"})
 			return
 		}
-		password := utils.Md5(req.Password)
-		salt := user.Salt
-		if user.Password == utils.Sha1s(salt+password) {
-			if user.IsBlocked {
-				c.JSON(http.StatusOK, gin.H{"error": "You've been blacklisted"})
-				return
-			}
-			userAuth := &models.UserAuth{
-				UserId: user.Id,
-			}
-			userAuth.Create()
-			c.Header("Authorization", userAuth.AuthCode)
-			c.JSON(http.StatusOK, userAuth)
-		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "email or password error"})
+		userAuth := &models.UserAuth{
+			UserId: user.Id,
 		}
-
+		userAuth.Create()
+		c.Header("Authorization", userAuth.AuthCode)
+		c.JSON(http.StatusOK, userAuth)
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "email or password error"})
 	}
 }
 
