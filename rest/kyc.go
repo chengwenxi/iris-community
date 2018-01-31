@@ -1,31 +1,31 @@
 package rest
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/irisnet/iris-community/models"
 	"log"
 	"net/http"
-	"errors"
 )
 
 type Kyc struct {
 	//证件类型id
 	CertificateTypeId uint
 	//证件类型名称
-	CertificateNum 	string
+	CertificateNum string
 	//国家id
-	CountryId		uint
+	CountryId uint
 	//证件正面照
-	FrontFileKey	string
+	FrontFileKey string
 	//证件反面照
-	ReverseFileKey	string
+	ReverseFileKey string
 	//手持照片
-	HandFileKey		string
+	HandFileKey string
 
 	//姓氏
-	FamilyName		string
+	FamilyName string
 	//名称
-	Name			string
+	Name string
 }
 
 type KycAuthInfo struct {
@@ -67,7 +67,7 @@ func RegisterKyc(g *gin.RouterGroup) {
 			return
 		}
 		//检查参数
-		if err := checkKyc(kyc);err != nil {
+		if err := checkKyc(kyc); err != nil {
 			context.JSON(http.StatusBadRequest, err)
 		}
 
@@ -110,16 +110,19 @@ func postKyc(kyc Kyc, authCode string) error {
 	tx := models.DB.Begin()
 
 	if err := tx.FirstOrCreate(&frontFile, models.Files{OssKey: kyc.FrontFileKey}).Error; err != nil {
+		log.Printf("FirstOrCreate frontFile error : %s",err.Error())
 		tx.Rollback()
 		return err
 	}
 
 	if err := tx.FirstOrCreate(&reverseFile, models.Files{OssKey: kyc.ReverseFileKey}).Error; err != nil {
+		log.Printf("FirstOrCreate reverseFile error : %s",err.Error())
 		tx.Rollback()
 		return err
 	}
 
 	if err := tx.FirstOrCreate(&handFile, models.Files{OssKey: kyc.HandFileKey}).Error; err != nil {
+		log.Printf("FirstOrCreate handFile error : %s",err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -137,7 +140,9 @@ func postKyc(kyc Kyc, authCode string) error {
 		TypeId:        cer.TypeId,
 		FrontFileId:   cer.FrontFileId,
 		ReverseFileId: cer.ReverseFileId,
-		HandFileId:    cer.HandFileId,}).Error; err != nil {
+		HandFileId:    cer.HandFileId}).Error; err != nil {
+
+		log.Printf("FirstOrCreate Cerficates error : %s",err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -161,6 +166,7 @@ func postKyc(kyc Kyc, authCode string) error {
 		CountryId:   kyc.CountryId,
 		CerficateId: cer.Id,
 	}).Error; err != nil {
+		log.Printf("Updates UserProfile error : %s",err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -172,6 +178,7 @@ func postKyc(kyc Kyc, authCode string) error {
 	}
 
 	if err := tx.FirstOrCreate(&approval, models.UserApproval{UserId: userAuth.UserId}).Error; err != nil {
+		log.Printf("FirstOrCreate UserApproval error : %s",err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -254,7 +261,7 @@ func queryKyc(authCode string) (KycAuthInfo, error) {
 
 }
 
-func checkKyc(kyc Kyc) error{
+func checkKyc(kyc Kyc) error {
 
 	if kyc.CertificateTypeId == 0 {
 		return errors.New("CertificateTypeId is empty")
@@ -268,16 +275,13 @@ func checkKyc(kyc Kyc) error{
 		return errors.New("CountryId is empty")
 	}
 
-
 	if kyc.FrontFileKey == "" {
 		return errors.New("FrontFileKey is empty")
 	}
 
-
 	if kyc.ReverseFileKey == "" {
 		return errors.New("ReverseFileKey is empty")
 	}
-
 
 	if kyc.HandFileKey == "" {
 		return errors.New("HandFileKey is empty")
