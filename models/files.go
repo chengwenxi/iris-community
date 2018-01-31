@@ -7,7 +7,7 @@ import (
 
 type Files struct {
 	Id         uint `gorm:"primary_key"`
-	OssKey     string
+	OssKey     string	`gorm:"column:oos_key"`
 	Createtime time.Time
 	Updatetime time.Time
 }
