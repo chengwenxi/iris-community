@@ -3,7 +3,6 @@ package rest
 import (
     "github.com/gin-gonic/gin"
     "github.com/irisnet/iris-community/models"
-    "strconv"
     "net/http"
     "fmt"
 )
