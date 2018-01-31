@@ -3,35 +3,29 @@ package utils
 import (
 	"testing"
 	"fmt"
-	"github.com/irisnet/iris-community/config"
+	//"github.com/irisnet/iris-community/config"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"os"
 	"github.com/pborman/uuid"
+	"encoding/json"
+	"github.com/irisnet/iris-community/models/redis"
+	"github.com/irisnet/iris-community/config"
+	"log"
 )
 
 
 func TestAssumeRole(t *testing.T) {
+	redis.InitRedis()
 	//init config
-	if err := config.LoadConfiguration("../config.yml"); err!=nil{
-		fmt.Print("config error")
+	if err := config.LoadConfiguration("../config.yml"); err != nil {
+		log.Print("config error")
 		return
 	}
+	resp := AssumeRole()
 
-	var aliYun = config.Config.AliYun;
-
-	acsClient := New(aliYun.AccessKeyId,aliYun.AccessKeySecret)
-	acsClient.SetArn(aliYun.Sts.Arn)
-	acsClient.SetEndPoint(aliYun.Sts.Endpoint)
-	acsClient.SetVersion(aliYun.Sts.Version)
-	acsClient.SetDurationSeconds(aliYun.Sts.DurationSeconds)
-
-	req := NewSls(acsClient)
-	resp,httpCode,err := acsClient.send(req.newRequset())
-
-
-	fmt.Println(string(resp))
-	fmt.Println(string(httpCode))
-	fmt.Println(err)
+	bytes,err:= json.Marshal(resp)
+	fmt.Println(string(bytes))
+	fmt.Println(err.Error())
 
 }
 

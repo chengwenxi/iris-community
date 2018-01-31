@@ -1,28 +1,32 @@
 package utils
 
 import (
-	"time"
-	"github.com/tobyzxj/uuid"
+	"encoding/json"
 	"fmt"
 	"github.com/irisnet/iris-community/config"
-	"encoding/json"
+	myredis "github.com/irisnet/iris-community/models/redis"
+	"github.com/tobyzxj/uuid"
+	"time"
+	"log"
+	"github.com/garyburd/redigo/redis"
 )
 
 const (
-		Format   = "JSON"
-		SignatureMethod  = "HMAC-SHA1"
-		SignatureVersion  = "1.0"
-		Timestamp  = "2006-01-02T15:04:05Z"
-		STS_Action  = "AssumeRole"
-		)
+	Format           = "JSON"
+	SignatureMethod  = "HMAC-SHA1"
+	SignatureVersion = "1.0"
+	Timestamp        = "2006-01-02T15:04:05Z"
+	STS_Action       = "AssumeRole"
+	STS_ACCOUNT_KEY  = "STS_ACCOUNT_KEY"
+)
 
 type Sts struct {
 	c *Client
 }
 
-func NewSls(client *Client) *Sts{
+func NewSls(client *Client) *Sts {
 	return &Sts{
-		c:client,
+		c: client,
 	}
 }
 
@@ -42,45 +46,59 @@ func (s Sts) newRequset() *Request {
 	// 2. 业务API参数
 	req.Put("Action", STS_Action)
 	req.Put("RoleArn", s.c.Arn)
-	req.Put("RoleSessionName", fmt.Sprintf("Role%d",time.Now().Unix()))
+	req.Put("RoleSessionName", fmt.Sprintf("Role%d", time.Now().Unix()))
 	req.Put("DurationSeconds", s.c.DurationSeconds)
 	return req
 }
 
 //获取用户临时权限
-func AssumeRole()(*StsResponse){
-	var aliYun = config.Config.AliYun;
+func AssumeRole() *StsResponse {
+	var aliYun = config.Config.AliYun
 
-	acsClient := New(aliYun.AccessKeyId,aliYun.AccessKeySecret)
+	redisCli := myredis.Pool.Get()
+
+	if v, err := redisCli.Do("GET", STS_ACCOUNT_KEY); v != nil{
+		var resp StsResponse
+		re,_:= redis.Bytes(v,err)
+		json.Unmarshal(re, &resp)
+		return &resp
+	}
+
+	acsClient := New(aliYun.AccessKeyId, aliYun.AccessKeySecret)
 	acsClient.SetArn(aliYun.Sts.Arn)
 	acsClient.SetEndPoint(aliYun.Sts.Endpoint)
 	acsClient.SetVersion(aliYun.Sts.Version)
 	acsClient.SetDurationSeconds(aliYun.Sts.DurationSeconds)
 
 	req := NewSls(acsClient)
-	//resp,httpCode,err := acsClient.send(req.newRequset())
-	resp,_,_ := acsClient.send(req.newRequset())
+	resp, _, err := acsClient.send(req.newRequset())
+	log.Println(err)
 
 
 	var stsResp StsResponse
-	json.Unmarshal(resp,&stsResp)
+	json.Unmarshal(resp, &stsResp)
+
+	//存入redis
+	redisCli.Do("SET", STS_ACCOUNT_KEY, resp)
+	redisCli.Do("EXPIRE", STS_ACCOUNT_KEY, aliYun.Sts.DurationSeconds) //10 seconds expired
+
 	return &stsResp
 }
 
 type Credentials struct {
-	AccessKeyId 	string	`json:"AccessKeyId"`
-	AccessKeySecret string	`json:"AccessKeySecret"`
-	Expiration 		string	`json:"Expiration"`
-	SecurityToken 	string	`json:"SecurityToken"`
+	AccessKeyId     string `json:"AccessKeyId"`
+	AccessKeySecret string `json:"AccessKeySecret"`
+	Expiration      string `json:"Expiration"`
+	SecurityToken   string `json:"SecurityToken"`
 }
 
 type AssumedRoleUser struct {
-	Arn 				string	`json:"arn"`
-	AssumedRoleUserId 	string	`json:"AssumedRoleUserId"`
+	Arn               string `json:"arn"`
+	AssumedRoleUserId string `json:"AssumedRoleUserId"`
 }
 
 type StsResponse struct {
-	Credentials 	Credentials		`json:"Credentials"`
-	AssumedRoleUser AssumedRoleUser	`json:"AssumedRoleUser"`
-	RequestId string				`json:"RequestId"`
+	Credentials     Credentials     `json:"Credentials"`
+	AssumedRoleUser AssumedRoleUser `json:"AssumedRoleUser"`
+	RequestId       string          `json:"RequestId"`
 }
