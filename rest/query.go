@@ -5,6 +5,7 @@ import (
     "github.com/irisnet/iris-community/models"
     "strconv"
     "net/http"
+    "fmt"
 )
 
 type Result struct{
@@ -12,7 +13,7 @@ type Result struct{
     Code       string
     Invite     uint    //总邀请人
     Complete   uint    //验证通过的邀请人
-    Sum        uint      //获得token 总数
+    Sum        int      //获得token 总数
 }
 
 func QueryRegister(g *gin.RouterGroup) {
@@ -29,28 +30,7 @@ func QueryInfo(c *gin.Context) {
        //fmt.Println("code  : ", target.InvitationCode)
         
         //query join result
-        rows, err := models.DB.Table("user_invitation").Select("user_invitation.invitation_code, user_approval.approval_status").Joins("left join user_approval on user_approval.user_id = user_invitation.invitee_id").Where("user_invitation.invitation_code = ?",target.InvitationCode).Rows()
-   
-        if err != nil{
-            print(err)
-        }
-
         result := Result{Id:id,Code:target.InvitationCode}
-
-        for rows.Next() {
-           
-            var invitation_code string
-            var is_approved string
-            rows.Scan(&invitation_code,&is_approved)
-            //fmt.Println(invitation_code,is_actived)
-
-            result.Invite++
-
-            if is_approved == "p" {
-                result.Complete ++
-            }
-        }
-
         rows, err := models.DB.Table("user_invitation").Select("users.id,user_invitation.invitation_code, users.is_actived").Joins("left join users on users.id = user_invitation.invitee_id").Where("user_invitation.invitation_code = ?",target.InvitationCode).Rows()
        
         if err != nil{
@@ -63,9 +43,9 @@ func QueryInfo(c *gin.Context) {
             
             var id int //用户ID
             var invitation_code string //用户邀请码
-            
-            rows.Scan(&id,&invitation_code,&is_actived)
-            fmt.Println(id,invitation_code,is_actived)
+            var is_approved string
+            rows.Scan(&id,&invitation_code,&is_approved)
+            fmt.Println(id,invitation_code,is_approved)
             result.Invite++
             
             if is_approved == "p" {
