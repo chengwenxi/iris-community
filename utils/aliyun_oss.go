@@ -5,16 +5,19 @@ import (
 	"github.com/pborman/uuid"
 	"bytes"
 	"github.com/irisnet/iris-community/config"
+	"os"
 )
 
 
 
-func UploadByLocal(filename string)  (string,error) {
+func UploadByLocal(filepath string)  (string,error) {
 	var aliYun = config.Config.AliYun;
 	client, err := oss.New(aliYun.Oss.Endpoint, aliYun.AccessKeyId, aliYun.AccessKeySecret)
 	if err != nil {
 		return "",err
 	}
+
+	fd, err := os.Open(filepath)
 
 	bucket, err := client.Bucket(aliYun.Oss.Bucket)
 	if err != nil {
@@ -23,7 +26,7 @@ func UploadByLocal(filename string)  (string,error) {
 
 	ossKey := uuid.New()
 
-	err = bucket.PutObjectFromFile(ossKey, filename)
+	err = bucket.PutObject(ossKey, fd)
 	if err != nil {
 		return "",err
 	}
