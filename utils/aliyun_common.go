@@ -60,7 +60,6 @@ func (r *Request) CalcStringToSign(httpMethod string) string {
 	return ""
 }
 
-
 //发送http请求
 func (c *Client) send(r *Request) (body []byte, httpCode int, err error) {
 	if r == nil || r.Param == nil {
@@ -79,7 +78,7 @@ func (c *Client) send(r *Request) (body []byte, httpCode int, err error) {
 	}
 	httpReq.Param("Signature", signature)
 
-	fmt.Sprint("http:%s" ,httpReq)
+	fmt.Sprint("http:%s", httpReq)
 
 	resp, err := httpReq.Response()
 	if err != nil {
@@ -125,7 +124,7 @@ type Client struct {
 
 	//STS设置 start
 	// 全局资源描述符 每个角色都有一个唯一的全局资源描述符，规定格式为 acs:ram::$accountID:role/$roleName
-	Arn string// 全局资源描述符 每个角色都有一个唯一的全局资源描述符，规定格式为 acs:ram::$accountID:role/$roleName
+	Arn             string // 全局资源描述符 每个角色都有一个唯一的全局资源描述符，规定格式为 acs:ram::$accountID:role/$roleName
 	DurationSeconds string
 }
 
@@ -170,6 +169,7 @@ func (c *Client) SetArn(arn string) {
 		c.Arn = arn
 	}
 }
+
 // SetArn 设置角色,通过官方网站申请或通过管理员获取
 func (c *Client) SetDurationSeconds(durationSeconds string) {
 	if c != nil {
@@ -191,8 +191,8 @@ func (c *Client) SetSocketTimeout(sockettimeout int) {
 func setACLClient(accessid, accesskey string) *Client {
 
 	acsClient := Client{
-		AccessID:accessid,
-		AccessKey:accesskey,
+		AccessID:  accessid,
+		AccessKey: accesskey,
 	}
 
 	if urllib.GetDefaultSetting().Transport == nil {

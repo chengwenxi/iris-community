@@ -41,54 +41,89 @@ type KycAuthResult struct {
 func RegisterKyc(g *gin.RouterGroup) {
 
 	//查询国家列表
-	g.GET("/country", func(context *gin.Context) {
-		country, err := models.Country().List()
-		if err != nil {
-			log.Printf("Country is Empty,please init ")
-		}
-		context.JSON(http.StatusOK, country)
-	})
+	g.GET("/country", CountryList)
 
 	//查询证件类型列表
-	g.GET("/cerType", func(context *gin.Context) {
-		cerTypes, err := models.CerficateType().List()
-		if err != nil {
-			log.Printf("cerType is Empty,please init ")
-		}
-		context.JSON(http.StatusOK, cerTypes)
-	})
+	g.GET("/cerType", CerType)
+
+	//查询用户认证信息
+	g.GET("/info", KycInfo)
 
 	//用户实名认证
-	g.POST("/cerficate", func(context *gin.Context) {
-		var kyc Kyc
+	g.POST("/cerficate", Cerficate)
+}
 
-		if context.ShouldBindJSON(&kyc) != nil {
-			context.JSON(http.StatusBadRequest, "invalide json")
-			return
-		}
-		//检查参数
-		if err := checkKyc(kyc); err != nil {
-			context.JSON(http.StatusBadRequest, err)
-		}
+// @Summary 查询国家列表
+// @ID country-list
+// @Tags kyc
+// @Produce json
+// @Success 200 {array} models.DimCountry
+// @Router /kyc/country [get]
+func CountryList(context *gin.Context) {
+	country, err := models.Country().List()
+	if err != nil {
+		log.Printf("Country is Empty,please init ")
+	}
+	context.JSON(http.StatusOK, country)
+}
 
-		authCode := context.Request.Header.Get("Authorization")
-		if err := postKyc(kyc, authCode); err != nil {
-			context.JSON(http.StatusBadRequest, gin.H{"code": "fail", "msg": "user certify fail"})
-		} else {
-			context.JSON(http.StatusOK, gin.H{"code": "success", "msg": "user certify success"})
-		}
-	})
-	//查询用户认证信息
-	g.GET("/info", func(context *gin.Context) {
-		authCode := context.Request.Header.Get("Authorization")
-		kycinfo, err := queryKyc(authCode)
-		if err == nil {
-			context.JSON(http.StatusOK, kycinfo)
-		} else {
-			context.JSON(http.StatusBadRequest, gin.H{"code": "fail", "msg": err.Error()})
-		}
-	})
+// @Summary 查询证件类型列表
+// @ID cerType-list
+// @Tags kyc
+// @Produce json
+// @Success 200 {array} models.DimCerficateType
+// @Router /kyc/cerType [get]
+func CerType(context *gin.Context) {
+	cerTypes, err := models.CerficateType().List()
+	if err != nil {
+		log.Printf("cerType is Empty,please init ")
+	}
+	context.JSON(http.StatusOK, cerTypes)
+}
 
+// @Summary 查询用户认证信息
+// @ID cerType-list
+// @Tags kyc
+// @Produce json
+// @Param  Authorization header string true "Authorization"
+// @Success 200 {array} rest.KycAuthInfo
+// @Router /kyc/info [get]
+func KycInfo(context *gin.Context) {
+	authCode := context.Request.Header.Get("Authorization")
+	kycinfo, err := queryKyc(authCode)
+	if err == nil {
+		context.JSON(http.StatusOK, kycinfo)
+	} else {
+		context.JSON(http.StatusBadRequest, gin.H{"code": "fail", "msg": err.Error()})
+	}
+}
+
+// @Summary 用户实名认证
+// @ID cerType-list
+// @Tags kyc
+// @Produce json
+// @Param  Authorization header string true "Authorization"
+// @Param  body body rest.Kyc  true "Kyc"
+// @Success 200 {string} string	"ok"
+// @Router /kyc/cerficate [post]
+func Cerficate(context *gin.Context) {
+	var kyc Kyc
+
+	if context.ShouldBindJSON(&kyc) != nil {
+		context.JSON(http.StatusBadRequest, "invalide json")
+		return
+	}
+	//检查参数
+	if err := checkKyc(kyc); err != nil {
+		context.JSON(http.StatusBadRequest, err)
+	}
+
+	authCode := context.Request.Header.Get("Authorization")
+	if err := postKyc(kyc, authCode); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"code": "fail", "msg": "user certify fail"})
+	} else {
+		context.JSON(http.StatusOK, gin.H{"code": "success", "msg": "user certify success"})
+	}
 }
 
 //提交用户实行认证信息
@@ -110,19 +145,19 @@ func postKyc(kyc Kyc, authCode string) error {
 	tx := models.DB.Begin()
 
 	if err := tx.FirstOrCreate(&frontFile, models.Files{OssKey: kyc.FrontFileKey}).Error; err != nil {
-		log.Printf("FirstOrCreate frontFile error : %s",err.Error())
+		log.Printf("FirstOrCreate frontFile error : %s", err.Error())
 		tx.Rollback()
 		return err
 	}
 
 	if err := tx.FirstOrCreate(&reverseFile, models.Files{OssKey: kyc.ReverseFileKey}).Error; err != nil {
-		log.Printf("FirstOrCreate reverseFile error : %s",err.Error())
+		log.Printf("FirstOrCreate reverseFile error : %s", err.Error())
 		tx.Rollback()
 		return err
 	}
 
 	if err := tx.FirstOrCreate(&handFile, models.Files{OssKey: kyc.HandFileKey}).Error; err != nil {
-		log.Printf("FirstOrCreate handFile error : %s",err.Error())
+		log.Printf("FirstOrCreate handFile error : %s", err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -142,7 +177,7 @@ func postKyc(kyc Kyc, authCode string) error {
 		ReverseFileId: cer.ReverseFileId,
 		HandFileId:    cer.HandFileId}).Error; err != nil {
 
-		log.Printf("FirstOrCreate Cerficates error : %s",err.Error())
+		log.Printf("FirstOrCreate Cerficates error : %s", err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -166,7 +201,7 @@ func postKyc(kyc Kyc, authCode string) error {
 		CountryId:   kyc.CountryId,
 		CerficateId: cer.Id,
 	}).Error; err != nil {
-		log.Printf("Updates UserProfile error : %s",err.Error())
+		log.Printf("Updates UserProfile error : %s", err.Error())
 		tx.Rollback()
 		return err
 	}
@@ -178,7 +213,7 @@ func postKyc(kyc Kyc, authCode string) error {
 	}
 
 	if err := tx.FirstOrCreate(&approval, models.UserApproval{UserId: userAuth.UserId}).Error; err != nil {
-		log.Printf("FirstOrCreate UserApproval error : %s",err.Error())
+		log.Printf("FirstOrCreate UserApproval error : %s", err.Error())
 		tx.Rollback()
 		return err
 	}

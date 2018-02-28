@@ -13,7 +13,6 @@ import (
 	"log"
 )
 
-
 func TestAssumeRole(t *testing.T) {
 	redis.InitRedis()
 	//init config
@@ -23,7 +22,7 @@ func TestAssumeRole(t *testing.T) {
 	}
 	resp := AssumeRole()
 
-	bytes,err:= json.Marshal(resp)
+	bytes, err := json.Marshal(resp)
 	fmt.Println(string(bytes))
 	fmt.Println(err.Error())
 
@@ -52,7 +51,7 @@ func TestUploadByBytes(t *testing.T) {
 
 	ossKey := uuid.New()
 
-	fmt.Println("ossKey=",ossKey)
+	fmt.Println("ossKey=", ossKey)
 
 	err = bucket.PutObject(ossKey, fd)
 	if err != nil {

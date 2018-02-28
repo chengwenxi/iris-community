@@ -6,8 +6,8 @@ import (
 )
 
 type Files struct {
-	Id         uint `gorm:"primary_key"`
-	OssKey     string	`gorm:"column:oos_key"`
+	Id         uint   `gorm:"primary_key"`
+	OssKey     string `gorm:"column:oos_key"`
 	Createtime time.Time
 	Updatetime time.Time
 }
@@ -23,18 +23,18 @@ func (f *Files) Create() error {
 	return DB.Create(f).Error
 }
 
-func (f *Files) BatchQuery(ids []uint)([] Files,error){
+func (f *Files) BatchQuery(ids []uint) ([] Files, error) {
 	var files []Files
-	err :=DB.Where(ids).Find(&files).Error
-	return files,err
+	err := DB.Where(ids).Find(&files).Error
+	return files, err
 }
 
-func (f *Files) QueryById(id uint)(Files,error){
-	file := Files{Id:id}
+func (f *Files) QueryById(id uint) (Files, error) {
+	file := Files{Id: id}
 	err := DB.First(&file).Error
-	return file,err
+	return file, err
 }
 
-func NewFiles() *Files{
+func NewFiles() *Files {
 	return &Files{}
 }

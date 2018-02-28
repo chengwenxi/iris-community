@@ -6,7 +6,6 @@ import (
 	"net/http"
 )
 
-
 func RegisterAliyun(g *gin.RouterGroup) {
 	//获取临时授权账号(文件上传)[acs:ram::1768586477174862:role/aliyunosswriteandreadrole 角色具有oss的读写权限]
 	g.GET("/sts/assumeRole", func(context *gin.Context) {

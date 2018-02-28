@@ -5,10 +5,10 @@ import (
 )
 
 type UserInvitation struct {
-	InviteeId uint 	`gorm:"primary_key"`
+	InviteeId      uint `gorm:"primary_key"`
 	InvitationCode string
-	Createtime 		time.Time
-	Updatetime 		time.Time
+	Createtime     time.Time
+	Updatetime     time.Time
 }
 
 func (userInvitation *UserInvitation) BeforeCreate() error {

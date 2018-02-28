@@ -14,6 +14,7 @@ func AuthRegisterAll(g *gin.RouterGroup) {
 	g.POST("", Login)
 	g.POST("/reset", AuthRest)
 	g.GET("/user", AuthUser)
+	g.GET("/userInfo", QueryInfo)
 }
 
 type RequestAuthUser struct {
@@ -25,6 +26,14 @@ type RequestAuthUser struct {
 type RequestAuthRest struct {
 	Id   string `binding:"required"`
 	Code string `binding:"required"`
+}
+
+type UserInfo struct {
+	Id       uint //用户ID
+	Code     string
+	Invite   uint //总邀请人
+	Complete uint //验证通过的邀请人
+	Sum      int  //获得token 总数
 }
 
 //user auth
@@ -139,4 +148,66 @@ func AuthRest(c *gin.Context) {
 	} else {
 		c.JSON(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized))
 	}
+}
+
+//user auth
+// @Summary 获取当前Authorization对应的用户详细信息
+// @ID auth-user-info
+// @Tags auth
+// @Produce json
+// @Param  Authorization header string true "Authorization"
+// @Success 200 {object} rest.UserInfo
+// @Router /auth/userInfo [get]
+func QueryInfo(c *gin.Context) {
+	authCode := c.Request.Header.Get("Authorization")
+
+	userAuth := models.UserAuth{
+		AuthCode: authCode,
+	}
+
+	userAuth.FindByAuth()
+
+	id := userAuth.UserId
+
+	//get invitation_code
+	var target models.UserProfile
+	models.DB.Where("user_id = ?", id).First(&target)
+
+	//query join result
+	result := UserInfo{Id: id, Code: target.InvitationCode}
+	rows, err := models.DB.Table("user_invitation").Select("user_approval.user_id,user_invitation.invitation_code, user_approval.approval_status").Joins("left join user_approval on user_approval.user_id = user_invitation.invitee_id").Where("user_invitation.invitation_code = ?", target.InvitationCode).Rows()
+
+	if err != nil {
+		panic(err)
+	}
+
+	//获得token总数
+	sum := 0
+	for rows.Next() {
+
+		var id int                 //用户ID
+		var invitation_code string //用户邀请码
+		var is_approved string
+		rows.Scan(&id, &invitation_code, &is_approved)
+		result.Invite++
+
+		if is_approved == "p" {
+
+			//完成注册人数增加
+			result.Complete ++
+			//获得token 数量
+			rows, err := models.DB.Table("user_x_token").Select("dim_token_access_mode.num").Joins("left join dim_token_access_mode on dim_token_access_mode.id = user_x_token.access_mode_id").Where("user_x_token.user_id = ?", id).Rows()
+			if err != nil {
+				print(err)
+			}
+			var num int
+			for rows.Next() {
+				rows.Scan(&num)
+				sum += num
+				//fmt.Println(num)
+			}
+		}
+	}
+	result.Sum = sum
+	c.JSON(http.StatusOK, result)
 }

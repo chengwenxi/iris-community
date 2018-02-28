@@ -38,7 +38,7 @@ func TestRedis(t *testing.T) {
 	}
 	if s, err := redis.String(v, err); err == nil {
 		fmt.Println(s)
-	}else {
+	} else {
 		fmt.Println(err)
 	}
 }

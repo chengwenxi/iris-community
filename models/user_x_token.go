@@ -4,12 +4,13 @@ import (
 	"time"
 	"github.com/jinzhu/gorm"
 )
+
 type UserXToken struct {
-	Id         uint `gorm:"primary_key"`
-	UserId     uint
-	AccessModeID       uint
-	Createtime time.Time
-	Updatetime time.Time
+	Id           uint `gorm:"primary_key"`
+	UserId       uint
+	AccessModeID uint
+	Createtime   time.Time
+	Updatetime   time.Time
 }
 
 func (user *UserXToken) BeforeCreate(scope *gorm.Scope) error {

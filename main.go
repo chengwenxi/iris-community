@@ -15,7 +15,6 @@ import (
 	_ "github.com/irisnet/iris-community/docs"
 )
 
-
 // @title Swagger IRIS-Community API
 // @version 1.0
 // @description IRIS-Community API document
@@ -57,7 +56,7 @@ func main() {
 	rest.AuthRegisterAll(r.Group("/auth")) //auth
 	rest.RegisterKyc(r.Group("/kyc"))
 	rest.RegisterAliyun(r.Group("/aliyun"))
-	rest.QueryRegister(r.Group("/query"))
+	//rest.QueryRegister(r.Group("/query"))
 	rest.VerifyRegisterAll(r.Group("/verify"))
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

@@ -57,9 +57,9 @@ func AssumeRole() *StsResponse {
 
 	redisCli := myredis.Pool.Get()
 
-	if v, err := redisCli.Do("GET", STS_ACCOUNT_KEY); v != nil{
+	if v, err := redisCli.Do("GET", STS_ACCOUNT_KEY); v != nil {
 		var resp StsResponse
-		re,_:= redis.Bytes(v,err)
+		re, _ := redis.Bytes(v, err)
 		json.Unmarshal(re, &resp)
 		return &resp
 	}
@@ -73,7 +73,6 @@ func AssumeRole() *StsResponse {
 	req := NewSls(acsClient)
 	resp, _, err := acsClient.send(req.newRequset())
 	log.Println(err)
-
 
 	var stsResp StsResponse
 	json.Unmarshal(resp, &stsResp)

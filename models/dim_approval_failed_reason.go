@@ -7,12 +7,12 @@ type DimApprovalFailedReason struct {
 	NameCn string
 }
 
-func (d *DimApprovalFailedReason) QueryByUserId(id uint) (DimApprovalFailedReason,error){
+func (d *DimApprovalFailedReason) QueryByUserId(id uint) (DimApprovalFailedReason, error) {
 	var df DimApprovalFailedReason
 	err := DB.Where(&DimApprovalFailedReason{Id: id}).First(&df).Error
-	return df,err
+	return df, err
 }
 
-func NewReason() *DimApprovalFailedReason{
+func NewReason() *DimApprovalFailedReason {
 	return &DimApprovalFailedReason{}
 }

@@ -1,4 +1,5 @@
 package utils
+
 import (
 	"fmt"
 	"testing"
@@ -17,5 +18,5 @@ func TestRandomInfo(t *testing.T) {
 }
 
 func TestIntTo52(t *testing.T) {
-	fmt.Printf(IntTo52(6,5000145))
+	fmt.Printf(IntTo52(6, 5000145))
 }
