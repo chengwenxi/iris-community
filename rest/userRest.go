@@ -15,31 +15,44 @@ import (
 
 func UserRegisterAll(g *gin.RouterGroup) {
 	g.POST("", CreateUser)
-	g.GET("/activate", ActivateUser)
+	g.PUT("/activate", ActivateUser)
 	g.POST("/resendAct", ResendAct)
 	g.PUT("/updatePwd", UpdateUserPwd)
 	g.POST("/reset", ResetUser)
 }
 
-type RequestUsers struct {
+type RequestUser struct {
 	Email string `binding:"required"`
 }
 
-type RequestUpateUsers struct {
-	RequestUsers
+type RequestUpateUser struct {
+	RequestUser
 	Password string `binding:"required"`
 }
 
-type RequestCreateUsers struct {
-	RequestUsers
+type RequestCreateUser struct {
+	RequestUser
 	Password       string `binding:"required"`
 	InvitationCode string
 	VerifyCode     string `binding:"required"`
 }
 
+type RequestActivateUser struct {
+	Id   string `binding:"required"`
+	Code string `binding:"required"`
+}
+
 //create user
+// @Summary create user
+// @ID create-user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param   body body rest.RequestCreateUser  true "RequestCreateUser"
+// @Success 200 {object} models.Users
+// @Router /user [post]
 func CreateUser(c *gin.Context) {
-	var req RequestCreateUsers
+	var req RequestCreateUser
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -79,13 +92,23 @@ func CreateUser(c *gin.Context) {
 }
 
 //activate user
+// @Summary activate user
+// @ID activate-user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param   body body rest.RequestActivateUser  true "RequestActivateUser"
+// @Success 200 {object} models.Users
+// @Router /user/activate [put]
 func ActivateUser(c *gin.Context) {
-	id := c.Query("id")
-	code := c.Query("code")
-	if id == "" || code == "" {
-		c.JSON(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
+	var req RequestActivateUser
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	id := req.Id
+	code := req.Code
 	con := myredis.Pool.Get()
 	v, _ := redis.String(con.Do("GET", "actc_"+code))
 	if v == id {
@@ -101,8 +124,16 @@ func ActivateUser(c *gin.Context) {
 }
 
 //resend email to activate user
+// @Summary resend email to activate user
+// @ID resend-email-activate
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param   body body rest.RequestUser  true "RequestUser"
+// @Success 200 {object} models.Users
+// @Router /user/resendAct [post]
 func ResendAct(c *gin.Context) {
-	var req RequestUsers
+	var req RequestUser
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -131,8 +162,16 @@ func ResendAct(c *gin.Context) {
 }
 
 //reset user password by email
+// @Summary reset user password by email
+// @ID reset-password-email
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param   body body rest.RequestUser  true "RequestUser"
+// @Success 200 {object} models.Users
+// @Router /user/reset [post]
 func ResetUser(c *gin.Context) {
-	var req RequestUsers
+	var req RequestUser
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -164,6 +203,15 @@ func ResetUser(c *gin.Context) {
 }
 
 //update password
+// @Summary update password
+// @ID update-password
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param  Authorization header string true "Authorization"
+// @Param  body body rest.RequestUpateUser  true "RequestUpateUser"
+// @Success 200 {object} models.Users
+// @Router /user/updatePwd [put]
 func UpdateUserPwd(c *gin.Context) {
 
 	authorization := c.Request.Header.Get("Authorization")
@@ -177,9 +225,10 @@ func UpdateUserPwd(c *gin.Context) {
 	userAuth.FindByAuth()
 	if userAuth.Id == 0 {
 		c.JSON(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized))
+		return
 	}
 
-	var req RequestUpateUsers
+	var req RequestUpateUser
 	if err := c.ShouldBindJSON(&req); err == nil {
 		if len(req.Password) == 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": http.StatusText(http.StatusBadRequest)})

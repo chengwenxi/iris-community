@@ -10,7 +10,23 @@ import (
 	"log"
 	"github.com/irisnet/iris-community/config"
 	"github.com/irisnet/iris-community/models/redis"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+	_ "github.com/irisnet/iris-community/docs"
 )
+
+
+// @title Swagger IRIS-Community API
+// @version 1.0
+// @description This is a sample server Petstore server.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
 func main() {
 
@@ -51,5 +67,7 @@ func main() {
 	rest.RegisterAliyun(r.Group("/aliyun"))
 	rest.QueryRegister(r.Group("/query"))
 	rest.VerifyRegisterAll(r.Group("/verify"))
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.Run(config.Config.Server) // listen and serve on 0.0.0.0:8080
 }

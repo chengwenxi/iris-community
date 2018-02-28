@@ -17,7 +17,7 @@ func AuthRegisterAll(g *gin.RouterGroup) {
 }
 
 type RequestAuthUsers struct {
-	RequestUsers
+	RequestUser
 	Password   string `binding:"required"`
 	VerifyCode string `binding:"required"`
 }

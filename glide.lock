@@ -1,5 +1,5 @@
-hash: e41d384f8c6f607d48a74ae04cd0561ed3f0beb3b789c2696aa4a609707db655
-updated: 2018-01-29T17:36:59.6348129+08:00
+hash: b8a17bd233e4d6702963418354944a86440be5db40196dd0e0822fa5cfadde4b
+updated: 2018-02-26T14:23:29.5846633+08:00
 imports:
 - name: github.com/aliyun/aliyun-oss-go-sdk
   version: 52de7239022ceba47354832fbcc65983aa8d019d
@@ -22,7 +22,7 @@ imports:
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
 - name: github.com/gin-gonic/gin
-  version: a712f77d7aaec7eb4766a663924aaa4e54d3fe70
+  version: 783c7ee9c14eac0e65b501664b4f553291556b43
   subpackages:
   - binding
   - json
@@ -45,7 +45,7 @@ imports:
 - name: github.com/jinzhu/inflection
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
 - name: github.com/json-iterator/go
-  version: c3ed5e85e01b662dce06b590ba4262266acbc73a
+  version: 002b5ae34214fdc0bad508c2ed6f572fa96dfdda
 - name: github.com/Knetic/govaluate
   version: 9aa49832a739dcd78a5542ff189fb82c3e423116
 - name: github.com/lib/pq
@@ -56,13 +56,17 @@ imports:
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/mojocn/base64Captcha
-  version: f8e0aa6194261e5c3e777ad815f1c872d2e3aeab
+  version: 8c983452abdab9be32721b5faefca09ca4cfe33b
 - name: github.com/pborman/uuid
-  version: e790cca94e6cc75c7064b1332e63811d4aae1a53
+  version: e533369306653d193b93dae055f6083cbf8ba54f
+- name: github.com/swaggo/gin-swagger
+  version: 1510a6d46f01820f88b3a62d13353ccc8c6faa8e
+  subpackages:
+  - swaggerFiles
 - name: github.com/tobyzxj/uuid
   version: aa0153c14395f4431fe668071eeda5d4a0290f95
 - name: github.com/ugorji/go
-  version: 9831f2c3ac1068a78f50999a30db84270f647af6
+  version: b5b949564861e43a03568a0b134c135cf318e5c8
   subpackages:
   - codec
 - name: golang.org/x/image

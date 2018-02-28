@@ -8,3 +8,5 @@ import:
 - package: github.com/GiterLab/urllib
 - package: github.com/garyburd/redigo/redis
 - package: github.com/mojocn/base64Captcha
+- package: github.com/swaggo/gin-swagger
+- package: github.com/swaggo/gin-swagger/swaggerFiles
