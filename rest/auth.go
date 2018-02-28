@@ -12,18 +12,31 @@ import (
 
 func AuthRegisterAll(g *gin.RouterGroup) {
 	g.POST("", Login)
-	g.GET("/reset", AuthRest)
+	g.POST("/reset", AuthRest)
 	g.GET("/user", AuthUser)
 }
 
-type RequestAuthUsers struct {
+type RequestAuthUser struct {
 	RequestUser
 	Password   string `binding:"required"`
 	VerifyCode string `binding:"required"`
 }
 
+type RequestAuthRest struct {
+	Id   string `binding:"required"`
+	Code string `binding:"required"`
+}
+
+//user auth
+// @Summary 获取Authorization（用户登录）
+// @ID user-auth
+// @Tags auth
+// @Produce json
+// @Param body body rest.RequestAuthUser true "RequestAuthUser"
+// @Success 200 {object} models.UserAuth
+// @Router /auth [post]
 func Login(c *gin.Context) {
-	var req RequestAuthUsers
+	var req RequestAuthUser
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -59,6 +72,14 @@ func Login(c *gin.Context) {
 	}
 }
 
+//user auth
+// @Summary 获取当前Authorization对应的用户信息
+// @ID user-auth
+// @Tags auth
+// @Produce json
+// @Param  Authorization header string true "Authorization"
+// @Success 200 {object} models.Users
+// @Router /auth/user [get]
 func AuthUser(c *gin.Context) {
 	if authorization := c.Request.Header.Get("Authorization"); authorization == "" {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "no authorization"})
@@ -79,14 +100,24 @@ func AuthUser(c *gin.Context) {
 	}
 }
 
+//重置密码后通过code获取Authorization
+// @Summary 重置密码后通过code获取Authorization
+// @ID auth-rest
+// @Tags auth
+// @Accept  json
+// @Produce  json
+// @Param   body body rest.RequestAuthRest  true "RequestAuthRest"
+// @Success 200 {object} models.UserAuth
+// @Router /auth/rest [post]
 func AuthRest(c *gin.Context) {
-	id := c.Query("id")
-
-	code := c.Query("code")
-	if id == "" || code == "" {
-		c.JSON(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
+	var req RequestAuthRest
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	id := req.Id
+	code := req.Code
 	con := myredis.Pool.Get()
 	v, _ := redis.String(con.Do("GET", "resc_"+code))
 	if v == id {

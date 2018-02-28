@@ -16,6 +16,18 @@ func VerifyRegisterAll(g *gin.RouterGroup) {
 	g.GET("", CreateCode)
 }
 
+type VerifyResponse struct {
+	Code string
+}
+
+//create verify code
+// @Summary 获取验证码
+// @ID create-verifyCode
+// @Tags verify
+// @Produce json
+// @Param email query string true "email"
+// @Success 200 {object} rest.VerifyResponse
+// @Router /verify [get]
 func CreateCode(c *gin.Context) {
 	email := c.Query("email")
 	if email == "" {
@@ -40,7 +52,7 @@ func CreateCode(c *gin.Context) {
 	_, err := con.Do("SET", "verc_"+email, verifyValue)
 	_, err = con.Do("EXPIRE", "verc_"+email, config.Config.Redis.VercTimeOut) //20 seconds expired
 	if err == nil {
-		c.JSON(http.StatusOK, gin.H{"code": base64stringC})
+		c.JSON(http.StatusOK, VerifyResponse{Code: base64stringC})
 		return
 	}
 	c.JSON(http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError))
